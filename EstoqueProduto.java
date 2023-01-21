@@ -1,8 +1,8 @@
-package trabalhoag3.TrabalhoAG3;
+package devestoquefruteira.DevEstoqueFruteira;
 
 import java.util.ArrayList;
 import java.util.List;
-import trabalhoag3.TrabalhoAG3.Execoes.CodigoInvalidoException;
+import devestoquefruteira.DevEstoqueFruteira.Execoes.CodigoInvalidoException;
 public class EstoqueProduto implements IProduto{
 
     List<Produto> listaProdutos;

@@ -1,4 +1,4 @@
-package trabalhoag3.TrabalhoAG3.Execoes;
+package devestoquefruteira.DevEstoqueFruteira.Execoes;
 
 public class CodigoInvalidoException extends RuntimeException {
 

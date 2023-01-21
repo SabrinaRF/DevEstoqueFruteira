@@ -1,4 +1,4 @@
-package trabalhoag3.TrabalhoAG3;
+package devestoquefruteira.DevEstoqueFruteira;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
