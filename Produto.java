@@ -1,5 +1,7 @@
+
 package devestoquefruteira.DevEstoqueFruteira;
 /**
+=======
  * Classe do Produto com o construtor, atributos e métodos básicos
  * @author Sabrina Rodrigues Fernandes 
  */    
