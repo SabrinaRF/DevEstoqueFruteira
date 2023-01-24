@@ -20,8 +20,8 @@ public class GerenciarNotasFiscais implements INotasFiscais{
     public GerenciarNotasFiscais(List<NotaFiscal> listaDeNotasFiscais, List<Produto> listaProdutos){
         this.listaDeNotasFiscais = listaDeNotasFiscais;
         this.listaProdutos = listaProdutos;
-       
     }
+
     /**
      *
      * @param nf
@@ -29,8 +29,14 @@ public class GerenciarNotasFiscais implements INotasFiscais{
      */
     @Override
     public void addNotaFiscal(NotaFiscal nf) throws Exception{
-        this.listaDeNotasFiscais.add(nf);
+        if(nf != null){
+        listaDeNotasFiscais.add(nf);
+        } else {
+             throw new Exception("Nota fiscal não pode ser adicionado!");
+        }
     }
+    
+    
     
     /**
      *
@@ -134,6 +140,14 @@ public class GerenciarNotasFiscais implements INotasFiscais{
         
     }
     
+     public NotaFiscal get(int i){
+    return  listaDeNotasFiscais.get(i);
+    }
+    
+     public int size(){
+        return listaDeNotasFiscais.size();
+    
+    }
     
     public int getNProduto(){
     return listaProdutos.size();
