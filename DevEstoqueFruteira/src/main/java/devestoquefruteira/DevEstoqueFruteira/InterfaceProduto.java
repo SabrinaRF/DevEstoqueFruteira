@@ -3,9 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package devestoquefruteira.DevEstoqueFruteira;
-
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -377,10 +378,9 @@ public class InterfaceProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(modo.equals("Novo")){
             
-
                 try {
 
-                    Produto p = new Produto("banana", "fruta", 2, 2);
+                    Produto p = new Produto("banana", "fruta", "2", "2");
                     
                     String nome =txtNome.getText();
                     String descricao = txtDescricao.getText();

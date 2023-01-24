@@ -5,7 +5,7 @@ import java.util.List;
 import devestoquefruteira.DevEstoqueFruteira.Execoes.CodigoInvalidoException;
 public class EstoqueProduto implements IProduto{
 
-    List<Produto> listaProdutos;
+    List<Produto> listaProdutos; // lista de produtos
 
     /**
      * Construtor da Classe EstoqueProduto .
@@ -14,14 +14,7 @@ public class EstoqueProduto implements IProduto{
     public EstoqueProduto (List<Produto> p){
         this.listaProdutos = p;
     }
-     /**
-     * Construtor da Classe EstoqueProduto, sem parametro .
-     * New no ArrayList.
-     */
-    public EstoqueProduto (){
-        this.listaProdutos = new ArrayList<>();
-    }
-    
+   
     /**
      * Adiciona um produto no estoque.
      * @param Produto p objeto
@@ -35,7 +28,24 @@ public class EstoqueProduto implements IProduto{
             throw new Exception("Produto não pode ser adicionado!");
         }   
     }
-
+    /**
+     * Retorna o get do produto.
+     * @param i inteiro
+     * @return get da do produto da lista.
+     **/
+    public Produto get(int i){
+        return  listaProdutos.get(i);
+    }
+    
+    /**
+     * Retorna o tamanho da lista de produtos
+     * @return listaProdutos.size o tamanho da lista.
+     **/
+    public int size(){
+        return listaProdutos.size();
+    
+    }
+    
     /**
      * Remove o produto da lista, procura atraves do código e ao encontrar o remove da lista.
      * @param código do produto
@@ -44,8 +54,10 @@ public class EstoqueProduto implements IProduto{
      * Utiliza o método da própria classe getProduto.
      */
     @Override 
-    public void removeProduto(int codigo) throws Exception { 
-        listaProdutos.remove(getProduto(codigo)); 
+    public void removeProduto(int codigo) throws Exception {
+        
+        listaProdutos.remove(getProduto(codigo));
+          
     }
 
     /**
@@ -118,7 +130,9 @@ public class EstoqueProduto implements IProduto{
         for(int i=0;i<listaProdutos.size();i++){
             if (listaProdutos.get(i).getCodigo() ==codigo) {
                 double novaQuantidade = (listaProdutos.get(i).getQuantidade())+ quantidade;
-                listaProdutos.get(i).setQuantidade(novaQuantidade);
+                
+                    listaProdutos.get(i).setQuantidade(novaQuantidade);
+                
             }else{
                 throw new CodigoInvalidoException();
             }
@@ -137,22 +151,18 @@ public class EstoqueProduto implements IProduto{
     public void subQuantidade(int codigo, double quantidade) throws Exception {
         for(int i=0;i<listaProdutos.size();i++){
             if (listaProdutos.get(i).getCodigo() ==codigo) {
-                if(quantidade <= listaProdutos.get(i).getQuantidade()){
-                    double novaQuantidade = (listaProdutos.get(i).getQuantidade())-quantidade;              
-                    listaProdutos.get(i).setQuantidade(novaQuantidade);
-                }else{
-                   throw new Exception ("Quantidade inserida é maior que a do estoque!");
-                }
+                double novaQuantidade = (listaProdutos.get(i).getQuantidade())-quantidade;              
+                listaProdutos.get(i).setQuantidade(novaQuantidade);
             }else{
                 throw new CodigoInvalidoException();
             }
         }
     }
-
+    
     /**
     * Retorna uma String com todos os produtos e seus respectivos dados
     * @return dados Todos os dados da lista de produtos.
-    */
+    **/
     public String toString(){
         String dados="";
         for(Produto v: listaProdutos){
