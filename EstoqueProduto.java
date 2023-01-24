@@ -43,7 +43,6 @@ public class EstoqueProduto implements IProduto{
      **/
     public int size(){
         return listaProdutos.size();
-    
     }
     
     /**

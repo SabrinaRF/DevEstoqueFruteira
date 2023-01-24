@@ -63,24 +63,51 @@ public class Produto {
     /**
      * Altera o nome do produto.
      * @param nome Nome do produto a ser alterado.
+     * @throws java.lang.Exception Lança exceção quando o nome for null.
      */
-    public void setNome(String nome){this.nome=nome;}
+    public void setNome(String nome) throws Exception{//aquui parei
+        if(nome == " "){
+            this.nome=nome;
+        }else{
+            throw new Exception ("Nome obrigatório, preencha o campo!");
+        }
+    }
      /**
      * Altera o descrição do produto.
      * @param descricao Descrição do produto a ser alterado.
+     * @throws java.lang.Exception Lança exceção quando a descrição é null.
      */
-    public void setDescricao(String descricao){this.descricao=descricao;}
+    public void setDescricao(String descricao)throws Exception{
+        if(descricao != null){
+            this.descricao=descricao; 
+        }else{
+            throw new Exception ("Descição obrigatória, preencha o campo!");
+        }
+        
+    }
     /**
      * Altera a quantidade do produto.
      * @param quantidade Quantidade do produto a ser alterado.
      * @throws java.lang.Exception Lança exceção quando a quantidade for menor ou igual a zero.
      */
-    public void setQuantidade(double quantidade)throws Exception {if(quantidade > 0){this.quantidade=quantidade;}else{throw new Exception("Quantidade inválida, insira um valor maior que 0!");}}
+    public void setQuantidade(double quantidade)throws Exception {
+        if(quantidade > 0){
+            this.quantidade=quantidade;
+        }else{
+            throw new Exception("Quantidade inválida, insira um valor maior que 0!");
+        }
+    }
      /**
      * Altera o preço do produto.
      * @param preco Preço do produto a ser alterado.
      */
-    public void setPreco(Double preco){this.preco=preco;}
+    public void setPreco(Double preco)throws Exception{
+        if(preco>0.0){
+            this.preco=preco;
+        }else{
+            throw new Exception ("Preço inválido, insira um preço acima de 0.0!");
+        }
+    }
 
     /**
      * Captura o código, nome, descrição, quantidade e preço do produto.
