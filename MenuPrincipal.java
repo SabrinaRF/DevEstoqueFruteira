@@ -11,14 +11,14 @@ import java.util.List;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
     private EstoqueProduto listaProduto;
-    private GerenciarNotasFiscais listaNF;
+    private GerenciarNotasFiscais gerenciarNotasFiscais;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal(EstoqueProduto listaProduto, GerenciarNotasFiscais listaNF) {
+    public MenuPrincipal(EstoqueProduto listaProduto, GerenciarNotasFiscais gerenciarNotasFiscais) {
         initComponents();
         this.listaProduto=listaProduto;
-        this.listaNF = listaNF;
+        this.gerenciarNotasFiscais = gerenciarNotasFiscais;
     }
 
     /**
@@ -97,7 +97,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void addNotaFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNotaFiscalActionPerformed
         // TODO add your handling code here:
-        InterfaceNotaFiscal interfaceNotaFiscal =  new InterfaceNotaFiscal(listaNF);
+        InterfaceNotaFiscal interfaceNotaFiscal =  new InterfaceNotaFiscal(gerenciarNotasFiscais);
         interfaceNotaFiscal.setVisible(true);
     }//GEN-LAST:event_addNotaFiscalActionPerformed
 
@@ -133,7 +133,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
             public void run() {
                 ArrayList<Produto> produto = new ArrayList<>();
                 ArrayList<NotaFiscal> listaNF = new ArrayList<>();
-                new MenuPrincipal(new EstoqueProduto(produto), new GerenciarNotasFiscais(listaNF)).setVisible(true);
+                
+            
+                new MenuPrincipal(new EstoqueProduto(produto), new GerenciarNotasFiscais(listaNF, produto)).setVisible(true);
+            
+               
+            
+                
             }
         });
     }

@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class InterfaceProduto extends javax.swing.JFrame {
     private EstoqueProduto listaProduto;
     private String modo;
-    ArrayList<Produto> listProduto;
+   
     /**
      * Creates new form InterfaceProduto
      */
@@ -24,15 +24,15 @@ public class InterfaceProduto extends javax.swing.JFrame {
         initComponents();
         this.listaProduto=listaProduto;
         
-        listProduto = new ArrayList();
         modo="Navegar";
         ManipularInterface();
     }
     public void LoadTableProduto(){
         DefaultTableModel modeloProduto = new DefaultTableModel(new Object [] {"Código","Nome", "Descrição","Quantidade", "Preço"},0);
 
-            for(int i=0;i<listProduto.size();i++){
-                Object linha []=new Object[]{listProduto.get(i).getCodigo(),listProduto.get(i).getNome(),listProduto.get(i).getDescricao(), listProduto.get(i).getQuantidade(), listProduto.get(i).getPreco()};
+            for(int i=0;i<listaProduto.size();i++){
+                
+                Object linha []=new Object[]{listaProduto.get(i).getCodigo(),listaProduto.get(i).getNome(),listaProduto.get(i).getDescricao(), listaProduto.get(i).getQuantidade(), listaProduto.get(i).getPreco()};
                 modeloProduto.addRow(linha);
             }
             tblProduto.setModel(modeloProduto);
@@ -342,8 +342,12 @@ public class InterfaceProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
         int index = tblProduto.getSelectedRow();
         
-        if (index>=0 && index<listProduto.size()){
-            listProduto.remove(index);
+        if (index>=0 && index<listaProduto.size()){
+            try {
+                listaProduto.removeProduto(index);
+            } catch (Exception ex) {
+                Logger.getLogger(InterfaceProduto.class.getName()).log(Level.SEVERE, null, ex); 
+            }
         }
         LoadTableProduto();
         modo="Navegar";
@@ -374,41 +378,54 @@ public class InterfaceProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(modo.equals("Novo")){
             
-            Produto p = new Produto();
-            
-            String nome =txtNome.getText();
-            String descricao = txtDescricao.getText();
-            int quantidade = Integer.parseInt(txtQuantidade.getText());
-            double preco = Double.valueOf(txtPreco.getText()).doubleValue();
-            
-            p.setNome(nome);
-            p.setDescricao(descricao);
-            //do{
                 try {
-                    p.setQuantidade(quantidade);
+
+                    Produto p = new Produto("banana", "fruta", "2", "2");
+                    
+                    String nome =txtNome.getText();
+                    String descricao = txtDescricao.getText();
+                    int quantidade = Integer.parseInt(txtQuantidade.getText());
+                    double preco = Double.valueOf(txtPreco.getText()).doubleValue();
+                    
+                    p.setNome(nome);
+                    p.setDescricao(descricao);
+                    //do{
+                    try {
+                        p.setQuantidade(quantidade);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null,ex.getMessage());
+                    }
+                    //}while(quantidade==0);
+                    p.setPreco(preco);
+                    
+                    //listaProduto.add(p);
+                    
+                    listaProduto.addProduto(p);
+                    
+                    JOptionPane.showMessageDialog(null, "Produto adicionado!");
+                    
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                    Logger.getLogger(InterfaceProduto.class.getName()).log(Level.SEVERE,null, ex);
                 }
-            //}while(quantidade==0);
-            p.setPreco(preco);
-            
-            //listaProduto.add(p);
-            listProduto.add(p);
-                
-            JOptionPane.showMessageDialog(null, "Produto adicionado!");         
                 
         }else if(modo.equals("Editar")){
-            int index = tblProduto.getSelectedRow();
-            
-            listProduto.get(index).setNome(txtNome.getText());
-            listProduto.get(index).setDescricao(txtDescricao.getText());
             try {
-                listProduto.get(index).setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+                int index = tblProduto.getSelectedRow();
+                
+                Produto p = listaProduto.getProduto(index);
+                
+                p.setNome(txtNome.getText());
+                p.setDescricao(txtDescricao.getText());
+                try {
+                    p.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());            }
+                p.setPreco(Double.valueOf(txtPreco.getText()).doubleValue());
+                
+                JOptionPane.showMessageDialog(null, "Produto modificado!");
+                
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null,ex.getMessage());            }
-            listProduto.get(index).setPreco(Double.valueOf(txtPreco.getText()).doubleValue());
-        
-            JOptionPane.showMessageDialog(null, "Produto modificado!");         
+                Logger.getLogger(InterfaceProduto.class.getName()).log(Level.SEVERE,null, ex);            }         
                 
         }
         LoadTableProduto();
@@ -426,16 +443,20 @@ public class InterfaceProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
         int index = tblProduto.getSelectedRow();
         
-        if (index>=0 && index<listProduto.size()){
-            Produto p =  listProduto.get(index);
-            
-            txtNome.setText(p.getNome());
-            txtDescricao.setText(String.valueOf(p.getDescricao()));
-            txtQuantidade.setText(String.valueOf(p.getQuantidade()));
-            txtPreco.setText(String.valueOf(p.getPreco()));
-            
-            modo="Selecao";
-            ManipularInterface();
+        if (index>=0 && index<listaProduto.size()){
+            try {
+                Produto p =  listaProduto.getProduto(index);
+                
+                txtNome.setText(p.getNome());
+                txtDescricao.setText(String.valueOf(p.getDescricao()));
+                txtQuantidade.setText(String.valueOf(p.getQuantidade()));
+                txtPreco.setText(String.valueOf(p.getPreco()));
+                
+                modo="Selecao";
+                ManipularInterface();
+            } catch (Exception ex) {
+                Logger.getLogger(InterfaceProduto.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_tblProdutoMouseClicked
 

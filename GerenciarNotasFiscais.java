@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package devestoquefruteira.DevEstoqueFruteira;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,15 +13,15 @@ import java.util.List;
  */
 public class GerenciarNotasFiscais implements INotasFiscais{
     private List<NotaFiscal> listaDeNotasFiscais;
+    private List <Produto> listaProdutos; //add
     
-    public GerenciarNotasFiscais(){
-        listaDeNotasFiscais = new ArrayList<>();
-    }
     
-    public GerenciarNotasFiscais(List<NotaFiscal> listaDeNotasFiscais){
+  
+    public GerenciarNotasFiscais(List<NotaFiscal> listaDeNotasFiscais, List<Produto> listaProdutos){
         this.listaDeNotasFiscais = listaDeNotasFiscais;
+        this.listaProdutos = listaProdutos;
+       
     }
-    
     /**
      *
      * @param nf
@@ -79,7 +80,7 @@ public class GerenciarNotasFiscais implements INotasFiscais{
         }
         throw new Exception("Código inválido. Nota fiscal não pôde ser encontrada.");
     }
-    
+
     @Override
     public void addItem(int codigo, Item item) throws Exception{
         if(item != null){
@@ -116,5 +117,33 @@ public class GerenciarNotasFiscais implements INotasFiscais{
         }
 
         throw new Exception("Data inválida.");
+    }
+    
+    
+
+    //foi add 
+    public List<NotaFiscal> getListaNota() {
+           
+        return listaDeNotasFiscais;
+    }
+    
+    //foi add 
+    public List<Produto> getListsProduto() {     
+        return  listaProdutos;
+        
+        
+    }
+    
+    
+    public int getNProduto(){
+    return listaProdutos.size();
+    } 
+            
+    public int getQuantElementos() { ///////////// Add
+        int quant = 0;
+       for(int i=0;i<listaDeNotasFiscais.size();i++){
+            quant++;
+        }
+        return quant;
     }
 }
