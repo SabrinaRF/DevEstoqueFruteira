@@ -382,13 +382,24 @@ public class InterfaceProduto extends javax.swing.JFrame {
             
             p.setNome(nome);
             p.setDescricao(descricao);
-            //do{
                 try {
                     p.setQuantidade(quantidade);
+                    p.setPreco(preco);
+            
+                    listaProduto.addProduto(p);
+                    listProduto.add(p);
+
+                    JOptionPane.showMessageDialog(null, "Produto adicionado!"); 
+                     modo="Navegar";
+                    ManipularInterface();
+                    txtNome.setText("");
+                    txtDescricao.setText("");
+                    txtQuantidade.setText("");
+                    txtPreco.setText("");
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null,ex.getMessage());
+                    txtQuantidade.setText("");
                 }
-            //}while(quantidade==0);
             p.setPreco(preco);
             
             //listaProduto.add(p);
