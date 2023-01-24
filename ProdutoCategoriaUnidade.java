@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package devestoquefruteira.DevEstoqueFruteira;
-
 public class ProdutoCategoriaUnidade extends Produto{
     
     public ProdutoCategoriaUnidade(int quantidade, String nome, String descricao,double preco){

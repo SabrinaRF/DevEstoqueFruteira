@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package devestoquefruteira.DevEstoqueFruteira;
-
 public interface INotasFiscais {
     /**
  * Interface que especifica os métodos míninos para manipular uma coleção de notas fiscais.
