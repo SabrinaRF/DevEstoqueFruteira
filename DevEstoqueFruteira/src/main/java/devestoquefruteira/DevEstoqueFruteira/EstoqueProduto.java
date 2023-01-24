@@ -20,7 +20,6 @@ public class EstoqueProduto implements IProduto{
             throw new Exception("Produto não pode ser adicionado!");
         }   
     }
-
     public Produto get(int i){
     return  listaProdutos.get(i);
     }
@@ -36,6 +35,7 @@ public class EstoqueProduto implements IProduto{
         
     }
 
+    
     @Override 
     public Produto getProduto(int codigo) throws Exception {
         for(int i=0;i<listaProdutos.size();i++){
