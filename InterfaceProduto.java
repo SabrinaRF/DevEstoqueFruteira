@@ -380,7 +380,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
             
                 try {
 
-                    Produto p = new Produto("banana", "fruta", "2", "2");
+                    Produto p = new Produto("banana", "fruta", 2, 2);
                     
                     String nome =txtNome.getText();
                     String descricao = txtDescricao.getText();
