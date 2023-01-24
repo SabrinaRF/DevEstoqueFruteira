@@ -1,6 +1,5 @@
 package devestoquefruteira.DevEstoqueFruteira;
 /**
-
  * Interface que especifica os métodos míninos para manipular uma coleção de produtos
  * @author Aline
  */

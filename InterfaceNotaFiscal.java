@@ -19,10 +19,10 @@ import javax.swing.DefaultComboBoxModel;
  * 
  */
 public class InterfaceNotaFiscal extends javax.swing.JFrame {
-    private GerenciarNotasFiscais gerenciarNotasFiscais ;
+    private GerenciarNotasFiscais listaDeNotasFiscais;
     
     private String modo;
-    ArrayList<NotaFiscal> listaDeNotasFiscais;
+    
     DefaultTableModel modelo = new DefaultTableModel();
      
     /**
@@ -30,15 +30,15 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
      * o JcomboBox com a lista de produtos retornada pelo método getListProduto do objeto
      * gerenciarNotasFiscais.
      */
-    public InterfaceNotaFiscal(GerenciarNotasFiscais gerenciarNotasFiscais) {
+    public InterfaceNotaFiscal(GerenciarNotasFiscais listaDeNotasFiscais) {
         initComponents();
-        this.gerenciarNotasFiscais = gerenciarNotasFiscais;
+        this.listaDeNotasFiscais = listaDeNotasFiscais;
         
-        System.out.println("listaProduto " +  this.gerenciarNotasFiscais.getNProduto());
-        ComboBoxModel comboBoxProduto = new DefaultComboBoxModel(gerenciarNotasFiscais.getListsProduto().toArray());
+        //System.out.println("listaProduto " +  this.gerenciarNotasFiscais.getNProduto());
+        ComboBoxModel comboBoxProduto = new DefaultComboBoxModel(listaDeNotasFiscais.getListsProduto().toArray());
         jComboBoxItem.setModel(comboBoxProduto);
       
-        listaDeNotasFiscais = new ArrayList();
+        //listaDeNotasFiscais = new ArrayList();
         LoadTableNotafiscal();
         setLocationRelativeTo(null);
         modo="Navegar";
@@ -53,36 +53,56 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
     texto "Produto não disponível". Finalmente, ele define o modelo criado como o modelo da tabela TabelaNF.
     */
     public void LoadTableNotafiscal(){
-    DefaultTableModel novoModelo = new DefaultTableModel(new Object [] {"Código","data","Nome","Descrição","quantidade","preço"},0);
+    DefaultTableModel novoModelo = new DefaultTableModel(new Object [] {"Código","data","cod item","Nome","Descrição","quantidade","preço"},0);
 
-    for(int i=0;i<gerenciarNotasFiscais.getQuantElementos();i++){
-        if (gerenciarNotasFiscais.getListaNota().get(i).getProduto() != null && gerenciarNotasFiscais.getListaNota().get(i).getProduto().getNome() != null) {
+    //for(int i=0;i<listaDeNotasFiscais.getQuantElementos();i++){
+        //if (listaDeNotasFiscais.get(i).getProduto() != null && listaDeNotasFiscais.get(i).getProduto().getNome() != null) {
+        
+        
+        for(int i=0;i<listaDeNotasFiscais.size();i++){
             Object linha []=new Object[]{
-                gerenciarNotasFiscais.getListaNota().get(i).getCodNotaFiscal(),
-                gerenciarNotasFiscais.getListaNota().get(i).getData(),
-                gerenciarNotasFiscais.getListaNota().get(i).getProduto().getNome(),
-                gerenciarNotasFiscais.getListaNota().get(i).getProduto().getDescricao(),
-                gerenciarNotasFiscais.getListaNota().get(i).getProduto().getPreco(),
+                listaDeNotasFiscais.get(i).getCodNotaFiscal(),
+                listaDeNotasFiscais.get(i).getData(),
+                
+                listaDeNotasFiscais.get(i).getProduto().getCodigo(),
+                listaDeNotasFiscais.get(i).getProduto().getNome(),
+                listaDeNotasFiscais.get(i).getProduto().getDescricao(),
+                listaDeNotasFiscais.get(i).getProduto().getQuantidade(),
+                listaDeNotasFiscais.get(i).getProduto().getPreco(),
+                
+                
+            };
+            novoModelo.addRow(linha);
+        }
+         TabelaNF.setModel(novoModelo);
+    }
+        
+            /*Object linha []=new Object[]{
+                listaDeNotasFiscais.get(i).getCodNotaFiscal(),
+                listaDeNotasFiscais.get(i).getData(),
+               listaDeNotasFiscais.get(i).getProduto().getNome(),
+                listaDeNotasFiscais.get(i).getProduto().getDescricao(),
+               listaDeNotasFiscais.get(i).getProduto().getPreco(),
                 
             };
             novoModelo.addRow(linha);
               
+        */
         
-        
-        }
+       // }
         //this.modelo=novoModelo;
         //TabelaNF.setModel(novoModelo);
-         else {
-            Object linha []=new Object[]{
-                gerenciarNotasFiscais.getListaNota().get(i).getCodNotaFiscal(),
-                gerenciarNotasFiscais.getListaNota().get(i).getData(),
-                "Produto não disponível"
-            };
-        novoModelo.addRow(linha);
+         //else {
+          //  Object linha []=new Object[]{
+            //    listaDeNotasFiscais.get(i).getCodNotaFiscal(),
+              //  listaDeNotasFiscais.get(i).getData(),
+                //"Produto não disponível"
+            //};
+        //novoModelo.addRow(linha);
         
-        }
-    }
-    }   
+      //  }
+    //}
+    //}   
     
     
  
@@ -162,7 +182,60 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
      */
 
 public void salvar() {
-            if(modo.equals("Novo")){
+        if(modo.equals("Novo")){   
+        try {
+            NotaFiscal notaFiscal = new NotaFiscal();
+
+            int codDaNotaFiscal = notaFiscal.getCodNotaFiscal();     
+            int dia= Integer.parseInt( caixaDeTextoNF.getText());
+            int mes = Integer.parseInt( caixaDeTextoMes.getText());
+            int ano = Integer.parseInt( caixaDeTextoAno.getText());
+
+            String data = dia+"/"+ mes +"/"+ ano;
+            notaFiscal.setData(data);
+
+            Produto selectProuto = (Produto)jComboBoxItem.getSelectedItem();
+            notaFiscal.setProduto(selectProuto);
+            
+            listaDeNotasFiscais.addNotaFiscal(notaFiscal);
+
+            //LoadTableNotafiscal();
+            JOptionPane.showMessageDialog(null, "Nota adicionada!");
+
+        
+       } catch (Exception ex) {
+                    Logger.getLogger(InterfaceProduto.class.getName()).log(Level.SEVERE,null, ex);
+                }
+            }else if (modo.equals("Editar")){
+                try {
+                    int index = TabelaNF.getSelectedRow();
+                    
+                    NotaFiscal g = listaDeNotasFiscais.getNotaFiscal(index);
+                    
+                    g.setData(caixaDeTextoNF.getText());
+                    g.setData(caixaDeTextoMes.getText());
+                    g.setData(caixaDeTextoAno.getText());
+                    
+                    
+                    JOptionPane.showMessageDialog(null, "Produto modificado!");
+                   
+                } catch (Exception ex) {
+                    Logger.getLogger(InterfaceNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+            LoadTableNotafiscal();
+            ManipularInterface();
+            modo="Navegar";
+            
+           
+        
+   
+    
+    
+    
+    
+    
+    /*if(modo.equals("Novo")){
                 try {
                     NotaFiscal notaFiscal = new NotaFiscal();
                     
@@ -181,30 +254,37 @@ public void salvar() {
                     Produto selectProuto = (Produto)jComboBoxItem.getSelectedItem();
                     
                     
+                    //listaDeNotasFiscais.getNotaFiscal(notaFiscal);
                     
-                    
-                    gerenciarNotasFiscais.addNotaFiscal(notaFiscal);
-                    
+                   listaDeNotasFiscais.addNotaFiscal(notaFiscal);
+                  
                     JOptionPane.showMessageDialog(null, "Nota adicionada!");
+                    LoadTableNotafiscal();
+                } catch (Exception ex) {
+                   JOptionPane.showMessageDialog(null, "Não foi possível salvar");
+                   LoadTableNotafiscal();
+                }
+            }else if (modo.equals("Editar")){
+                try {
+                    int index = TabelaNF.getSelectedRow();
+                    
+                    NotaFiscal g = listaDeNotasFiscais.getNotaFiscal(index);
+                    
+                    g.setData(caixaDeTextoNF.getText());
+                    g.setData(caixaDeTextoMes.getText());
+                    g.setData(caixaDeTextoAno.getText());
+                    
+                    JOptionPane.showMessageDialog(null, "Produto modificado!");
                     LoadTableNotafiscal();
                 } catch (Exception ex) {
                     Logger.getLogger(InterfaceNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else if (modo.equals("Editar")){
-            int index = TabelaNF.getSelectedRow();
-            
-            listaDeNotasFiscais.get(index).setData(caixaDeTextoNF.getText());
-            listaDeNotasFiscais.get(index).setData(caixaDeTextoMes.getText());
-            listaDeNotasFiscais.get(index).setData(caixaDeTextoAno.getText());
-          
-            JOptionPane.showMessageDialog(null, "Produto modificado!");         
-                LoadTableNotafiscal();
         }
    
             modo="Navegar";
             ManipularInterface();
             LoadTableNotafiscal();
-        
+    */    
     }
     
 
@@ -250,19 +330,19 @@ public void salvar() {
 
         TabelaNF.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "data", "Nome do item", "Descrição", "Quantidade", "Preço"
+                "Codigo", "data", "cod item", "Nome do item", "Descrição", "Quantidade", "Preço"
             }
         ));
         TabelaNF.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -462,13 +542,14 @@ public void salvar() {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(textoNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(textoNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(MenuNotaFisca, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(MenuNotaFisca, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -520,7 +601,11 @@ public void salvar() {
           int index = TabelaNF.getSelectedRow();
         
         if (index>=0 && index<listaDeNotasFiscais.size()){
-            listaDeNotasFiscais.remove(index);
+              try {
+                  listaDeNotasFiscais.removeNotaFiscal(index);
+              } catch (Exception ex) {
+                  Logger.getLogger(InterfaceNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+              }
         }
         LoadTableNotafiscal();
         modo="Navegar";
@@ -532,55 +617,15 @@ public void salvar() {
         caixaDeTextoMes.setText("");
         caixaDeTextoAno.setText("");
         
-         EstoqueProduto estoqueProduto = (EstoqueProduto)jComboBoxItem.getSelectedItem();
+         //EstoqueProduto estoqueProduto = (EstoqueProduto)jComboBoxItem.getSelectedItem();
         modo="Navegar";
         ManipularInterface();
     }//GEN-LAST:event_botaoCancelarNFActionPerformed
 
     private void botaoSalvarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarNFActionPerformed
+       salvar();
        
-         if(modo.equals("Novo")){
-                NotaFiscal notaFiscal = new NotaFiscal();
-                
-                
-            
-            int codDaNotaFiscal = notaFiscal.getCodNotaFiscal();
-            
-            int dia= Integer.parseInt( caixaDeTextoNF.getText());
-            int mes = Integer.parseInt( caixaDeTextoMes.getText());
-            int ano = Integer.parseInt( caixaDeTextoAno.getText());
-            
-            
-            String data = dia+"/"+ mes +"/"+ ano;
-            notaFiscal.setData(data);
-            
-            Produto selectProuto = (Produto)jComboBoxItem.getSelectedItem();
-            
-            
-            
-             try {
-                 gerenciarNotasFiscais.addNotaFiscal(notaFiscal);
-                 //listaDeNotasFiscais.add(notaFiscal);
-             } catch (Exception ex) {
-                 Logger.getLogger(InterfaceNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
-             }
-            
-            JOptionPane.showMessageDialog(null, "Nota adicionada!");         
-           
-            }else if (modo.equals("Editar")){
-            int index = TabelaNF.getSelectedRow();
-            
-            listaDeNotasFiscais.get(index).setData(caixaDeTextoNF.getText());
-            listaDeNotasFiscais.get(index).setData(caixaDeTextoMes.getText());
-            listaDeNotasFiscais.get(index).setData(caixaDeTextoAno.getText());
-          
-            JOptionPane.showMessageDialog(null, "Produto modificado!");         
-                
-        }
-   
-            modo="Navegar";
-            ManipularInterface();
-            LoadTableNotafiscal();
+        
     }//GEN-LAST:event_botaoSalvarNFActionPerformed
 
     private void jComboBoxItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxItemActionPerformed

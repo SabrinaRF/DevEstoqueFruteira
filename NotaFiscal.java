@@ -1,4 +1,5 @@
 package devestoquefruteira.DevEstoqueFruteira;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -18,15 +19,19 @@ public class NotaFiscal {
    private final int codNotaFiscal; //sugestao da ide ser final
    private String data;
    private final List<Item> listaDeItem; //sugestao da ide ser final
-
-    public NotaFiscal(String data, List<Item> listaDeItem){
+   private Produto produto;
+   
+    public NotaFiscal(String data, List<Item> listaDeItem, Produto produto){
         this.codNotaFiscal = codNotaFiscalGeral ++;
         this.data = data;
         this.listaDeItem = listaDeItem;
+        this.produto = produto;
     }
 
     NotaFiscal() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       this.codNotaFiscal = codNotaFiscalGeral++;
+       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       this.listaDeItem = null;
     }
 
     public int getCodNotaFiscal(){
@@ -68,6 +73,18 @@ public class NotaFiscal {
         }
     }
 
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+    
+ //foi add 
+     public Produto getProduto(){
+        return produto;
+    }
+    
+     
+     
+    
    @Override
     public String toString(){
         return "Código: "+ codNotaFiscal+"\nData: " + data;
