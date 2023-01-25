@@ -66,10 +66,10 @@ public class Produto {
      * @param nome Nome do produto a ser alterado.
      */
     public void setNome(String nome) throws Exception{
-    if(nome != " "){
-            this.nome=nome;
-        }else{
+        if(nome.equals("")){
             throw new Exception ("Nome obrigatório, preencha o campo!");
+        }else{
+            this.nome=nome;
         }
     }
      /**
@@ -77,10 +77,10 @@ public class Produto {
      * @param descricao Descrição do produto a ser alterado.
      */
     public void setDescricao(String descricao) throws Exception{
-        if(descricao != null){
-            this.descricao=descricao; 
-        }else{
+        if(descricao.equals("")){
             throw new Exception ("Descição obrigatória, preencha o campo!");
+        }else{
+            this.descricao=descricao;
         }
     }
     /**

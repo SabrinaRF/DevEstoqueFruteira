@@ -148,9 +148,11 @@ public class InterfaceProduto extends javax.swing.JFrame {
         btnPesquisar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        tblProdutoEstoque2 = new javax.swing.JTable();
+        tblProdutoEstoque = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("CONTROLE DE ESTOQUE DE PRODUTOS");
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Controle de Estoque de Produtos");
@@ -363,7 +365,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de produtos"));
 
-        tblProdutoEstoque2.setModel(new javax.swing.table.DefaultTableModel(
+        tblProdutoEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -375,12 +377,12 @@ public class InterfaceProduto extends javax.swing.JFrame {
                 "Código", "Nome", "Descrição", "Quantidade", "Preço"
             }
         ));
-        tblProdutoEstoque2.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblProdutoEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblProdutoEstoque2MouseClicked(evt);
+                tblProdutoEstoqueMouseClicked(evt);
             }
         });
-        jScrollPane5.setViewportView(tblProdutoEstoque2);
+        jScrollPane5.setViewportView(tblProdutoEstoque);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -427,14 +429,14 @@ public class InterfaceProduto extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(185, 185, 185))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,7 +455,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
     private void btnSalvarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProdutoActionPerformed
         // TODO add your handling code here:
         if(modo.equals("Novo")){
-try {
+                try {
 
                     Produto p = new Produto("banana", "fruta", 0, 0);
                     
@@ -464,7 +466,6 @@ try {
                     
                     try {
                         p.setNome(nome);
-                        System.out.println(nome);
                         try {
                             p.setDescricao(descricao); 
                             try {
@@ -636,9 +637,9 @@ try {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
 
-    private void tblProdutoEstoque2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutoEstoque2MouseClicked
+    private void tblProdutoEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutoEstoqueMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tblProdutoEstoque2MouseClicked
+    }//GEN-LAST:event_tblProdutoEstoqueMouseClicked
 
     /**
      * @param args the command line arguments
@@ -694,19 +695,13 @@ try {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel nome;
     private javax.swing.JTable tblProduto;
     private javax.swing.JTable tblProdutoEstoque;
-    private javax.swing.JTable tblProdutoEstoque1;
-    private javax.swing.JTable tblProdutoEstoque2;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtNome;
