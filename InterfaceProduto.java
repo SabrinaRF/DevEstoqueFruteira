@@ -606,7 +606,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
                 modo="Selecao";
                 ManipularInterface();
             } catch (Exception ex) {
-                Logger.getLogger(InterfaceProduto.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,ex.getMessage()); 
             }
         }
     }//GEN-LAST:event_tblProdutoMouseClicked
@@ -614,23 +614,22 @@ public class InterfaceProduto extends javax.swing.JFrame {
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
         int codigo = Integer.parseInt(txtCodigo.getText());
+        
+            DefaultTableModel modeloProduto = new DefaultTableModel(new Object [] {"Código","Nome", "Descrição","Quantidade", "Preço"},0);
 
-        for(int i=0; i< listaProduto.size();i++){
             try {
-                if(listaProduto.getProduto(codigo).getCodigo() == codigo){
-                    System.out.println(codigo+"\n");
-                    System.out.println(listaProduto.getProduto(codigo).getCodigo());
-                    try {
-                        listaProduto.getProduto(codigo);
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, ex.getMessage());
+                for(int i=0;i<listaProduto.size();i++){
+                    if(listaProduto.get(i).getCodigo()== codigo){
+                        Object linha []=new Object[]{listaProduto.getProduto(codigo).getCodigo(),listaProduto.getProduto(codigo).getNome(),listaProduto.getProduto(codigo).getDescricao(), listaProduto.getProduto(codigo).getQuantidade(), listaProduto.getProduto(codigo).getPreco()};
+                        modeloProduto.addRow(linha);
                     }
+                    listaProduto.getProduto(codigo);
                 }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }catch(Exception e){
+                    JOptionPane.showMessageDialog(null,"Produto não encontrado");
             }
-            LoadTableEstoque();
-        }
+            tblProdutoEstoque.setModel(modeloProduto); 
+            
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
