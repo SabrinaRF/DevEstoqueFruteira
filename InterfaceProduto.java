@@ -10,11 +10,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
-
-
-
-
 /**
  *
  * @author sabrina
@@ -42,6 +37,17 @@ public class InterfaceProduto extends javax.swing.JFrame {
                 modeloProduto.addRow(linha);
             }
             tblProduto.setModel(modeloProduto);
+    }
+    
+     public void LoadTableEstoque(){
+        DefaultTableModel modeloProduto = new DefaultTableModel(new Object [] {"Código","Nome", "Descrição","Quantidade", "Preço"},0);
+
+            for(int i=0;i<listaProduto.size();i++){
+                
+                Object linha []=new Object[]{listaProduto.get(i).getCodigo(),listaProduto.get(i).getNome(),listaProduto.get(i).getDescricao(), listaProduto.get(i).getQuantidade(), listaProduto.get(i).getPreco()};
+                modeloProduto.addRow(linha);
+            }
+            tblProdutoEstoque.setModel(modeloProduto);
     }
     
     
@@ -135,11 +141,19 @@ public class InterfaceProduto extends javax.swing.JFrame {
         txtQuantidade = new javax.swing.JTextField();
         btnCancelarProduto = new javax.swing.JButton();
         btnSalvarProduto = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        btnPesquisar = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblProdutoEstoque2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setText("Produtos");
+        jLabel1.setText("Controle de Estoque de Produtos");
 
         tblProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -306,6 +320,108 @@ public class InterfaceProduto extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Produto", jPanel1);
 
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de produtos"));
+
+        jLabel2.setText("Código:");
+
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
+
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPesquisar)
+                .addContainerGap(331, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisar))
+                .addContainerGap(85, Short.MAX_VALUE))
+        );
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de produtos"));
+
+        tblProdutoEstoque2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Código", "Nome", "Descrição", "Quantidade", "Preço"
+            }
+        ));
+        tblProdutoEstoque2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProdutoEstoque2MouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tblProdutoEstoque2);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(117, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(327, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Estoque de Produtos", jPanel3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -316,8 +432,8 @@ public class InterfaceProduto extends javax.swing.JFrame {
                         .addGap(44, 44, 44)
                         .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(331, 331, 331)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(197, 197, 197)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -327,48 +443,104 @@ public class InterfaceProduto extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
+    private void btnSalvarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescricaoActionPerformed
+        if(modo.equals("Novo")){
+try {
 
-    private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
-        // TODO add your handling code here:
-        modo="Editar";
-        ManipularInterface();
-    }//GEN-LAST:event_btnEditarProdutoActionPerformed
+                    Produto p = new Produto("banana", "fruta", 0, 0);
+                    
+                    String nome =txtNome.getText();
+                    String descricao = txtDescricao.getText();
+                    int quantidade = Integer.parseInt(txtQuantidade.getText());
+                    double preco = Double.parseDouble(txtPreco.getText());
+                    
+                    try {
+                        p.setNome(nome);
+                        System.out.println(nome);
+                        try {
+                            p.setDescricao(descricao); 
+                            try {
+                            p.setQuantidade(quantidade);
+                                try{
+                                    p.setPreco(preco);
 
-    private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
-        // TODO add your handling code here:
-        int index = tblProduto.getSelectedRow();
-        
-        if (index>=0 && index<listaProduto.size()){
+                                    listaProduto.addProduto(p);
+
+                                    JOptionPane.showMessageDialog(null, "Produto adicionado!");
+                                    modo="Navegar";
+                                    ManipularInterface();
+                                    txtNome.setText("");
+                                    txtDescricao.setText("");
+                                    txtQuantidade.setText("");
+                                    txtPreco.setText("");
+                                } catch(Exception e){
+                                    JOptionPane.showMessageDialog(null,e.getMessage());
+                                    txtPreco.setText("");
+                                }
+                            } catch (Exception ex) {
+                                JOptionPane.showMessageDialog(null,ex.getMessage());
+                                txtQuantidade.setText("");
+                            }
+                        } catch (Exception e){
+                            JOptionPane.showMessageDialog(null,e.getMessage());
+                        }   
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null,e.getMessage());
+                    }                    
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Ocorreu um erro, preencha todos os campos.");
+                }
+                
+        }else if(modo.equals("Editar")){
             try {
-                listaProduto.removeProduto(index);
+                int index = tblProduto.getSelectedRow();
+                
+                Produto p = listaProduto.getProduto(index);
+                
+                try {
+                    p.setNome(txtNome.getText());  
+                    try{
+                        p.setDescricao(txtDescricao.getText()); 
+                        try {
+                            p.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+                            try {
+                                p.setPreco(Double.valueOf(txtPreco.getText())); 
+                               
+                                JOptionPane.showMessageDialog(null, "Produto modificado!");
+                                modo="Navegar";
+                                ManipularInterface();
+                                txtNome.setText("");
+                                txtDescricao.setText("");
+                                txtQuantidade.setText("");
+                                txtPreco.setText("");
+                            } catch (Exception ex) {
+                                JOptionPane.showMessageDialog(null,ex.getMessage());            
+                            }
+                        } catch (Exception ex) {
+                            JOptionPane.showMessageDialog(null,ex.getMessage());            
+                        }
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null,e.getMessage()); 
+                    }
+                } catch(Exception e){
+                    JOptionPane.showMessageDialog(null,e.getMessage()); 
+                }
             } catch (Exception ex) {
-                Logger.getLogger(InterfaceProduto.class.getName()).log(Level.SEVERE, null, ex); 
+               JOptionPane.showMessageDialog(null,"Ocorreu um erro, preencha todos os campos.");          
             }
         }
         LoadTableProduto();
-        modo="Navegar";
-        ManipularInterface();
-    }//GEN-LAST:event_btnExcluirProdutoActionPerformed
-
-    private void btnNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProdutoActionPerformed
-        // TODO add your handling code here:
-        txtNome.setText("");
-        txtDescricao.setText("");
-        txtQuantidade.setText("");
-        txtPreco.setText("");
-        modo="Novo";
-        ManipularInterface();
-    }//GEN-LAST:event_btnNovoProdutoActionPerformed
+        LoadTableEstoque();
+        
+    }//GEN-LAST:event_btnSalvarProdutoActionPerformed
 
     private void btnCancelarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProdutoActionPerformed
         // TODO add your handling code here:
@@ -380,84 +552,56 @@ public class InterfaceProduto extends javax.swing.JFrame {
         ManipularInterface();
     }//GEN-LAST:event_btnCancelarProdutoActionPerformed
 
-    private void btnSalvarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProdutoActionPerformed
+    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
         // TODO add your handling code here:
-        if(modo.equals("Novo")){
-            
-                try {
+    }//GEN-LAST:event_txtDescricaoActionPerformed
 
-                    Produto p = new Produto("banana", "fruta", "2", "2");
-                    
-                    String nome =txtNome.getText();
-                    String descricao = txtDescricao.getText();
-                    int quantidade = Integer.parseInt(txtQuantidade.getText());
-                    double preco = Double.valueOf(txtPreco.getText()).doubleValue();
-                    
-                    p.setNome(nome);
-                    p.setDescricao(descricao);
-                    //do{
-                    try {
-                        p.setQuantidade(quantidade);
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null,ex.getMessage());
-                    }
-                    //}while(quantidade==0);
-                    p.setPreco(preco);
-                    
-                    //listaProduto.add(p);
-                    
-                    listaProduto.addProduto(p);
-                    
-                    JOptionPane.showMessageDialog(null, "Produto adicionado!");
-                    
-                } catch (Exception ex) {
-                    Logger.getLogger(InterfaceProduto.class.getName()).log(Level.SEVERE,null, ex);
-                }
-                
-        }else if(modo.equals("Editar")){
+    private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
+        // TODO add your handling code here:
+        int index = tblProduto.getSelectedRow();
+
+        if (index>=0 && index<listaProduto.size()){
             try {
-                int index = tblProduto.getSelectedRow();
-                
-                Produto p = listaProduto.getProduto(index);
-                
-                p.setNome(txtNome.getText());
-                p.setDescricao(txtDescricao.getText());
-                try {
-                    p.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null,ex.getMessage());            }
-                p.setPreco(Double.valueOf(txtPreco.getText()).doubleValue());
-                
-                JOptionPane.showMessageDialog(null, "Produto modificado!");
-                
+                listaProduto.removeProduto(index);
+                JOptionPane.showMessageDialog(null, "Produto removido com sucesso!");
             } catch (Exception ex) {
-                Logger.getLogger(InterfaceProduto.class.getName()).log(Level.SEVERE,null, ex);            }         
-                
+                JOptionPane.showMessageDialog(null, "Problema ao remover o produto!");
+            }
         }
         LoadTableProduto();
-        
         modo="Navegar";
         ManipularInterface();
+    }//GEN-LAST:event_btnExcluirProdutoActionPerformed
+
+    private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
+        // TODO add your handling code here:
+        modo="Editar";
+        ManipularInterface();
+    }//GEN-LAST:event_btnEditarProdutoActionPerformed
+
+    private void btnNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProdutoActionPerformed
+        // TODO add your handling code here:
         txtNome.setText("");
         txtDescricao.setText("");
         txtQuantidade.setText("");
         txtPreco.setText("");
-        
-    }//GEN-LAST:event_btnSalvarProdutoActionPerformed
+        modo="Novo";
+        ManipularInterface();
+    }//GEN-LAST:event_btnNovoProdutoActionPerformed
 
     private void tblProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutoMouseClicked
         // TODO add your handling code here:
         int index = tblProduto.getSelectedRow();
-        
+
         if (index>=0 && index<listaProduto.size()){
             try {
                 Produto p =  listaProduto.getProduto(index);
-                
+
                 txtNome.setText(p.getNome());
                 txtDescricao.setText(String.valueOf(p.getDescricao()));
                 txtQuantidade.setText(String.valueOf(p.getQuantidade()));
                 txtPreco.setText(String.valueOf(p.getPreco()));
-                
+
                 modo="Selecao";
                 ManipularInterface();
             } catch (Exception ex) {
@@ -465,6 +609,36 @@ public class InterfaceProduto extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_tblProdutoMouseClicked
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        // TODO add your handling code here:
+        int codigo = Integer.parseInt(txtCodigo.getText());
+
+        for(int i=0; i< listaProduto.size();i++){
+            try {
+                if(listaProduto.getProduto(codigo).getCodigo() == codigo){
+                    System.out.println(codigo+"\n");
+                    System.out.println(listaProduto.getProduto(codigo).getCodigo());
+                    try {
+                        listaProduto.getProduto(codigo);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
+                    }
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+            LoadTableEstoque();
+        }
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void tblProdutoEstoque2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutoEstoque2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblProdutoEstoque2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -509,17 +683,31 @@ public class InterfaceProduto extends javax.swing.JFrame {
     private javax.swing.JButton btnEditarProduto;
     private javax.swing.JButton btnExcluirProduto;
     private javax.swing.JButton btnNovoProduto;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvarProduto;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel nome;
     private javax.swing.JTable tblProduto;
+    private javax.swing.JTable tblProdutoEstoque;
+    private javax.swing.JTable tblProdutoEstoque1;
+    private javax.swing.JTable tblProdutoEstoque2;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;
