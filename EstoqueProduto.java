@@ -5,7 +5,8 @@ import java.util.List;
 import devestoquefruteira.DevEstoqueFruteira.Execoes.CodigoInvalidoException;
 public class EstoqueProduto implements IProduto{
 
-    List<Produto> listaProdutos;
+    List<Produto> listaProdutos; // lista de produtos
+
 
     public EstoqueProduto (List<Produto> p){
         this.listaProdutos = p;

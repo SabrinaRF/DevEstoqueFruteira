@@ -10,6 +10,9 @@ public class Produto {
     private String descricao;
     private double quantidade;
     private double preco;
+    
+    
+    //aqui tambem
 
     /**
      * Construtor da Classe Produto, código gerado altomaticamente.
