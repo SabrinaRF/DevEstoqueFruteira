@@ -17,6 +17,13 @@ public class ProdutoCategoriaUnidade extends Produto{
         super(nome, descricao, quantidade, preco);
     }
     
+    /**
+     *
+     * Altera a quantidade do produto.
+     * @param quantidade Quantidade do produto por unidade a ser alterado.
+     * @throws java.lang.Exception Lança exceção quando a quantidade for menor ou igual a zero 
+     * ou quando a quantidade inserida é double.
+    **/
     @Override
     public void setQuantidade(double quantidade)throws Exception {
         if(quantidade > 0){

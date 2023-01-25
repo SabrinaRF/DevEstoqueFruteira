@@ -66,7 +66,7 @@ public class Produto {
      * @param nome Nome do produto a ser alterado.
      */
     public void setNome(String nome) throws Exception{
-    if(nome == " "){
+    if(nome != " "){
             this.nome=nome;
         }else{
             throw new Exception ("Nome obrigatório, preencha o campo!");
