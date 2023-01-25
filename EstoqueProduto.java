@@ -6,6 +6,8 @@ import devestoquefruteira.DevEstoqueFruteira.Execoes.CodigoInvalidoException;
 public class EstoqueProduto implements IProduto{
 
     List<Produto> listaProdutos; // lista de produtos
+    
+    // adicionai java doc
 
     /**
      * Construtor da Classe EstoqueProduto .

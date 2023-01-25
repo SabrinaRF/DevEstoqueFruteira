@@ -8,13 +8,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+
+
+
+
+
 /**
  *
- * @author sabri
+ * @author sabrina
  */
 public class InterfaceProduto extends javax.swing.JFrame {
     private EstoqueProduto listaProduto;
-    private String modo;
+    private String modo;//aqui oh
    
     /**
      * Creates new form InterfaceProduto
