@@ -11,6 +11,7 @@ package devestoquefruteira.DevEstoqueFruteira;
  */
 
  
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,18 +22,24 @@ public class NotaFiscal {
    private final List<Item> listaDeItem; //sugestao da ide ser final
    private Produto produto;
    
+   
     public NotaFiscal(String data, List<Item> listaDeItem, Produto produto){
         this.codNotaFiscal = codNotaFiscalGeral ++;
         this.data = data;
-        this.listaDeItem = listaDeItem;
+        if(listaDeItem == null) {
+    	this.listaDeItem = new ArrayList<>();
+    } else {
+    	this.listaDeItem = listaDeItem;
+    }
+        
+        //this.listaDeItem = listaDeItem;
         this.produto = produto;
     }
 
     NotaFiscal() {
-       this.codNotaFiscal = codNotaFiscalGeral++;
-       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-       this.listaDeItem = null;
-    }
+        this.codNotaFiscal = codNotaFiscalGeral++;
+        this.listaDeItem = new ArrayList<>();
+     }
 
     public int getCodNotaFiscal(){
         return codNotaFiscal;
@@ -82,8 +89,27 @@ public class NotaFiscal {
         return produto;
     }
     
+     public void setListaDeItens(List<Item> listaDeItem) {
+    this.listaDeItem.clear();
+    this.listaDeItem.addAll(listaDeItem);  
+}
+  
+/*public void setListaDeItens(List<Item> listaDeItem) {
+    listaDeItem = new ArrayList<>();
+    listaDeItem.addAll(listaDeItem);  
+}*/
      
+     /*
+    public void setListaDeItens(List<Item> listaDeItem) {
+    this.listaDeItem.addAll(listaDeItem);
+
+        }*/
      
+    public List<Item> getListaItem() {     
+        return  listaDeItem;
+        
+        
+    }
     
    @Override
     public String toString(){
