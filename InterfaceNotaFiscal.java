@@ -13,16 +13,14 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
-/**
- *
- * 
- */
 public class InterfaceNotaFiscal extends javax.swing.JFrame {
     private GerenciarNotasFiscais listaDeNotasFiscais;
-    
+    List<Item>listaDeItem;
     private String modo;
-    
     DefaultTableModel modelo = new DefaultTableModel();
      
     /**
@@ -33,12 +31,11 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
     public InterfaceNotaFiscal(GerenciarNotasFiscais listaDeNotasFiscais) {
         initComponents();
         this.listaDeNotasFiscais = listaDeNotasFiscais;
-        
-        //System.out.println("listaProduto " +  this.gerenciarNotasFiscais.getNProduto());
+        listaDeItem = new ArrayList<Item>();
+      
         ComboBoxModel comboBoxProduto = new DefaultComboBoxModel(listaDeNotasFiscais.getListsProduto().toArray());
         jComboBoxItem.setModel(comboBoxProduto);
-      
-        //listaDeNotasFiscais = new ArrayList();
+     
         LoadTableNotafiscal();
         setLocationRelativeTo(null);
         modo="Navegar";
@@ -53,28 +50,32 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
     texto "Produto não disponível". Finalmente, ele define o modelo criado como o modelo da tabela TabelaNF.
     */
     public void LoadTableNotafiscal(){
-    DefaultTableModel novoModelo = new DefaultTableModel(new Object [] {"Código","data","cod item","Nome","Descrição","quantidade","preço"},0);
+    DefaultTableModel novoModelo = new DefaultTableModel(new Object [] {"Códido do produto","Nome do produto","Descriçãodo produto","Quantidade item","Preço do item"},0);
 
     //for(int i=0;i<listaDeNotasFiscais.getQuantElementos();i++){
         //if (listaDeNotasFiscais.get(i).getProduto() != null && listaDeNotasFiscais.get(i).getProduto().getNome() != null) {
         
         
-        for(int i=0;i<listaDeNotasFiscais.size();i++){
+        for(int i=0;i<listaDeItem.size();i++){
             Object linha []=new Object[]{
-                listaDeNotasFiscais.get(i).getCodNotaFiscal(),
-                listaDeNotasFiscais.get(i).getData(),
+                //listaDeNotasFiscais.get(i).getCodNotaFiscal(),
                 
-                listaDeNotasFiscais.get(i).getProduto().getCodigo(),
-                listaDeNotasFiscais.get(i).getProduto().getNome(),
-                listaDeNotasFiscais.get(i).getProduto().getDescricao(),
-                listaDeNotasFiscais.get(i).getProduto().getQuantidade(),
-                listaDeNotasFiscais.get(i).getProduto().getPreco(),
+                //listaDeNotasFiscais.get(i).getData(),
                 
                 
+                listaDeItem.get(i).getProduto().getCodigo(),
+                listaDeItem.get(i).getProduto().getNome(),
+                listaDeItem.get(i).getProduto().getDescricao(),
+                listaDeItem.get(i).getQuantidade(),
+                listaDeItem.get(i).calcularPrecoDoItem(),
+                
+                
+              
             };
             novoModelo.addRow(linha);
         }
          TabelaNF.setModel(novoModelo);
+          
     }
         
             /*Object linha []=new Object[]{
@@ -117,60 +118,73 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
     public void ManipularInterface(){
         switch(modo){
             case "Navegar":
-                botaoSalvarNF.setEnabled(false);
+                botaoSalvarItem.setEnabled(false);
                 botaoCancelarNF.setEnabled(false);
-                caixaDeTextoNF.setEnabled(false);
+                jComboBoxItem.setEditable(false);
+               
+                /*caixaDeTextoNF.setEnabled(false);
                 caixaDeTextoMes.setEnabled(false);
                 caixaDeTextoAno.setEnabled(false);
-                
+                */
                 BotaoCadastrarNF.setEnabled(true);
                 BotaoEditarNF.setEnabled(false);
-                BotaoExcluiRNF.setEnabled(false);               
+                BotaoExcluiRNF.setEnabled(false);
+                jComboBoxItem.setEditable(false);
                 break;
             case "Novo":
-                botaoSalvarNF.setEnabled(true);
+                botaoSalvarItem.setEnabled(true);
                 botaoCancelarNF.setEnabled(true);
-                caixaDeTextoNF.setEnabled(true);
+                jComboBoxItem.setEditable(true);
+                /*caixaDeTextoNF.setEnabled(true);
                 caixaDeTextoMes.setEnabled(true);
                 caixaDeTextoAno.setEnabled(true);
-                
+                */
                 BotaoCadastrarNF.setEnabled(false);
                 BotaoEditarNF.setEnabled(false);
-                BotaoExcluiRNF.setEnabled(false); 
+                BotaoExcluiRNF.setEnabled(false);
+                jComboBoxItem.setEditable(false);
                 break;
             case "Editar":
-                 botaoSalvarNF.setEnabled(true);
+                 botaoSalvarItem.setEnabled(true);
                 botaoCancelarNF.setEnabled(true);
-                caixaDeTextoNF.setEnabled(true);
+                jComboBoxItem.setEditable(true);
+                /*caixaDeTextoNF.setEnabled(true);
                 caixaDeTextoMes.setEnabled(true);
                 caixaDeTextoAno.setEnabled(true);
-                
+                */
                 BotaoCadastrarNF.setEnabled(false);
                 BotaoEditarNF.setEnabled(false);
-                BotaoExcluiRNF.setEnabled(false); 
+                BotaoExcluiRNF.setEnabled(false);
+                jComboBoxItem.setEditable(false);
                 break;
+                
+            
             case "Excluir":
-                botaoSalvarNF.setEnabled(false);
+                botaoSalvarItem.setEnabled(false);
                 botaoCancelarNF.setEnabled(false);
-                caixaDeTextoNF.setEnabled(false);
+                jComboBoxItem.setEditable(false);
+               /* caixaDeTextoNF.setEnabled(false);
                 caixaDeTextoMes.setEnabled(false);
                caixaDeTextoAno.setEnabled(false);
-                
+                */
                 BotaoCadastrarNF.setEnabled(true);
                 BotaoEditarNF.setEnabled(false);
-                BotaoExcluiRNF.setEnabled(false); 
+                BotaoExcluiRNF.setEnabled(false);
+                jComboBoxItem.setEditable(false);
                 break;
                 
             case "Selecao":
-                botaoSalvarNF.setEnabled(false);
+                botaoSalvarItem.setEnabled(false);
                 botaoCancelarNF.setEnabled(false);
-                caixaDeTextoNF.setEnabled(false);
-                caixaDeTextoMes.setEnabled(false);
-               caixaDeTextoAno.setEnabled(false);
+                jComboBoxItem.setEditable(false);
+               // caixaDeTextoNF.setEnabled(false);
+               // caixaDeTextoMes.setEnabled(false);
+               //caixaDeTextoAno.setEnabled(false);
                 
                 BotaoCadastrarNF.setEnabled(true);
                 BotaoEditarNF.setEnabled(true);
                 BotaoExcluiRNF.setEnabled(true); 
+                jComboBoxItem.setEditable(true);
                 break;
         }
     }
@@ -181,6 +195,7 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
      *  e adiciona essa nota fiscal à lista de notas fiscais.     
      */
 
+    /*
 public void salvar() {
         if(modo.equals("Novo")){   
         try {
@@ -285,9 +300,8 @@ public void salvar() {
             ManipularInterface();
             LoadTableNotafiscal();
     */    
-    }
     
-
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -306,43 +320,44 @@ public void salvar() {
         BotaoEditarNF = new javax.swing.JButton();
         BotaoExcluiRNF = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        textoData = new javax.swing.JLabel();
         textoRelacaoItemNF = new javax.swing.JLabel();
-        caixaDeTextoNF = new javax.swing.JTextField();
         botaoCancelarNF = new javax.swing.JButton();
-        botaoSalvarNF = new javax.swing.JButton();
-        textoDiaNF = new javax.swing.JLabel();
-        textoMesNF = new javax.swing.JLabel();
-        caixaDeTextoAno = new javax.swing.JTextField();
-        textoAnoNF = new javax.swing.JLabel();
-        caixaDeTextoMes = new javax.swing.JTextField();
+        botaoSalvarItem = new javax.swing.JButton();
         jComboBoxItem = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        TxtQtdDeItem = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtPrecoItem = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        SalvarNotaFiscal = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        BotaoMostrarNotas = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        labelMostrarNotasFiscais = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         textoNotaFiscal.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        textoNotaFiscal.setText("Cupom Fiscal");
+        textoNotaFiscal.setText(" nota fiscal");
 
         TabelaNF.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "data", "cod item", "Nome do item", "Descrição", "Quantidade", "Preço"
+                "Código do produto", "Nome do  produto", "Descrição do produto", "Quantidade Item", "Preço do Item"
             }
         ));
         TabelaNF.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -352,21 +367,21 @@ public void salvar() {
         });
         jScrollPane2.setViewportView(TabelaNF);
 
-        BotaoCadastrarNF.setText("Cadastrar nota");
+        BotaoCadastrarNF.setText("Cadastrar Item");
         BotaoCadastrarNF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotaoCadastrarNFActionPerformed(evt);
             }
         });
 
-        BotaoEditarNF.setText("Editar nota");
+        BotaoEditarNF.setText("Editar Item");
         BotaoEditarNF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotaoEditarNFActionPerformed(evt);
             }
         });
 
-        BotaoExcluiRNF.setText("Excluir nota");
+        BotaoExcluiRNF.setText("Excluir item");
         BotaoExcluiRNF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotaoExcluiRNFActionPerformed(evt);
@@ -375,9 +390,7 @@ public void salvar() {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar")));
 
-        textoData.setText("Data");
-
-        textoRelacaoItemNF.setText("Selecione o Item:");
+        textoRelacaoItemNF.setText("Selecione o Produto");
 
         botaoCancelarNF.setText("Cancelar");
         botaoCancelarNF.addActionListener(new java.awt.event.ActionListener() {
@@ -386,18 +399,12 @@ public void salvar() {
             }
         });
 
-        botaoSalvarNF.setText("Salvar ");
-        botaoSalvarNF.addActionListener(new java.awt.event.ActionListener() {
+        botaoSalvarItem.setText("Salvar  Item");
+        botaoSalvarItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoSalvarNFActionPerformed(evt);
+                botaoSalvarItemActionPerformed(evt);
             }
         });
-
-        textoDiaNF.setText("Dia: ");
-
-        textoMesNF.setText("Mês");
-
-        textoAnoNF.setText("Ano");
 
         jComboBoxItem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxItem.addActionListener(new java.awt.event.ActionListener() {
@@ -406,62 +413,53 @@ public void salvar() {
             }
         });
 
+        jLabel1.setText("Quantidade item");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addComponent(botaoSalvarNF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-                .addComponent(botaoCancelarNF)
-                .addGap(163, 163, 163))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textoRelacaoItemNF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(textoData)
-                        .addGap(53, 53, 53)
-                        .addComponent(textoDiaNF)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textoRelacaoItemNF, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(caixaDeTextoNF, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(textoMesNF)
-                        .addGap(18, 18, 18)
-                        .addComponent(caixaDeTextoMes, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(textoAnoNF)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(caixaDeTextoAno, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBoxItem, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TxtQtdDeItem, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txtPrecoItem, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(botaoSalvarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(botaoCancelarNF, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(208, Short.MAX_VALUE))
+                    .addComponent(jComboBoxItem, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoData)
-                    .addComponent(caixaDeTextoNF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textoDiaNF)
-                    .addComponent(textoMesNF)
-                    .addComponent(caixaDeTextoAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textoAnoNF)
-                    .addComponent(caixaDeTextoMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(59, 59, 59)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textoRelacaoItemNF)
                     .addComponent(jComboBoxItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(146, 146, 146)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoCancelarNF)
-                    .addComponent(botaoSalvarNF))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(TxtQtdDeItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtPrecoItem))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoSalvarItem)
+                    .addComponent(botaoCancelarNF))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jLabel2.setText("=========================================================================================");
@@ -472,6 +470,13 @@ public void salvar() {
 
         jLabel5.setText("=========================================================================================");
 
+        SalvarNotaFiscal.setText("Salvar Nota Fiscal");
+        SalvarNotaFiscal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalvarNotaFiscalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -479,26 +484,33 @@ public void salvar() {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(BotaoCadastrarNF)
-                                .addGap(36, 36, 36)
-                                .addComponent(BotaoEditarNF)
-                                .addGap(47, 47, 47)
-                                .addComponent(BotaoExcluiRNF))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(BotaoCadastrarNF)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(BotaoEditarNF)
+                                        .addGap(47, 47, 47)
+                                        .addComponent(BotaoExcluiRNF))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(SalvarNotaFiscal)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,23 +531,49 @@ public void salvar() {
                     .addComponent(BotaoExcluiRNF))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(SalvarNotaFiscal)
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
-        MenuNotaFisca.addTab("Nota fiscal", jPanel1);
+        MenuNotaFisca.addTab("Criar nota fiscal", jPanel1);
+
+        BotaoMostrarNotas.setText("Mostrar Notas");
+        BotaoMostrarNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoMostrarNotasActionPerformed(evt);
+            }
+        });
+
+        labelMostrarNotasFiscais.setColumns(20);
+        labelMostrarNotasFiscais.setRows(5);
+        jScrollPane1.setViewportView(labelMostrarNotasFiscais);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 670, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(BotaoMostrarNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 781, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(BotaoMostrarNotas)
+                .addGap(67, 67, 67)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(534, Short.MAX_VALUE))
         );
 
-        MenuNotaFisca.addTab("Valor total vendido", jPanel3);
+        MenuNotaFisca.addTab("Vizualizar nota fiscal", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -549,7 +587,7 @@ public void salvar() {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(MenuNotaFisca, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -557,7 +595,7 @@ public void salvar() {
                 .addGap(30, 30, 30)
                 .addComponent(textoNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(MenuNotaFisca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MenuNotaFisca, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -572,9 +610,9 @@ public void salvar() {
         if (index>=0 && index<listaDeNotasFiscais.size()){
             NotaFiscal n=  listaDeNotasFiscais.get(index);
             
-            caixaDeTextoNF.setText(n.getData());
-            caixaDeTextoMes.setText(String.valueOf(n.getData()));
-            caixaDeTextoAno.setText(String.valueOf(n.getData()));
+           // caixaDeTextoNF.setText(n.getData());
+            //caixaDeTextoMes.setText(String.valueOf(n.getData()));
+            //caixaDeTextoAno.setText(String.valueOf(n.getData()));
     
             modo="Selecao";
             ManipularInterface();
@@ -582,9 +620,12 @@ public void salvar() {
     }//GEN-LAST:event_TabelaNFMouseClicked
 
     private void BotaoCadastrarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastrarNFActionPerformed
-        caixaDeTextoNF.setText("");
-        caixaDeTextoMes.setText("");
-        caixaDeTextoAno.setText("");
+        NotaFiscal notaFiscal = new NotaFiscal();
+        
+        //caixaDeTextoNF.setText("");
+        //caixaDeTextoMes.setText("");
+        //caixaDeTextoAno.setText("");
+        
         
         //EstoqueProduto estoqueProduto = (EstoqueProduto)jComboBoxItem.getSelectedItem();
         modo="Novo";
@@ -613,25 +654,168 @@ public void salvar() {
     }//GEN-LAST:event_BotaoExcluiRNFActionPerformed
 
     private void botaoCancelarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarNFActionPerformed
-        caixaDeTextoNF.setText("");
-        caixaDeTextoMes.setText("");
-        caixaDeTextoAno.setText("");
+        //caixaDeTextoNF.setText("");
+        //caixaDeTextoMes.setText("");
+        //caixaDeTextoAno.setText("");
         
          //EstoqueProduto estoqueProduto = (EstoqueProduto)jComboBoxItem.getSelectedItem();
         modo="Navegar";
         ManipularInterface();
     }//GEN-LAST:event_botaoCancelarNFActionPerformed
 
-    private void botaoSalvarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarNFActionPerformed
-       salvar();
-       
+    private void botaoSalvarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarItemActionPerformed
+   /*  if(modo.equals("Novo")){   */
+        try {
+            Item item = new Item();
+            Produto selectProuto = (Produto)jComboBoxItem.getSelectedItem();
+            item.setProduto(selectProuto);
+  
+            int quantidade = Integer.parseInt( TxtQtdDeItem.getText());
+            
+            item.setQuantidade(quantidade);
+            double precoDoItem = item.calcularPrecoDoItem();
+
+            listaDeItem.add(item);
+           
+            JOptionPane.showMessageDialog(null, "Item adicionado!");
+
         
-    }//GEN-LAST:event_botaoSalvarNFActionPerformed
+       } catch (Exception ex) {
+                    Logger.getLogger(InterfaceProduto.class.getName()).log(Level.SEVERE,null, ex);
+                }
+           /* }else if (modo.equals("Editar")){
+                try {
+                    int index = TabelaNF.getSelectedRow();
+                    
+                    NotaFiscal g = listaDeNotasFiscais.getNotaFiscal(index);
+                    
+                   // g.setData(caixaDeTextoNF.getText());
+                    //g.setData(caixaDeTextoMes.getText());
+                  //  g.setData(caixaDeTextoAno.getText());
+                    
+                    
+                    JOptionPane.showMessageDialog(null, "Produto modificado!");
+                   
+                } catch (Exception ex) {
+                    Logger.getLogger(InterfaceNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }*/
+            LoadTableNotafiscal();
+            modo="Navegar";
+            ManipularInterface();
+            
+        // caixaDeTextoNF.setText("");
+          //  caixaDeTextoMes.setText("");
+           // caixaDeTextoAno.setText("");
+            
+           
+        
+    }//GEN-LAST:event_botaoSalvarItemActionPerformed
 
     private void jComboBoxItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxItemActionPerformed
   
     }//GEN-LAST:event_jComboBoxItemActionPerformed
 
+    private void SalvarNotaFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarNotaFiscalActionPerformed
+    DefaultTableModel modelo = (DefaultTableModel) TabelaNF.getModel();
+        try {
+            NotaFiscal notaFiscal = new NotaFiscal();
+            EstoqueProduto estoque = new EstoqueProduto();
+                if (listaDeItem == null || listaDeItem.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Nenhum item adicionado na nota fiscal!");
+                    return;
+                }
+            notaFiscal.setListaDeItens(listaDeItem);
+                for(Item item: notaFiscal.getListaItem()){
+                    Produto produto = item.getProduto();
+                    double quantidadeAtual = produto.getQuantidade();
+                    int quantidadeVendida = item.getQuantidade();
+                    int novaQuantidade = (int) (quantidadeAtual - quantidadeVendida);
+                    produto.setQuantidade(novaQuantidade);
+                    estoque.updateQuantidade(produto.getCodigo(), novaQuantidade);
+                }  
+            System.out.println("Tamanho da lista de notas fiscais antes de adicionar nova nota: " + listaDeNotasFiscais.size()); //tirar
+            listaDeNotasFiscais.addNotaFiscal(notaFiscal);
+            System.out.println("Tamanho da lista de notas fiscais depois de adicionar nova nota: " + listaDeNotasFiscais.size());
+
+            LoadTableNotafiscal();
+            modelo.setRowCount(0);
+            listaDeItem.clear();
+            JOptionPane.showMessageDialog(null, "Nota fiscal salva com sucesso!");
+        }catch (Exception e) {
+           
+            Logger.getLogger(InterfaceNotaFiscal.class.getName()).log(Level.SEVERE,null, e);
+        } 
+    }//GEN-LAST:event_SalvarNotaFiscalActionPerformed
+
+    private void BotaoMostrarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoMostrarNotasActionPerformed
+       String notasFiscais = "";
+       GerenciarNotasFiscais gerenciarNotasFiscais = new GerenciarNotasFiscais();
+    for (NotaFiscal nota : gerenciarNotasFiscais.getListaNota()) {
+        notasFiscais += "Código da nota fiscal: " + nota.getCodNotaFiscal() + "\n";
+        notasFiscais += "Data da nota fiscal: " + nota.getData() + "\n";
+        notasFiscais += "Itens da nota fiscal: \n";
+        for (Item item : nota.getListaItem()) {
+            notasFiscais += "Código do produto: " + item.getProduto().getCodigo() + "\n";
+            notasFiscais += "Nome do produto: " + item.getProduto().getNome() + "\n";
+            notasFiscais += "Descrição do produto: " + item.getProduto().getDescricao() + "\n";
+            notasFiscais += "Quantidade: " + item.getQuantidade() + "\n";
+            notasFiscais += "Preço do item: " + item.calcularPrecoDoItem() + "\n";
+        }
+        notasFiscais += "------\n";
+    }
+    labelMostrarNotasFiscais.setText(notasFiscais);
+    }//GEN-LAST:event_BotaoMostrarNotasActionPerformed
+
+    
+    
+            
+            
+            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
+   public void visualizarNota() {
+       NotaFiscal nota = new NotaFiscal();
+        JPanel panel = new JPanel();
+        DefaultTableModel model = new DefaultTableModel();
+        JTable table = new JTable(model);
+        model.addColumn("Produto");
+        model.addColumn("Preço");
+        model.addColumn("Quantidade");
+        model.addColumn("Total");
+
+       
+            for (NotaFiscal nota : listaDeNotasFiscais) {
+    for (Item item : nota.getListaItem()) {
+        Produto prod = item.getProduto();
+        model.addRow(new Object[]{prod.getNome(), prod.getPreco(), item.getQuantidade(), item.calcularPrecoDoItem()});
+    }
+}
+        JScrollPane scrollPane = new JScrollPane(table);
+        panel.add(scrollPane);
+        // Adicione o panel à sua interface principal
+}*/
+    
+    //parei em adicionar os itens na lista de  notas
+   // mudar o tipo da data
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -674,28 +858,29 @@ public void salvar() {
     private javax.swing.JButton BotaoCadastrarNF;
     private javax.swing.JButton BotaoEditarNF;
     private javax.swing.JButton BotaoExcluiRNF;
+    private javax.swing.JButton BotaoMostrarNotas;
     private javax.swing.JTabbedPane MenuNotaFisca;
+    private javax.swing.JButton SalvarNotaFiscal;
     private javax.swing.JTable TabelaNF;
+    private javax.swing.JTextField TxtQtdDeItem;
     private javax.swing.JButton botaoCancelarNF;
-    private javax.swing.JButton botaoSalvarNF;
-    private javax.swing.JTextField caixaDeTextoAno;
-    private javax.swing.JTextField caixaDeTextoMes;
-    private javax.swing.JTextField caixaDeTextoNF;
+    private javax.swing.JButton botaoSalvarItem;
     private javax.swing.JComboBox<String> jComboBoxItem;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel textoAnoNF;
-    private javax.swing.JLabel textoData;
-    private javax.swing.JLabel textoDiaNF;
-    private javax.swing.JLabel textoMesNF;
+    private javax.swing.JTextArea labelMostrarNotasFiscais;
     private javax.swing.JLabel textoNotaFiscal;
     private javax.swing.JLabel textoRelacaoItemNF;
+    private javax.swing.JLabel txtPrecoItem;
     // End of variables declaration//GEN-END:variables
 
     private void LoadTableProduto() {

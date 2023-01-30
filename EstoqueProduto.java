@@ -7,7 +7,10 @@ public class EstoqueProduto implements IProduto{
 
     List<Produto> listaProdutos; // lista de produtos
 
-
+    
+    public EstoqueProduto (){
+    this.listaProdutos = new ArrayList<Produto>(); //add
+}
     public EstoqueProduto (List<Produto> p){
         this.listaProdutos = p;
     }
@@ -31,19 +34,8 @@ public class EstoqueProduto implements IProduto{
     }
     @Override 
     public void removeProduto(int codigo) throws Exception {
-        
-        listaProdutos.remove(getProduto(codigo));
-        
-        
-        
-        
-        
-        
-        
-        
+        listaProdutos.remove(getProduto(codigo));    
     }
-
-    
     @Override 
     public Produto getProduto(int codigo) throws Exception {
         for(int i=0;i<listaProdutos.size();i++){
@@ -53,12 +45,6 @@ public class EstoqueProduto implements IProduto{
         }
         throw new CodigoInvalidoException();
     }
-
- 
-    
-    
-    
-    
     @Override
     public void updateQuantidade(int codigo, double nova) throws Exception {
         for(int i=0;i<listaProdutos.size();i++){
@@ -109,9 +95,6 @@ public class EstoqueProduto implements IProduto{
             }
         }
     }
-    
-
-
     public String toString(){
         String dados="";
         for(Produto v: listaProdutos){
