@@ -14,13 +14,15 @@ public class EstoqueProduto implements IProduto{
      */
 
  
-  
+    public EstoqueProduto (){
+      this.listaProdutos = new ArrayList<Produto>();
+    }
     public EstoqueProduto (List<Produto> p){
         this.listaProdutos = p;
+        
     }
    
-    public EstoqueProduto (){
-    }
+    
     /**
      * Adiciona um produto no estoque.
      * @param Produto p objeto

@@ -98,7 +98,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void addNotaFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNotaFiscalActionPerformed
         // TODO add your handling code here:
-        InterfaceNotaFiscal interfaceNotaFiscal =  new InterfaceNotaFiscal(gerenciarNotasFiscais);
+        InterfaceNotaFiscal interfaceNotaFiscal =  new InterfaceNotaFiscal(gerenciarNotasFiscais, listaProduto);
         interfaceNotaFiscal.setVisible(true);
     }//GEN-LAST:event_addNotaFiscalActionPerformed
 

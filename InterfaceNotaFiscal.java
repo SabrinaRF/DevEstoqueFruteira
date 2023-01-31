@@ -4,33 +4,41 @@
  */
 package devestoquefruteira.DevEstoqueFruteira;
 
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class InterfaceNotaFiscal extends javax.swing.JFrame {
     private GerenciarNotasFiscais listaDeNotasFiscais;
+    private EstoqueProduto estoque;
+    private InterfaceProduto interfaceProduto;
     List<Item>listaDeItem;
     private String modo;
     DefaultTableModel modelo = new DefaultTableModel();
-     
+    DefaultListModel<String> listaNFModel = new DefaultListModel<>();
+    private JList<String> mostrarLista2 = new JList<>(listaNFModel);
+     DefaultListModel modeloLista = new DefaultListModel();
     /**
      * Esse construtor é responsável por inicializar o componente da interface gráfica.Configurando 
      * o JcomboBox com a lista de produtos retornada pelo método getListProduto do objeto
      * gerenciarNotasFiscais.
      */
-    public InterfaceNotaFiscal(GerenciarNotasFiscais listaDeNotasFiscais) {
+    public InterfaceNotaFiscal(GerenciarNotasFiscais listaDeNotasFiscais, EstoqueProduto estoque) {
         initComponents();
         this.listaDeNotasFiscais = listaDeNotasFiscais;
+        this.estoque = estoque;
         listaDeItem = new ArrayList<Item>();
       
         ComboBoxModel comboBoxProduto = new DefaultComboBoxModel(listaDeNotasFiscais.getListsProduto().toArray());
@@ -336,7 +344,7 @@ public void salvar() {
         jPanel3 = new javax.swing.JPanel();
         BotaoMostrarNotas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        labelMostrarNotasFiscais = new javax.swing.JTextArea();
+        mostrarLista = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -545,32 +553,28 @@ public void salvar() {
             }
         });
 
-        labelMostrarNotasFiscais.setColumns(20);
-        labelMostrarNotasFiscais.setRows(5);
-        jScrollPane1.setViewportView(labelMostrarNotasFiscais);
+        jScrollPane1.setViewportView(mostrarLista);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(BotaoMostrarNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addGap(188, 188, 188)
+                .addComponent(BotaoMostrarNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(260, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(BotaoMostrarNotas)
-                .addGap(67, 67, 67)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(534, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(409, Short.MAX_VALUE))
         );
 
         MenuNotaFisca.addTab("Vizualizar nota fiscal", jPanel3);
@@ -718,30 +722,36 @@ public void salvar() {
 
     private void SalvarNotaFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarNotaFiscalActionPerformed
     DefaultTableModel modelo = (DefaultTableModel) TabelaNF.getModel();
-        try {
+     Produto produto = new Produto();
+    try {
+        
             NotaFiscal notaFiscal = new NotaFiscal();
-            EstoqueProduto estoque = new EstoqueProduto();
+           
                 if (listaDeItem == null || listaDeItem.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Nenhum item adicionado na nota fiscal!");
                     return;
                 }
             notaFiscal.setListaDeItens(listaDeItem);
                 for(Item item: notaFiscal.getListaItem()){
-                    Produto produto = item.getProduto();
+                    produto = item.getProduto();
                     double quantidadeAtual = produto.getQuantidade();
                     int quantidadeVendida = item.getQuantidade();
                     int novaQuantidade = (int) (quantidadeAtual - quantidadeVendida);
                     produto.setQuantidade(novaQuantidade);
-                    estoque.updateQuantidade(produto.getCodigo(), novaQuantidade);
+                    
                 }  
             System.out.println("Tamanho da lista de notas fiscais antes de adicionar nova nota: " + listaDeNotasFiscais.size()); //tirar
             listaDeNotasFiscais.addNotaFiscal(notaFiscal);
             System.out.println("Tamanho da lista de notas fiscais depois de adicionar nova nota: " + listaDeNotasFiscais.size());
-
+            System.out.println("estoque"+ produto.getQuantidade());
             LoadTableNotafiscal();
+           // interfaceProduto.LoadTableEstoque();
+            
             modelo.setRowCount(0);
             listaDeItem.clear();
-            JOptionPane.showMessageDialog(null, "Nota fiscal salva com sucesso!");
+            
+            
+            JOptionPane.showMessageDialog(null, "Nota fiscal salva com sucesso! E estoque modificado");
         }catch (Exception e) {
            
             Logger.getLogger(InterfaceNotaFiscal.class.getName()).log(Level.SEVERE,null, e);
@@ -749,73 +759,43 @@ public void salvar() {
     }//GEN-LAST:event_SalvarNotaFiscalActionPerformed
 
     private void BotaoMostrarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoMostrarNotasActionPerformed
-       String notasFiscais = "";
-       GerenciarNotasFiscais gerenciarNotasFiscais = new GerenciarNotasFiscais();
-    for (NotaFiscal nota : gerenciarNotasFiscais.getListaNota()) {
-        notasFiscais += "Código da nota fiscal: " + nota.getCodNotaFiscal() + "\n";
-        notasFiscais += "Data da nota fiscal: " + nota.getData() + "\n";
-        notasFiscais += "Itens da nota fiscal: \n";
+   
+    /*GerenciarNotasFiscais gerenciarNotasFiscais = new GerenciarNotasFiscais();
+  DefaultListModel<String> listModel = new DefaultListModel<>();
+
+  for (NotaFiscal nota : gerenciarNotasFiscais.getListaNota()) {
+    String notaFiscal = "Código da nota fiscal: " + nota.getCodNotaFiscal() + "\n";
+    listModel.addElement(notaFiscal);
+  }
+
+  mostrarLista.setModel(listModel);*/
+    
+    
+    listaNFModel.removeAllElements();
+    for (NotaFiscal nota : listaDeNotasFiscais.getListaNota()) {
+        String notaFiscal = "Código da nota fiscal: " + nota.getCodNotaFiscal() + "\n";
+        //notaFiscal += "Data da nota fiscal: " + nota.getData() + "\n";
+        notaFiscal += "Itens da nota fiscal: \n";
         for (Item item : nota.getListaItem()) {
-            notasFiscais += "Código do produto: " + item.getProduto().getCodigo() + "\n";
-            notasFiscais += "Nome do produto: " + item.getProduto().getNome() + "\n";
-            notasFiscais += "Descrição do produto: " + item.getProduto().getDescricao() + "\n";
-            notasFiscais += "Quantidade: " + item.getQuantidade() + "\n";
-            notasFiscais += "Preço do item: " + item.calcularPrecoDoItem() + "\n";
+            notaFiscal += "Código do produto: " + item.getProduto().getCodigo() + "\n";
+            notaFiscal += "Nome do produto: " + item.getProduto().getNome() + "\n";
+            notaFiscal += "Descrição do produto: " + item.getProduto().getDescricao() + "\n";
+            notaFiscal += "Quantidade: " + item.getQuantidade() + "\n";
+            notaFiscal += "Preço do item: " + item.calcularPrecoDoItem() + "\n";
         }
-        notasFiscais += "------\n";
+        listaNFModel.addElement(notaFiscal);
     }
-    labelMostrarNotasFiscais.setText(notasFiscais);
+    
+    mostrarLista.setModel(listaNFModel);
+    
+    JScrollPane scrollPane = new JScrollPane(mostrarLista2);
+    JOptionPane.showMessageDialog(null, scrollPane, "Notas Fiscais", JOptionPane.PLAIN_MESSAGE);
+    
+    
+    
     }//GEN-LAST:event_BotaoMostrarNotasActionPerformed
 
-    
-    
-            
-            
-            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-   public void visualizarNota() {
-       NotaFiscal nota = new NotaFiscal();
-        JPanel panel = new JPanel();
-        DefaultTableModel model = new DefaultTableModel();
-        JTable table = new JTable(model);
-        model.addColumn("Produto");
-        model.addColumn("Preço");
-        model.addColumn("Quantidade");
-        model.addColumn("Total");
 
-       
-            for (NotaFiscal nota : listaDeNotasFiscais) {
-    for (Item item : nota.getListaItem()) {
-        Produto prod = item.getProduto();
-        model.addRow(new Object[]{prod.getNome(), prod.getPreco(), item.getQuantidade(), item.calcularPrecoDoItem()});
-    }
-}
-        JScrollPane scrollPane = new JScrollPane(table);
-        panel.add(scrollPane);
-        // Adicione o panel à sua interface principal
-}*/
-    
-    //parei em adicionar os itens na lista de  notas
-   // mudar o tipo da data
-    
-    
-    
-    
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -877,7 +857,7 @@ public void salvar() {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea labelMostrarNotasFiscais;
+    private javax.swing.JList<String> mostrarLista;
     private javax.swing.JLabel textoNotaFiscal;
     private javax.swing.JLabel textoRelacaoItemNF;
     private javax.swing.JLabel txtPrecoItem;

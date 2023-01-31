@@ -14,15 +14,16 @@ public class Item{
     Produto produto;
     
     
-    public Item (){
     
-    }
     public Item(Produto produto, int quantidade){
         this.produto = produto;
         this.preco = produto.getPreco();
         this.quantidade = quantidade;
     }
     
+    public Item (){
+    
+    }
     public double getPreco(){
         return this.preco;
     }
