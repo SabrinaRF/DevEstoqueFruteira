@@ -627,6 +627,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
                 }
             }catch(Exception e){
                     JOptionPane.showMessageDialog(null,"Produto não encontrado");
+                    LoadTableEstoque();
             }
             tblProdutoEstoque.setModel(modeloProduto); 
             
