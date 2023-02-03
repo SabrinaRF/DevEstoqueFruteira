@@ -7,14 +7,22 @@ public class EstoqueProduto implements IProduto{
 
     List<Produto> listaProdutos; // lista de produtos
 
+
     /**
      * Construtor da Classe EstoqueProduto .
      * @param List Produto p.
      */
+
+ 
+    public EstoqueProduto (){
+      this.listaProdutos = new ArrayList<Produto>();
+    }
     public EstoqueProduto (List<Produto> p){
         this.listaProdutos = p;
+        
     }
    
+    
     /**
      * Adiciona um produto no estoque.
      * @param Produto p objeto
@@ -56,7 +64,7 @@ public class EstoqueProduto implements IProduto{
      */
     @Override 
     public void removeProduto(int codigo) throws Exception {
-       
+
         listaProdutos.remove(getProduto(codigo));   
     }
 
@@ -66,6 +74,8 @@ public class EstoqueProduto implements IProduto{
      * @throws java.lang.Exception Lança exceção quando o produto não pode ser removido, por exemplo, 
      * porque não existe produto cadastrado com o código informado.
      */
+
+
     @Override 
     public Produto getProduto(int codigo) throws Exception {
         for(int i=0;i<listaProdutos.size();i++){
@@ -76,6 +86,7 @@ public class EstoqueProduto implements IProduto{
         throw new CodigoInvalidoException();
     }
 
+
     /**
      * Altera a quantidade do produto de acordo com o código informado.
      * @param codigo Código do produto a ser alterado.
@@ -85,6 +96,7 @@ public class EstoqueProduto implements IProduto{
      * Procura na lista o produto atraves do código, se achar altera a quantidade com o método
      * setQuantidade.
      */
+
     @Override
     public void updateQuantidade(int codigo, double nova) throws Exception {
         for(int i=0;i<listaProdutos.size();i++){
@@ -158,11 +170,13 @@ public class EstoqueProduto implements IProduto{
             }
         }
     }
+
     
     /**
     * Retorna uma String com todos os produtos e seus respectivos dados
     * @return dados Todos os dados da lista de produtos.
     **/
+
     public String toString(){
         String dados="";
         for(Produto v: listaProdutos){

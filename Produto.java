@@ -8,7 +8,7 @@ public class Produto {
     private final int codigo;
     private String nome;
     private String descricao;
-    private double quantidade;
+    private double quantidade; // nao precisa
     private double preco;
     
     
@@ -28,10 +28,12 @@ public class Produto {
     this.quantidade=quantidade;
     this.preco=preco;
     }
+    
+    
     /**
      * Construtor da Classe Produto, sem parametros.
      */
-    public Produto (String banana, String fruta, String string, String string1){
+    public Produto (){
     this.codigo=codigoGeral++;
     }
     
@@ -89,11 +91,13 @@ public class Produto {
      * @throws java.lang.Exception Lança exceção quando a quantidade for menor ou igual a zero.
      */
     public void setQuantidade(double quantidade)throws Exception {
+
         if(quantidade > 0){
             this.quantidade=quantidade;
         }else{
             throw new Exception("Quantidade inválida, insira um valor maior que 0!");
         }
+        //this.quantidade=quantidade;
     }
      /**
      * Altera o preço do produto.
