@@ -20,13 +20,25 @@ public class Produto {
      * @param descricao Descrição do produto
      * @param quantidade Quantidade do produto
      * @param preco Preço do produto
+     * @throws java.lang.Exception
      */
-    public Produto(String nome, String descricao, int quantidade, double preco){
-    this.codigo=codigoGeral++;
-    this.nome= nome;
-    this.descricao=descricao;
-    this.quantidade=quantidade;
-    this.preco=preco;
+    public Produto(String nome, String descricao, int quantidade, double preco) throws Exception{
+        if(nome.equals("")){
+            throw new Exception ("Nome obrigatório, preencha o campo!");
+        }else if(descricao.equals("")){
+            throw new Exception ("Descição obrigatória, preencha o campo!");     
+        }else if(quantidade<=0){
+            throw new Exception("Quantidade inválida, insira um valor maior que 0!");
+        }else if(preco<=0.0){
+            throw new Exception ("Preço inválido, insira um preço acima de 0.0!");
+        }else{
+            this.codigo=codigoGeral++;
+            this.nome= nome;
+            this.descricao=descricao;
+            this.quantidade=quantidade;
+            this.preco=preco; 
+        }     
+    
     }
     
     
@@ -103,7 +115,7 @@ public class Produto {
      * Altera o preço do produto.
      * @param preco Preço do produto a ser alterado.
      */
-    public void setPreco(Double preco) throws Exception{
+    public void setPreco(double preco) throws Exception{
         if(preco>0.0){
             this.preco=preco;
         }else{

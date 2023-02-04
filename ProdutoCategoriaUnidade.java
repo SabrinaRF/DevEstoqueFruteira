@@ -13,7 +13,7 @@ public class ProdutoCategoriaUnidade extends Produto{
      * @param descricao Descrição do Produto.
      * @param preco Preço do Produto.
     **/ 
-    public ProdutoCategoriaUnidade(int quantidade, String nome, String descricao,double preco){
+    public ProdutoCategoriaUnidade(int quantidade, String nome, String descricao,double preco) throws Exception{
         super(nome, descricao, quantidade, preco);
     }
 
@@ -33,7 +33,6 @@ public class ProdutoCategoriaUnidade extends Produto{
      * @throws java.lang.Exception Lança exceção quando a quantidade for menor ou igual a zero 
      * ou quando a quantidade inserida é double.
     **/
-    @Override
     public void setQuantidade(double quantidade)throws Exception {
         if(quantidade > 0){
             try{
