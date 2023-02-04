@@ -5,7 +5,9 @@
 package devestoquefruteira.DevEstoqueFruteira;
 
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -129,11 +131,6 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
                 botaoSalvarItem.setEnabled(false);
                 botaoCancelarNF.setEnabled(false);
                 jComboBoxItem.setEditable(false);
-               
-                /*caixaDeTextoNF.setEnabled(false);
-                caixaDeTextoMes.setEnabled(false);
-                caixaDeTextoAno.setEnabled(false);
-                */
                 BotaoCadastrarNF.setEnabled(true);
                 BotaoEditarNF.setEnabled(false);
                 BotaoExcluiRNF.setEnabled(false);
@@ -143,10 +140,6 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
                 botaoSalvarItem.setEnabled(true);
                 botaoCancelarNF.setEnabled(true);
                 jComboBoxItem.setEditable(true);
-                /*caixaDeTextoNF.setEnabled(true);
-                caixaDeTextoMes.setEnabled(true);
-                caixaDeTextoAno.setEnabled(true);
-                */
                 BotaoCadastrarNF.setEnabled(false);
                 BotaoEditarNF.setEnabled(false);
                 BotaoExcluiRNF.setEnabled(false);
@@ -156,10 +149,6 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
                  botaoSalvarItem.setEnabled(true);
                 botaoCancelarNF.setEnabled(true);
                 jComboBoxItem.setEditable(true);
-                /*caixaDeTextoNF.setEnabled(true);
-                caixaDeTextoMes.setEnabled(true);
-                caixaDeTextoAno.setEnabled(true);
-                */
                 BotaoCadastrarNF.setEnabled(false);
                 BotaoEditarNF.setEnabled(false);
                 BotaoExcluiRNF.setEnabled(false);
@@ -171,10 +160,6 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
                 botaoSalvarItem.setEnabled(false);
                 botaoCancelarNF.setEnabled(false);
                 jComboBoxItem.setEditable(false);
-               /* caixaDeTextoNF.setEnabled(false);
-                caixaDeTextoMes.setEnabled(false);
-               caixaDeTextoAno.setEnabled(false);
-                */
                 BotaoCadastrarNF.setEnabled(true);
                 BotaoEditarNF.setEnabled(false);
                 BotaoExcluiRNF.setEnabled(false);
@@ -185,10 +170,6 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
                 botaoSalvarItem.setEnabled(false);
                 botaoCancelarNF.setEnabled(false);
                 jComboBoxItem.setEditable(false);
-               // caixaDeTextoNF.setEnabled(false);
-               // caixaDeTextoMes.setEnabled(false);
-               //caixaDeTextoAno.setEnabled(false);
-                
                 BotaoCadastrarNF.setEnabled(true);
                 BotaoEditarNF.setEnabled(true);
                 BotaoExcluiRNF.setEnabled(true); 
@@ -197,68 +178,10 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
         }
     }
     
+    
     /*
-     *  Este método salva as informações de uma nota fiscal. Se o modo for "Novo", ele cria uma
-     *  nova nota fiscal com as informações inseridas pelo usuário, incluindo a data, o produto selecionado 
-     *  e adiciona essa nota fiscal à lista de notas fiscais.     
-     */
-
-    /*
-public void salvar() {
-        if(modo.equals("Novo")){   
-        try {
-            NotaFiscal notaFiscal = new NotaFiscal();
-
-            int codDaNotaFiscal = notaFiscal.getCodNotaFiscal();     
-            int dia= Integer.parseInt( caixaDeTextoNF.getText());
-            int mes = Integer.parseInt( caixaDeTextoMes.getText());
-            int ano = Integer.parseInt( caixaDeTextoAno.getText());
-
-            String data = dia+"/"+ mes +"/"+ ano;
-            notaFiscal.setData(data);
-
-            Produto selectProuto = (Produto)jComboBoxItem.getSelectedItem();
-            notaFiscal.setProduto(selectProuto);
-            
-            listaDeNotasFiscais.addNotaFiscal(notaFiscal);
-
-            //LoadTableNotafiscal();
-            JOptionPane.showMessageDialog(null, "Nota adicionada!");
-
-        
-       } catch (Exception ex) {
-                    Logger.getLogger(InterfaceProduto.class.getName()).log(Level.SEVERE,null, ex);
-                }
-            }else if (modo.equals("Editar")){
-                try {
-                    int index = TabelaNF.getSelectedRow();
-                    
-                    NotaFiscal g = listaDeNotasFiscais.getNotaFiscal(index);
-                    
-                    g.setData(caixaDeTextoNF.getText());
-                    g.setData(caixaDeTextoMes.getText());
-                    g.setData(caixaDeTextoAno.getText());
-                    
-                    
-                    JOptionPane.showMessageDialog(null, "Produto modificado!");
-                   
-                } catch (Exception ex) {
-                    Logger.getLogger(InterfaceNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        }
-            LoadTableNotafiscal();
-            ManipularInterface();
-            modo="Navegar";
-            
-           
-        
-   
-    
-    
-    
-    
-    
-    /*if(modo.equals("Novo")){
+      Codigo para fazer as exception depois     
+    if(modo.equals("Novo")){
                 try {
                     NotaFiscal notaFiscal = new NotaFiscal();
                     
@@ -341,6 +264,8 @@ public void salvar() {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         SalvarNotaFiscal = new javax.swing.JButton();
+        caixaPreencherData = new javax.swing.JTextField();
+        labelData = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         BotaoMostrarNotas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -459,11 +384,11 @@ public void salvar() {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(TxtQtdDeItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(74, 74, 74)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtPrecoItem))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoSalvarItem)
                     .addComponent(botaoCancelarNF))
@@ -484,6 +409,8 @@ public void salvar() {
                 SalvarNotaFiscalActionPerformed(evt);
             }
         });
+
+        labelData.setText("Data");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -512,7 +439,12 @@ public void salvar() {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(SalvarNotaFiscal)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(labelData)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(caixaPreencherData, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(96, 96, 96)
+                                        .addComponent(SalvarNotaFiscal))
                                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -540,8 +472,11 @@ public void salvar() {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(SalvarNotaFiscal)
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SalvarNotaFiscal)
+                    .addComponent(caixaPreencherData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelData))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         MenuNotaFisca.addTab("Criar nota fiscal", jPanel1);
@@ -614,23 +549,13 @@ public void salvar() {
         if (index>=0 && index<listaDeNotasFiscais.size()){
             NotaFiscal n=  listaDeNotasFiscais.get(index);
             
-           // caixaDeTextoNF.setText(n.getData());
-            //caixaDeTextoMes.setText(String.valueOf(n.getData()));
-            //caixaDeTextoAno.setText(String.valueOf(n.getData()));
-    
-            modo="Selecao";
+             modo="Selecao";
             ManipularInterface();
         }
     }//GEN-LAST:event_TabelaNFMouseClicked
 
     private void BotaoCadastrarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastrarNFActionPerformed
         NotaFiscal notaFiscal = new NotaFiscal();
-        
-        //caixaDeTextoNF.setText("");
-        //caixaDeTextoMes.setText("");
-        //caixaDeTextoAno.setText("");
-        
-        
         //EstoqueProduto estoqueProduto = (EstoqueProduto)jComboBoxItem.getSelectedItem();
         modo="Novo";
         ManipularInterface(); 
@@ -717,7 +642,7 @@ public void salvar() {
     }//GEN-LAST:event_botaoSalvarItemActionPerformed
 
     private void jComboBoxItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxItemActionPerformed
-  
+
     }//GEN-LAST:event_jComboBoxItemActionPerformed
 
     private void SalvarNotaFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarNotaFiscalActionPerformed
@@ -760,7 +685,7 @@ public void salvar() {
 
     private void BotaoMostrarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoMostrarNotasActionPerformed
    
-    /*GerenciarNotasFiscais gerenciarNotasFiscais = new GerenciarNotasFiscais();
+    GerenciarNotasFiscais gerenciarNotasFiscais = new GerenciarNotasFiscais();
   DefaultListModel<String> listModel = new DefaultListModel<>();
 
   for (NotaFiscal nota : gerenciarNotasFiscais.getListaNota()) {
@@ -768,13 +693,18 @@ public void salvar() {
     listModel.addElement(notaFiscal);
   }
 
-  mostrarLista.setModel(listModel);*/
-    
-    
+  mostrarLista.setModel(listModel);
+
     listaNFModel.removeAllElements();
     for (NotaFiscal nota : listaDeNotasFiscais.getListaNota()) {
-        String notaFiscal = "Código da nota fiscal: " + nota.getCodNotaFiscal() + "\n";
-        //notaFiscal += "Data da nota fiscal: " + nota.getData() + "\n";
+        String notaFiscal = "Código da nota fiscal: " + "\n"+ nota.getCodNotaFiscal() + "\n";       
+       
+        Date dataAtual = new Date();  //pega a data da máquina
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatada = dateFormat.format(dataAtual);
+        notaFiscal += "Data da nota fiscal: " + dataFormatada + "\n";
+        
+        //notaFiscal += "Data da nota fiscal: " + nota.getData() + "\n";  //data antiga
         notaFiscal += "Itens da nota fiscal: \n";
         for (Item item : nota.getListaItem()) {
             notaFiscal += "Código do produto: " + item.getProduto().getCodigo() + "\n";
@@ -790,9 +720,6 @@ public void salvar() {
     
     JScrollPane scrollPane = new JScrollPane(mostrarLista2);
     JOptionPane.showMessageDialog(null, scrollPane, "Notas Fiscais", JOptionPane.PLAIN_MESSAGE);
-    
-    
-    
     }//GEN-LAST:event_BotaoMostrarNotasActionPerformed
 
 
@@ -845,6 +772,7 @@ public void salvar() {
     private javax.swing.JTextField TxtQtdDeItem;
     private javax.swing.JButton botaoCancelarNF;
     private javax.swing.JButton botaoSalvarItem;
+    private javax.swing.JTextField caixaPreencherData;
     private javax.swing.JComboBox<String> jComboBoxItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -857,6 +785,7 @@ public void salvar() {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelData;
     private javax.swing.JList<String> mostrarLista;
     private javax.swing.JLabel textoNotaFiscal;
     private javax.swing.JLabel textoRelacaoItemNF;

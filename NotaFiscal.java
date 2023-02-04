@@ -12,18 +12,19 @@ package devestoquefruteira.DevEstoqueFruteira;
 
  
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 public class NotaFiscal {
    private static int codNotaFiscalGeral = 0;
    private final int codNotaFiscal; //sugestao da ide ser final
-   private String data;
+   private Date data;
    private final List<Item> listaDeItem; //sugestao da ide ser final
    private Produto produto;
    
    
-    public NotaFiscal(String data, List<Item> listaDeItem, Produto produto){
+    public NotaFiscal(Date data, List<Item> listaDeItem, Produto produto){
         this.codNotaFiscal = codNotaFiscalGeral ++;
         this.data = data;
         if(listaDeItem == null) {
@@ -46,11 +47,11 @@ public class NotaFiscal {
     }
 
 
-    public String getData(){
+    public Date getData(){
         return data;
     }
     
-    public void setData(String data){
+    public void setData(Date data){
         this.data = data;
     }
 

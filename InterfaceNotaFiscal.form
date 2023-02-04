@@ -103,7 +103,13 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="SalvarNotaFiscal" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="labelData" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="caixaPreencherData" min="-2" pref="71" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                                              <Component id="SalvarNotaFiscal" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -140,8 +146,12 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="SalvarNotaFiscal" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="240" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="SalvarNotaFiscal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="caixaPreencherData" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelData" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="198" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -286,12 +296,12 @@
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="TxtQtdDeItem" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtPrecoItem" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="botaoSalvarItem" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="botaoCancelarNF" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -381,6 +391,13 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SalvarNotaFiscalActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="caixaPreencherData">
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelData">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Data"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
