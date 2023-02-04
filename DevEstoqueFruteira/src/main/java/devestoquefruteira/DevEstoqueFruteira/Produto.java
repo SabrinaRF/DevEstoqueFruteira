@@ -8,11 +8,8 @@ public class Produto {
     private final int codigo;
     private String nome;
     private String descricao;
-    private double quantidade; // nao precisa
+    private double quantidade;
     private double preco;
-    
-    
-    //aqui tambem
 
     /**
      * Construtor da Classe Produto, código gerado altomaticamente.
@@ -20,32 +17,18 @@ public class Produto {
      * @param descricao Descrição do produto
      * @param quantidade Quantidade do produto
      * @param preco Preço do produto
-     * @throws java.lang.Exception
      */
-    public Produto(String nome, String descricao, int quantidade, double preco) throws Exception{
-        if(nome.equals("")){
-            throw new Exception ("Nome obrigatório, preencha o campo!");
-        }else if(descricao.equals("")){
-            throw new Exception ("Descição obrigatória, preencha o campo!");     
-        }else if(quantidade<=0){
-            throw new Exception("Quantidade inválida, insira um valor maior que 0!");
-        }else if(preco<=0.0){
-            throw new Exception ("Preço inválido, insira um preço acima de 0.0!");
-        }else{
-            this.codigo=codigoGeral++;
-            this.nome= nome;
-            this.descricao=descricao;
-            this.quantidade=quantidade;
-            this.preco=preco; 
-        }     
-    
+    public Produto(String nome, String descricao, int quantidade, double preco){
+    this.codigo=codigoGeral++;
+    this.nome= nome;
+    this.descricao=descricao;
+    this.quantidade=quantidade;
+    this.preco=preco;
     }
-    
-    
     /**
      * Construtor da Classe Produto, sem parametros.
      */
-    public Produto (){
+    public Produto (String banana, String fruta, String string, String string1){
     this.codigo=codigoGeral++;
     }
     
@@ -79,49 +62,23 @@ public class Produto {
      * Altera o nome do produto.
      * @param nome Nome do produto a ser alterado.
      */
-    public void setNome(String nome) throws Exception{
-        if(nome.equals("")){
-            throw new Exception ("Nome obrigatório, preencha o campo!");
-        }else{
-            this.nome=nome;
-        }
-    }
+    public void setNome(String nome){this.nome=nome;}
      /**
      * Altera o descrição do produto.
      * @param descricao Descrição do produto a ser alterado.
      */
-    public void setDescricao(String descricao) throws Exception{
-        if(descricao.equals("")){
-            throw new Exception ("Descição obrigatória, preencha o campo!");
-        }else{
-            this.descricao=descricao;
-        }
-    }
+    public void setDescricao(String descricao){this.descricao=descricao;}
     /**
      * Altera a quantidade do produto.
      * @param quantidade Quantidade do produto a ser alterado.
      * @throws java.lang.Exception Lança exceção quando a quantidade for menor ou igual a zero.
      */
-    public void setQuantidade(double quantidade)throws Exception {
-
-        if(quantidade > 0){
-            this.quantidade=quantidade;
-        }else{
-            throw new Exception("Quantidade inválida, insira um valor maior que 0!");
-        }
-        //this.quantidade=quantidade;
-    }
+    public void setQuantidade(double quantidade)throws Exception {if(quantidade > 0){this.quantidade=quantidade;}else{throw new Exception("Quantidade inválida, insira um valor maior que 0!");}}
      /**
      * Altera o preço do produto.
      * @param preco Preço do produto a ser alterado.
      */
-    public void setPreco(double preco) throws Exception{
-        if(preco>0.0){
-            this.preco=preco;
-        }else{
-            throw new Exception ("Preço inválido, insira um preço acima de 0.0!");
-        }
-    }
+    public void setPreco(Double preco){this.preco=preco;}
 
     /**
      * Captura o código, nome, descrição, quantidade e preço do produto.

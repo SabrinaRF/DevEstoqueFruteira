@@ -11,47 +11,39 @@ package devestoquefruteira.DevEstoqueFruteira;
  */
 
  
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
 public class NotaFiscal {
    private static int codNotaFiscalGeral = 0;
    private final int codNotaFiscal; //sugestao da ide ser final
-   private Date data;
+   private String data;
    private final List<Item> listaDeItem; //sugestao da ide ser final
    private Produto produto;
    
-   
-    public NotaFiscal(Date data, List<Item> listaDeItem, Produto produto){
+    public NotaFiscal(String data, List<Item> listaDeItem, Produto produto){
         this.codNotaFiscal = codNotaFiscalGeral ++;
         this.data = data;
-        if(listaDeItem == null) {
-    	this.listaDeItem = new ArrayList<>();
-    } else {
-    	this.listaDeItem = listaDeItem;
-    }
-        
-        //this.listaDeItem = listaDeItem;
+        this.listaDeItem = listaDeItem;
         this.produto = produto;
     }
 
     NotaFiscal() {
-        this.codNotaFiscal = codNotaFiscalGeral++;
-        this.listaDeItem = new ArrayList<>();
-     }
+       this.codNotaFiscal = codNotaFiscalGeral++;
+       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       this.listaDeItem = null;
+    }
 
     public int getCodNotaFiscal(){
         return codNotaFiscal;
     }
 
 
-    public Date getData(){
+    public String getData(){
         return data;
     }
     
-    public void setData(Date data){
+    public void setData(String data){
         this.data = data;
     }
 
@@ -90,27 +82,8 @@ public class NotaFiscal {
         return produto;
     }
     
-     public void setListaDeItens(List<Item> listaDeItem) {
-    this.listaDeItem.clear();
-    this.listaDeItem.addAll(listaDeItem);  
-}
-  
-/*public void setListaDeItens(List<Item> listaDeItem) {
-    listaDeItem = new ArrayList<>();
-    listaDeItem.addAll(listaDeItem);  
-}*/
      
-     /*
-    public void setListaDeItens(List<Item> listaDeItem) {
-    this.listaDeItem.addAll(listaDeItem);
-
-        }*/
      
-    public List<Item> getListaItem() {     
-        return  listaDeItem;
-        
-        
-    }
     
    @Override
     public String toString(){

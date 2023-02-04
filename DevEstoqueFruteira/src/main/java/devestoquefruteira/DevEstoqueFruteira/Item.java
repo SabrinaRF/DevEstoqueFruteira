@@ -13,17 +13,12 @@ public class Item{
     int quantidade;
     Produto produto;
     
-    
-    
     public Item(Produto produto, int quantidade){
         this.produto = produto;
         this.preco = produto.getPreco();
         this.quantidade = quantidade;
     }
     
-    public Item (){
-    
-    }
     public double getPreco(){
         return this.preco;
     }
@@ -48,20 +43,6 @@ public class Item{
     public double getTotal(){
         return this.preco * this.quantidade;
     }
-    
-    
-   public double calcularPrecoDoItem(){
-       return this.preco * this.quantidade;
-     
-       
-       /* quantidade do item = 3 
-               multiplo valor do produto 
-                       e exbido o calculo 
-                               
-                               exibe na tabela 
-                   */                    
-   }
-    
     
     @Override
     public String toString(){
