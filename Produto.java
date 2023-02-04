@@ -22,12 +22,12 @@ public class Produto {
      * @param preco Preço do produto
      * @throws java.lang.Exception
      */
-    public Produto(String nome, String descricao, int quantidade, double preco) throws Exception{
+    public Produto(String nome, String descricao, double quantidade, double preco) throws Exception{
         if(nome.equals("")){
             throw new Exception ("Nome obrigatório, preencha o campo!");
         }else if(descricao.equals("")){
             throw new Exception ("Descição obrigatória, preencha o campo!");     
-        }else if(quantidade<=0){
+        }else if(quantidade<=0.0){
             throw new Exception("Quantidade inválida, insira um valor maior que 0!");
         }else if(preco<=0.0){
             throw new Exception ("Preço inválido, insira um preço acima de 0.0!");
@@ -44,7 +44,7 @@ public class Produto {
     
     /**
      * Construtor da Classe Produto, sem parametros.
-     */
+    */ 
     public Produto (){
     this.codigo=codigoGeral++;
     }
