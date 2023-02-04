@@ -382,6 +382,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de produtos"));
+        jPanel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         tblProdutoEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
