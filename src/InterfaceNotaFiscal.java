@@ -5,6 +5,7 @@
 //package devestoquefruteira.DevEstoqueFruteira;
 
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,6 +22,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.text.MaskFormatter;
 
 public class InterfaceNotaFiscal extends javax.swing.JFrame {
     private GerenciarNotasFiscais listaDeNotasFiscais;
@@ -42,7 +44,7 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
         this.listaDeNotasFiscais = listaDeNotasFiscais;
         this.estoque = estoque;
         listaDeItem = new ArrayList<Item>();
-      
+     
         ComboBoxModel comboBoxProduto = new DefaultComboBoxModel(listaDeNotasFiscais.getListsProduto().toArray());
         jComboBoxItem.setModel(comboBoxProduto);
      
@@ -50,6 +52,7 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         modo="Navegar";
         ManipularInterface(); 
+        caixaDeTextoConsultarNF.setEnabled(false);
     }
    
     /*
@@ -249,6 +252,14 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup5 = new javax.swing.ButtonGroup();
+        buttonGroup6 = new javax.swing.ButtonGroup();
+        buttonGroup7 = new javax.swing.ButtonGroup();
+        buttonGroup8 = new javax.swing.ButtonGroup();
         textoNotaFiscal = new javax.swing.JLabel();
         MenuNotaFisca = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -279,13 +290,15 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
         mostrarLista = new javax.swing.JList<>();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
+        jPanelNFRegistrada = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tabelaNotaFiscalRegistrada = new javax.swing.JTable();
         labelConsultarNF = new javax.swing.JPanel();
         jLabelTXTConsultarNF = new javax.swing.JLabel();
         caixaDeTextoConsultarNF = new javax.swing.JTextField();
         btnPesquisarNotaFiscal = new javax.swing.JButton();
-        jPanelNFRegistrada = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tabelaNotaFiscalRegistrada = new javax.swing.JTable();
+        opcaoCodigo = new javax.swing.JRadioButton();
+        opcaoData = new javax.swing.JRadioButton();
 
         jMenu1.setText("jMenu1");
 
@@ -544,74 +557,16 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
 
         MenuNotaFisca.addTab("Vizualizar nota fiscal", jPanel3);
 
-        labelConsultarNF.setBorder(javax.swing.BorderFactory.createTitledBorder("Consultar notas fiscais"));
-        labelConsultarNF.setToolTipText("");
-        labelConsultarNF.setName(""); // NOI18N
-        labelConsultarNF.setOpaque(false);
-
-        jLabelTXTConsultarNF.setText("Código da nota fiscal:");
-
-        caixaDeTextoConsultarNF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                caixaDeTextoConsultarNFActionPerformed(evt);
-            }
-        });
-
-        btnPesquisarNotaFiscal.setBackground(new java.awt.Color(255, 204, 204));
-        btnPesquisarNotaFiscal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnPesquisarNotaFiscal.setForeground(new java.awt.Color(153, 0, 0));
-        btnPesquisarNotaFiscal.setText("Pesquisar");
-        btnPesquisarNotaFiscal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 0, 0)));
-        btnPesquisarNotaFiscal.setMargin(new java.awt.Insets(5, 15, 5, 15));
-        btnPesquisarNotaFiscal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarNotaFiscalActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout labelConsultarNFLayout = new javax.swing.GroupLayout(labelConsultarNF);
-        labelConsultarNF.setLayout(labelConsultarNFLayout);
-        labelConsultarNFLayout.setHorizontalGroup(
-            labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(labelConsultarNFLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabelTXTConsultarNF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(caixaDeTextoConsultarNF, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPesquisarNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(315, Short.MAX_VALUE))
-        );
-        labelConsultarNFLayout.setVerticalGroup(
-            labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(labelConsultarNFLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelTXTConsultarNF)
-                    .addComponent(caixaDeTextoConsultarNF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(82, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelConsultarNF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 744, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelConsultarNF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 154, Short.MAX_VALUE)
         );
-
-        labelConsultarNF.getAccessibleContext().setAccessibleName("");
-        labelConsultarNF.getAccessibleContext().setAccessibleDescription("");
 
         jPanelNFRegistrada.setBorder(javax.swing.BorderFactory.createTitledBorder("Notas fiscais regristradas"));
         jPanelNFRegistrada.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -664,7 +619,7 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(38, 38, 38)
                     .addComponent(jPanelNFRegistrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(38, Short.MAX_VALUE)))
+                    .addContainerGap(86, Short.MAX_VALUE)))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -681,6 +636,86 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
 
         MenuNotaFisca.addTab("Pesquisar notas", jPanel4);
 
+        labelConsultarNF.setBorder(javax.swing.BorderFactory.createTitledBorder("Consultar notas fiscais"));
+        labelConsultarNF.setToolTipText("");
+        labelConsultarNF.setName(""); // NOI18N
+        labelConsultarNF.setOpaque(false);
+
+        jLabelTXTConsultarNF.setText("Código da nota fiscal:");
+
+        caixaDeTextoConsultarNF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caixaDeTextoConsultarNFActionPerformed(evt);
+            }
+        });
+
+        btnPesquisarNotaFiscal.setBackground(new java.awt.Color(255, 204, 204));
+        btnPesquisarNotaFiscal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnPesquisarNotaFiscal.setForeground(new java.awt.Color(153, 0, 0));
+        btnPesquisarNotaFiscal.setText("Pesquisar");
+        btnPesquisarNotaFiscal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 0, 0)));
+        btnPesquisarNotaFiscal.setMargin(new java.awt.Insets(5, 15, 5, 15));
+        btnPesquisarNotaFiscal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarNotaFiscalActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(opcaoCodigo);
+        opcaoCodigo.setText("Consultar por código");
+        opcaoCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcaoCodigoActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(opcaoData);
+        opcaoData.setText("Consultar por data");
+        opcaoData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcaoDataActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout labelConsultarNFLayout = new javax.swing.GroupLayout(labelConsultarNF);
+        labelConsultarNF.setLayout(labelConsultarNFLayout);
+        labelConsultarNFLayout.setHorizontalGroup(
+            labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(labelConsultarNFLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(opcaoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(opcaoData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaDeTextoConsultarNF, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPesquisarNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(273, 273, 273))
+            .addGroup(labelConsultarNFLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabelTXTConsultarNF)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        labelConsultarNFLayout.setVerticalGroup(
+            labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(labelConsultarNFLayout.createSequentialGroup()
+                .addGroup(labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(labelConsultarNFLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(opcaoCodigo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addComponent(opcaoData)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, labelConsultarNFLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(caixaDeTextoConsultarNF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPesquisarNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)))
+                .addComponent(jLabelTXTConsultarNF)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -692,18 +727,24 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
                         .addComponent(textoNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(MenuNotaFisca, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelConsultarNF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MenuNotaFisca, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(textoNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(57, 57, 57)
+                .addComponent(labelConsultarNF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MenuNotaFisca, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        labelConsultarNF.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -901,44 +942,72 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
     }//GEN-LAST:event_BotaoMostrarNotasActionPerformed
 
     private void caixaDeTextoConsultarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caixaDeTextoConsultarNFActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_caixaDeTextoConsultarNFActionPerformed
 
     private void btnPesquisarNotaFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarNotaFiscalActionPerformed
-      
-       
-      int codigo = Integer.parseInt(caixaDeTextoConsultarNF.getText());
+        
         DefaultTableModel modeloConsultar = new DefaultTableModel(new Object [] {"Código da nota fiscal","data da nota fiscal","Codigo do produto", "Nome do produto","Descrição", "Quantidade","Preço do item"},0);
-        try {
+        if(opcaoCodigo.isSelected()){
             
-              /* percorrendo a lista de notas fiscais através do for-each, verificando se o código da nota 
-            fiscal na lista atual é igual ao código informado pelo usuário. Se for 
-            verdadeiro, ele entra em outro loop for-each, onde percorre a lista de itens da nota 
-            fiscal encontrada, break finaliza o loop mais externo, uma vez que a nota fiscal já foi encontrada e processada.*/
-            for(NotaFiscal nf: listaDeNotasFiscais.getListaNota()){
-                if(nf.getCodNotaFiscal() == codigo){
-                    for(Item item : nf.getListaItem()){
-                        Object linha []=new Object[]{nf.getCodNotaFiscal(),nf.getData(),item.getProduto().getCodigo(),item.getProduto().getNome(),item.getProduto().getDescricao(), item.getQuantidade(), item.getPreco()};
+            int codigo = Integer.parseInt(caixaDeTextoConsultarNF.getText());
+            try {
 
-                        modeloConsultar.addRow(linha);
+                  /* percorrendo a lista de notas fiscais através do for-each, verificando se o código da nota 
+                fiscal na lista atual é igual ao código informado pelo usuário. Se for 
+                verdadeiro, ele entra em outro loop for-each, onde percorre a lista de itens da nota 
+                fiscal encontrada, break finaliza o loop mais externo, uma vez que a nota fiscal já foi encontrada e processada.*/
+                for(NotaFiscal nf: listaDeNotasFiscais.getListaNota()){
+                    if(nf.getCodNotaFiscal() == codigo){
+                        for(Item item : nf.getListaItem()){
+                            Object linha []=new Object[]{nf.getCodNotaFiscal(),nf.getData(),item.getProduto().getCodigo(),item.getProduto().getNome(),item.getProduto().getDescricao(), item.getQuantidade(), item.getPreco()};
+
+                            modeloConsultar.addRow(linha);
+                        }
+                        break;
                     }
-                    break;
                 }
+
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Produto não encontrado");
+                LoadTableNotafiscal();
             }
+            tabelaNotaFiscalRegistrada.setModel(modeloConsultar);
             
-            
-       
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Produto não encontrado");
-            LoadTableNotafiscal();
+        }else{
+            String data = caixaDeTextoConsultarNF.getText();
+            try {
+               for(NotaFiscal nf: listaDeNotasFiscais.getListaNota()){
+                    if(nf.getData().equals(data)){
+                        for(Item item : nf.getListaItem()){
+                            Object linha []=new Object[]{nf.getCodNotaFiscal(),nf.getData(),item.getProduto().getCodigo(),item.getProduto().getNome(),item.getProduto().getDescricao(), item.getQuantidade(), item.getPreco()};
+
+                            modeloConsultar.addRow(linha);
+                        }
+                        break;
+                    }
+                } 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"Produto não encontrado");
+                LoadTableNotafiscal();
+            }
         }
-        tabelaNotaFiscalRegistrada.setModel(modeloConsultar);
+       
+        
         
     }//GEN-LAST:event_btnPesquisarNotaFiscalActionPerformed
 
     private void tabelaNotaFiscalRegistradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaNotaFiscalRegistradaMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tabelaNotaFiscalRegistradaMouseClicked
+
+    private void opcaoCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcaoCodigoActionPerformed
+        caixaDeTextoConsultarNF.setEnabled(true);   
+    }//GEN-LAST:event_opcaoCodigoActionPerformed
+
+    private void opcaoDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcaoDataActionPerformed
+        caixaDeTextoConsultarNF.setEnabled(true);      
+    }//GEN-LAST:event_opcaoDataActionPerformed
 
 
     /**
@@ -991,6 +1060,14 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
     private javax.swing.JButton botaoCancelarNF;
     private javax.swing.JButton botaoSalvarItem;
     private javax.swing.JButton btnPesquisarNotaFiscal;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.ButtonGroup buttonGroup6;
+    private javax.swing.ButtonGroup buttonGroup7;
+    private javax.swing.ButtonGroup buttonGroup8;
     private javax.swing.JTextField caixaDeTextoConsultarNF;
     private javax.swing.JTextField caixaPreencherData;
     private javax.swing.JComboBox<String> jComboBoxItem;
@@ -1020,6 +1097,8 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
     private javax.swing.JPanel labelConsultarNF;
     private javax.swing.JLabel labelData;
     private javax.swing.JList<String> mostrarLista;
+    private javax.swing.JRadioButton opcaoCodigo;
+    private javax.swing.JRadioButton opcaoData;
     private javax.swing.JTable tabelaNotaFiscalRegistrada;
     private javax.swing.JLabel textoNotaFiscal;
     private javax.swing.JLabel textoRelacaoItemNF;
