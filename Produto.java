@@ -8,8 +8,9 @@ public class Produto {
     private final int codigo;
     private String nome;
     private String descricao;
-    private double quantidade; // nao precisa
-    private double preco;
+    double quantidade; // nao precisa
+    double preco;
+    private Object produto;
     
     
     //aqui tambem
@@ -132,6 +133,12 @@ public class Produto {
         }
     }
 
+    
+    
+    public double calcularPrecoItem() {
+    return preco * quantidade;
+}
+    
     /**
      * Captura o código, nome, descrição, quantidade e preço do produto.
      * @return codigo, nome, descricao, quantidade, preco capturado.

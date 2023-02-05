@@ -19,6 +19,11 @@ public class ProdutoCategoriaPeso extends Produto{
     }
     
     
+     @Override
+    public double calcularPrecoItem() {
+     return preco * quantidade;
+ }
+    
     
   
 }

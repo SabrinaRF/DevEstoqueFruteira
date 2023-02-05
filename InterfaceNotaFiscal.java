@@ -55,7 +55,7 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
                 listaDeItem.get(i).getProduto().getNome(),
                 listaDeItem.get(i).getProduto().getDescricao(),
                 listaDeItem.get(i).getQuantidade(),
-                listaDeItem.get(i).calcularPrecoDoItem(),
+                //listaDeItem.get(i).calcularPrecoDoItem(),
             };
             novoModelo.addRow(linha);
         }
@@ -746,7 +746,7 @@ ManipularInterface();
                     JOptionPane.showMessageDialog(null, "Quantidade não pode ser menor que 0. Adicione uma quantidade válida.");
                 } else {
                     item.setQuantidade(quantidade);
-                    double precoDoItem = item.calcularPrecoDoItem();
+                    //double precoDoItem = item.calcularPrecoDoItem();
                     
                     
                     listaDeItem.add(item);
@@ -793,7 +793,7 @@ ManipularInterface();
                         JOptionPane.showMessageDialog(null, "Quantidade não pode ser menor que 0. Adicione uma quantidade válida.");
                     } else {
                         item.setQuantidade(quantidade);
-                        double precoDoItem = item.calcularPrecoDoItem();
+                        //double precoDoItem = item.calcularPrecoDoItem();
                         JOptionPane.showMessageDialog(null, "Item modificado!");
                         modo = "Navegar";
                         jComboBoxItem.setSelectedIndex(0);
@@ -900,7 +900,7 @@ return;
             notaFiscal += "Nome do produto: " + item.getProduto().getNome() + "\n";
             notaFiscal += "Descrição do produto: " + item.getProduto().getDescricao() + "\n";
             notaFiscal += "Quantidade: " + item.getQuantidade() + "\n";
-            notaFiscal += "Preço do item: " + item.calcularPrecoDoItem() + "\n";
+            //notaFiscal += "Preço do item: " + item.calcularPrecoDoItem() + "\n";
         }
         listaNFModel.addElement(notaFiscal);
         

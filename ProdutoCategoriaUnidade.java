@@ -17,14 +17,7 @@ public class ProdutoCategoriaUnidade extends Produto{
         super(nome, descricao, quantidade, preco);
     }
 
-     public void setQuantidade(int quantidade)throws Exception {
-         if(quantidade > 0){
-             setQuantidade(quantidade);
-         }else{
-             throw new Exception("Quantidade inválida, insira um valor maior que 0!");
-         }
-     }
-
+   
     
     /**
      *
@@ -47,4 +40,14 @@ public class ProdutoCategoriaUnidade extends Produto{
         }
     }
     
+    @Override
+    public double calcularPrecoItem() {
+     return preco * quantidade;
+ }
+     
+    
+    
 }
+      
+    
+
