@@ -637,11 +637,11 @@ public class InterfaceProduto extends javax.swing.JFrame {
                 double quantidade = Double.parseDouble(txtQuantidade.getText());
                 double preco = Double.parseDouble(txtPreco.getText());
 
-                if (btnRadioUn.isSelected()) {
-                    JOptionPane.showMessageDialog(null, "Opção 1 selecionada");
-                } else if (btnRadioQuilo.isSelected()) {
-                    JOptionPane.showMessageDialog(null, "Opção 2 selecionada");
-                }
+                //if (btnRadioUn.isSelected()) {
+                //    JOptionPane.showMessageDialog(null, "Opção 1 selecionada");
+                //} else if (btnRadioQuilo.isSelected()) {
+                //    JOptionPane.showMessageDialog(null, "Opção 2 selecionada");
+                //}
 
                 try{
                     Produto p = new Produto(nome,descricao, quantidade, preco);

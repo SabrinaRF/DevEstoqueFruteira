@@ -11,8 +11,6 @@ public class Produto {
     private double quantidade; // nao precisa
     private double preco;
     
-    
-    //aqui tambem
 
     /**
      * Construtor da Classe Produto, código gerado altomaticamente.
