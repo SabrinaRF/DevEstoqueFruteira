@@ -68,7 +68,16 @@ public class Produto {
      * Captura o quantidade do produto.
      * @return quantidade capturado.
      */
-    public double getQuantidade(){return quantidade;}
+    public double getQuantidade(){
+     // if (this.quantidade <= 0) {
+       // return 0;
+   // }
+    return this.quantidade;  
+    
+    //return quantidade;
+        
+    }
+       // return   quantidade;}
     /**
      * Captura o preço do produto.
      * @return preco capturado.

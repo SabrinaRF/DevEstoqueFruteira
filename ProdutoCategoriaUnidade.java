@@ -5,7 +5,7 @@
 package devestoquefruteira.DevEstoqueFruteira;
 
 public class ProdutoCategoriaUnidade extends Produto{
-    
+    private int categoriaUnidade;
     /**
     * Construtor da Classe PrudutoCategoriaUnidade, tem o super pq a classe extende a Classe Produto.
      * @param quantidade Quantidade do Produto.

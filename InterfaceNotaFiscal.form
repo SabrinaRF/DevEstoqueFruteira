@@ -357,7 +357,7 @@
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="TxtQtdDeItem" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtPrecoItem" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -367,7 +367,7 @@
                               <Component id="botaoSalvarItem" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="botaoCancelarNF" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="19" max="32767" attributes="0"/>
+                          <EmptySpace pref="16" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -414,10 +414,13 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Quantidade item"/>
+                    <Property name="text" type="java.lang.String" value="Quantidade item Un"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtQtdDeItem">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtQtdDeItemActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
                 </Component>
@@ -548,7 +551,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           <Component id="jPanelNFRegistrada" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="38" max="32767" attributes="0"/>
+                          <EmptySpace pref="37" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -607,7 +610,6 @@
                   </Properties>
                   <AccessibilityProperties>
                     <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
-                    <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
                   </AccessibilityProperties>
 
                   <Layout>
@@ -619,8 +621,11 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="caixaDeTextoConsultarNF" min="-2" pref="125" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnPesquisarNotaFiscal" min="-2" pref="74" max="-2" attributes="0"/>
-                              <EmptySpace pref="315" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="botaodeExcluirNotaFsical" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnPesquisarNotaFiscal" min="-2" pref="74" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="314" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -633,7 +638,9 @@
                                   <Component id="caixaDeTextoConsultarNF" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnPesquisarNotaFiscal" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="82" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="botaodeExcluirNotaFsical" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="47" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -674,6 +681,14 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarNotaFiscalActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="botaodeExcluirNotaFsical">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Excluir"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaodeExcluirNotaFsicalActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>

@@ -503,6 +503,16 @@ public class InterfaceProduto extends javax.swing.JFrame {
                     
                     try{
                         Produto p = new Produto(nome,descricao, quantidade, preco);
+                       /* if(ProdutoCategoriaPeso == true ){
+                        
+                        Produto p = new ProdutoCategoriaPeso(quantidade, nome, descricao, preco);
+                        
+                        
+                        }else{
+                        
+                        Produto p = new ProdutoCategoriaUnidade(quantidade, nome, descricao, preco);
+                        
+                        }*/
                     
                         listaProduto.addProduto(p);
 
@@ -570,6 +580,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
                         p.setDescricao(txtDescricao.getText()); 
                         try {
                             p.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+                            
                             try {
                                 p.setPreco(Double.parseDouble(txtPreco.getText())); 
                                

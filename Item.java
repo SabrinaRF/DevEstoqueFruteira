@@ -49,19 +49,19 @@ public class Item{
         return this.preco * this.quantidade;
     }
     
-    
    public double calcularPrecoDoItem(){
-       return this.preco * this.quantidade;
-     
-       
-       /* quantidade do item = 3 
-               multiplo valor do produto 
-                       e exbido o calculo 
-                               
-                               exibe na tabela 
-                   */                    
-   }
-    
+        if (this.produto instanceof ProdutoCategoriaPeso) {
+            return this.preco * this.quantidade * this.produto.getQuantidade();
+        } else {
+            return this.preco * this.quantidade;
+        }
+    }
+   
+   public double calcularPrecoPorKg(){
+        return this.preco * this.quantidade * this.produto.getQuantidade();
+   
+    }
+
     
     @Override
     public String toString(){

@@ -5,6 +5,7 @@
 package devestoquefruteira.DevEstoqueFruteira;
 
 public class ProdutoCategoriaPeso extends Produto{
+    private float quantidadePeso;
     
     /**
     * Construtor da Classe PrudutoCategoriaPeso, tem o super pq a classe extende a Classe Produto.
@@ -16,6 +17,9 @@ public class ProdutoCategoriaPeso extends Produto{
     public ProdutoCategoriaPeso(int quantidade, String nome, String descricao,double preco) throws Exception{
         super(nome, descricao, quantidade, preco);
     }
+    
+    
+    
   
 }
 
