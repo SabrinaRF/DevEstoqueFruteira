@@ -2,6 +2,7 @@
 
 package devestoquefruteira.DevEstoqueFruteira;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -164,6 +165,7 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         textoNotaFiscal = new javax.swing.JLabel();
         MenuNotaFisca = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -292,7 +294,7 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
             }
         });
 
-        jLabel1.setText("Quantidade item Un");
+        jLabel1.setText("Quantidade item");
 
         TxtQtdDeItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,6 +314,7 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TxtQtdDeItem, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -720,12 +723,27 @@ ManipularInterface();
         ManipularInterface();
     }//GEN-LAST:event_botaoCancelarNFActionPerformed
 
+    
+   
+    
+    
+    
     private void botaoSalvarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarItemActionPerformed
-
-        
-        
-          if (modo.equals("Novo")) {
-        try {
+     if (modo.equals("Novo")) {
+       try {
+            
+         
+           
+            /*Item item = null;
+        if (RadioButtonItemFixo.isSelected()) {
+            item = new ItemFixo();
+        } else if (RadioButtonItemVariavel.isSelected()) {
+            item = new ItemVariavel();
+        }
+        Produto selectedProduto = (Produto) jComboBoxItem.getSelectedItem();
+        item.setProduto(selectedProduto);
+            
+            */
             Item item = new Item();
             Produto selectedProduto = (Produto) jComboBoxItem.getSelectedItem();
             item.setProduto(selectedProduto);
@@ -1088,6 +1106,7 @@ return;
     private javax.swing.JButton botaoSalvarItem;
     private javax.swing.JButton botaodeExcluirNotaFsical;
     private javax.swing.JButton btnPesquisarNotaFiscal;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField caixaDeTextoConsultarNF;
     private javax.swing.JTextField caixaPreencherData;
     private javax.swing.JComboBox<String> jComboBoxItem;

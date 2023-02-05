@@ -17,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 public class InterfaceProduto extends javax.swing.JFrame {
     private EstoqueProduto listaProduto;
     private String modo;//aqui oh
+    private boolean porUnidade;
+    private boolean porPeso;
    
     /**
      * Creates new form InterfaceProduto
@@ -140,10 +142,8 @@ public class InterfaceProduto extends javax.swing.JFrame {
         txtQuantidade = new javax.swing.JTextField();
         btnCancelarProduto = new javax.swing.JButton();
         btnSalvarProduto = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        txtQuantidade1 = new javax.swing.JTextField();
-        radioButtonParaUnidade = new javax.swing.JRadioButton();
-        radioButtonParaKG = new javax.swing.JRadioButton();
+        btnRadioUn = new javax.swing.JRadioButton();
+        btnRadioKg = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -248,24 +248,26 @@ public class InterfaceProduto extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Quantidadekg");
-
-        txtQuantidade1.addActionListener(new java.awt.event.ActionListener() {
+        btnRadioUn.setText("Unidade");
+        btnRadioUn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQuantidade1ActionPerformed(evt);
+                btnRadioUnActionPerformed(evt);
             }
         });
 
-        radioButtonParaUnidade.setText("un");
-
-        radioButtonParaKG.setText("kg");
+        btnRadioKg.setText("KG");
+        btnRadioKg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRadioKgActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
+                .addGap(146, 146, 146)
                 .addComponent(btnSalvarProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCancelarProduto)
@@ -294,22 +296,20 @@ public class InterfaceProduto extends javax.swing.JFrame {
                                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(radioButtonParaUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtQuantidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(radioButtonParaKG, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(116, 116, 116)
+                        .addComponent(btnRadioUn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(btnRadioKg, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -318,18 +318,14 @@ public class InterfaceProduto extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radioButtonParaUnidade)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtQuantidade1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(radioButtonParaKG)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btnRadioUn)
+                    .addComponent(btnRadioKg))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvarProduto)
                     .addComponent(btnCancelarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -368,7 +364,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
                     .addComponent(btnEditarProduto)
                     .addComponent(btnExcluirProduto))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -533,26 +529,26 @@ public class InterfaceProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(modo.equals("Novo")){
                 try {
-                    
-                    
+                   
                     String nome =txtNome.getText();
                     String descricao = txtDescricao.getText();
                     int quantidade = Integer.parseInt(txtQuantidade.getText());
                     double preco = Double.parseDouble(txtPreco.getText());
                     
-                    try{
-                        Produto p = new Produto(nome,descricao, quantidade, preco);
-                       /* if(ProdutoCategoriaPeso == true ){
-                        
-                        Produto p = new ProdutoCategoriaPeso(quantidade, nome, descricao, preco);
-                        
-                        
-                        }else{
-                        
-                        Produto p = new ProdutoCategoriaUnidade(quantidade, nome, descricao, preco);
-                        
-                        }*/
                     
+                    String categoria ="";
+                    if (btnRadioUn.isSelected()) {
+                        categoria = btnRadioUn.getText();
+                        JOptionPane.showMessageDialog(null, "Opção 1 selecionada");
+                    } else if (btnRadioKg.isSelected()) {
+                        categoria = btnRadioKg.getText();
+                        JOptionPane.showMessageDialog(null, categoria);
+                    }
+                    
+                    try{
+   
+                       Produto p = new Produto(nome,descricao, quantidade, preco,categoria);
+         
                         listaProduto.addProduto(p);
 
                         JOptionPane.showMessageDialog(null, "Produto adicionado!");
@@ -564,45 +560,9 @@ public class InterfaceProduto extends javax.swing.JFrame {
                         txtPreco.setText("");
                     }catch (Exception e){
                         JOptionPane.showMessageDialog(null,e.getMessage());
-                     
+                    
                     }
-                    
-                    
-                    
-                    /*
-                    try {
-                        p.setNome(nome);
-                        try {
-                            p.setDescricao(descricao); 
-                            try {
-                            p.setQuantidade(quantidade);
-                                try{
-                                    p.setPreco(preco);
-
-                                    listaProduto.addProduto(p);
-
-                                    
-                                    JOptionPane.showMessageDialog(null, "Produto adicionado!");
-                                    modo="Navegar";
-                                    ManipularInterface();
-                                    txtNome.setText("");
-                                    txtDescricao.setText("");
-                                    txtQuantidade.setText("");
-                                    txtPreco.setText("");
-                                } catch(Exception e){
-                                    JOptionPane.showMessageDialog(null,e.getMessage());
-                                    txtPreco.setText("");
-                                }
-                            } catch (Exception ex) {
-                                JOptionPane.showMessageDialog(null,ex.getMessage());
-                                txtQuantidade.setText("");
-                            }
-                        } catch (Exception e){
-                            JOptionPane.showMessageDialog(null,e.getMessage());
-                        }   
-                    } catch (Exception e){
-                        JOptionPane.showMessageDialog(null,e.getMessage());
-                    } */                   
+                       
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Ocorreu um erro, preencha todos os campos.");
                 }
@@ -753,9 +713,13 @@ public class InterfaceProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQuantidadeActionPerformed
 
-    private void txtQuantidade1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidade1ActionPerformed
+    private void btnRadioUnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRadioUnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantidade1ActionPerformed
+    }//GEN-LAST:event_btnRadioUnActionPerformed
+
+    private void btnRadioKgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRadioKgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRadioKgActionPerformed
 
     /**
      * @param args the command line arguments
@@ -801,13 +765,14 @@ public class InterfaceProduto extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluirProduto;
     private javax.swing.JButton btnNovoProduto;
     private javax.swing.JButton btnPesquisar;
+    private javax.swing.JRadioButton btnRadioKg;
+    private javax.swing.JRadioButton btnRadioUn;
     private javax.swing.JButton btnSalvarProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -818,8 +783,6 @@ public class InterfaceProduto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel nome;
-    private javax.swing.JRadioButton radioButtonParaKG;
-    private javax.swing.JRadioButton radioButtonParaUnidade;
     private javax.swing.JTable tblProduto;
     private javax.swing.JTable tblProdutoEstoque;
     private javax.swing.JTextField txtCodigo;
@@ -827,6 +790,5 @@ public class InterfaceProduto extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;
     private javax.swing.JTextField txtQuantidade;
-    private javax.swing.JTextField txtQuantidade1;
     // End of variables declaration//GEN-END:variables
 }
