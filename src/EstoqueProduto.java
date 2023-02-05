@@ -1,8 +1,7 @@
-package devestoquefruteira.DevEstoqueFruteira;
+//package devestoquefruteira.DevEstoqueFruteira;
 
 import java.util.ArrayList;
 import java.util.List;
-import devestoquefruteira.DevEstoqueFruteira.Execoes.CodigoInvalidoException;
 public class EstoqueProduto implements IProduto{
 
     List<Produto> listaProdutos; // lista de produtos

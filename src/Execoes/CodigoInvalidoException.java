@@ -1,4 +1,4 @@
-package devestoquefruteira.DevEstoqueFruteira.Execoes;
+//package devestoquefruteira.DevEstoqueFruteira.Execoes;
 
 public class CodigoInvalidoException extends RuntimeException {
 
