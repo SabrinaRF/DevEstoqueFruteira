@@ -7,7 +7,6 @@ public class EstoqueProduto implements IProduto{
 
     List<Produto> listaProdutos; // lista de produtos
 
-
     /**
      * Construtor da Classe EstoqueProduto .
      * @param List Produto p.
