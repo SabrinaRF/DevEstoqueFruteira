@@ -13,8 +13,8 @@ public class ProdutoCategoriaUnidade extends Produto{
      * @param descricao Descrição do Produto.
      * @param preco Preço do Produto.
     **/ 
-    public ProdutoCategoriaUnidade(int quantidade, String nome, String descricao,double preco) throws Exception{
-        super(nome, descricao, quantidade, preco);
+    public ProdutoCategoriaUnidade(int quantidade, String nome, String descricao,double preco,String categoria) throws Exception{
+        super(nome, descricao, quantidade, preco,categoria);
     }
 
    

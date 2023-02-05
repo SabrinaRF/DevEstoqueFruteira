@@ -10,6 +10,7 @@ public class Produto {
     private String descricao;
     double quantidade; // nao precisa
     double preco;
+    private String categoria;
     private Object produto;
     
     
@@ -21,9 +22,10 @@ public class Produto {
      * @param descricao Descrição do produto
      * @param quantidade Quantidade do produto
      * @param preco Preço do produto
+     * @param categoria
      * @throws java.lang.Exception
      */
-    public Produto(String nome, String descricao, int quantidade, double preco) throws Exception{
+    public Produto(String nome, String descricao, int quantidade, double preco, String categoria) throws Exception{
         if(nome.equals("")){
             throw new Exception ("Nome obrigatório, preencha o campo!");
         }else if(descricao.equals("")){
@@ -38,6 +40,7 @@ public class Produto {
             this.descricao=descricao;
             this.quantidade=quantidade;
             this.preco=preco; 
+            this.categoria=categoria;
         }     
     
     }

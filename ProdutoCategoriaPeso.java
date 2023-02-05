@@ -14,8 +14,8 @@ public class ProdutoCategoriaPeso extends Produto{
      * @param descricao Descrição do Produto.
      * @param preco Preço do Produto.
     **/    
-    public ProdutoCategoriaPeso(int quantidade, String nome, String descricao,double preco) throws Exception{
-        super(nome, descricao, quantidade, preco);
+    public ProdutoCategoriaPeso(int quantidade, String nome, String descricao,double preco,String categoria) throws Exception{
+        super(nome, descricao, quantidade, preco,categoria);
     }
     
     
