@@ -75,7 +75,7 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
                 listaDeItem.get(i).getProduto().getNome(),
                 listaDeItem.get(i).getProduto().getDescricao(),
                 listaDeItem.get(i).getQuantidade(),
-                listaDeItem.get(i).calcularPrecoDoItem(),
+                //listaDeItem.get(i).calcularPrecoDoItem(),
                 
                 
               
@@ -677,7 +677,7 @@ public void salvar() {
             int quantidade = Integer.parseInt( TxtQtdDeItem.getText());
             
             item.setQuantidade(quantidade);
-            double precoDoItem = item.calcularPrecoDoItem();
+            //double precoDoItem = item.calcularPrecoDoItem();
 
             listaDeItem.add(item);
            
