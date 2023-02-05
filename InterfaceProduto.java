@@ -142,8 +142,6 @@ public class InterfaceProduto extends javax.swing.JFrame {
         txtQuantidade = new javax.swing.JTextField();
         btnSalvarProduto = new javax.swing.JButton();
         btnCancelarProduto = new javax.swing.JButton();
-        btnRadioUn = new javax.swing.JRadioButton();
-        btnRadioQuilo = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -243,12 +241,6 @@ public class InterfaceProduto extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(btnRadioUn);
-        btnRadioUn.setText("jRadioButton1");
-
-        buttonGroup1.add(btnRadioQuilo);
-        btnRadioQuilo.setText("jRadioButton2");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -272,10 +264,6 @@ public class InterfaceProduto extends javax.swing.JFrame {
                                     .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(btnRadioUn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnRadioQuilo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtDescricao)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -300,11 +288,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRadioUn)
-                    .addComponent(btnRadioQuilo))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -549,137 +533,6 @@ public class InterfaceProduto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalvarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProdutoActionPerformed
-        // TODO add your handling code here:
-        if(modo.equals("Novo")){
-                try {
-                    
-                    
-                    String nome =txtNome.getText();
-                    String descricao = txtDescricao.getText();
-                    double quantidade = Double.parseDouble(txtQuantidade.getText());
-                    double preco = Double.parseDouble(txtPreco.getText());
-                    
-                    if (btnRadioUn.isSelected()) {
-                        JOptionPane.showMessageDialog(null, "Opção 1 selecionada");
-                    } else if (btnRadioQuilo.isSelected()) {
-                        JOptionPane.showMessageDialog(null, "Opção 2 selecionada");
-                    }
-                    
-                    try{
-                        Produto p = new Produto(nome,descricao, quantidade, preco);
-                    
-                        listaProduto.addProduto(p);
-
-                        JOptionPane.showMessageDialog(null, "Produto adicionado!");
-                        modo="Navegar";
-                        ManipularInterface();
-                        txtNome.setText("");
-                        txtDescricao.setText("");
-                        txtQuantidade.setText("");
-                        txtPreco.setText("");
-                    }catch (Exception e){
-                        JOptionPane.showMessageDialog(null,e.getMessage());
-                     
-                    }
-                    
-                    
-                    
-                    /*
-                    try {
-                        p.setNome(nome);
-                        try {
-                            p.setDescricao(descricao); 
-                            try {
-                            p.setQuantidade(quantidade);
-                                try{
-                                    p.setPreco(preco);
-
-                                    listaProduto.addProduto(p);
-
-                                    
-                                    JOptionPane.showMessageDialog(null, "Produto adicionado!");
-                                    modo="Navegar";
-                                    ManipularInterface();
-                                    txtNome.setText("");
-                                    txtDescricao.setText("");
-                                    txtQuantidade.setText("");
-                                    txtPreco.setText("");
-                                } catch(Exception e){
-                                    JOptionPane.showMessageDialog(null,e.getMessage());
-                                    txtPreco.setText("");
-                                }
-                            } catch (Exception ex) {
-                                JOptionPane.showMessageDialog(null,ex.getMessage());
-                                txtQuantidade.setText("");
-                            }
-                        } catch (Exception e){
-                            JOptionPane.showMessageDialog(null,e.getMessage());
-                        }   
-                    } catch (Exception e){
-                        JOptionPane.showMessageDialog(null,e.getMessage());
-                    } */                   
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Ocorreu um erro, preencha todos os campos.");
-                }
-                
-        }else if(modo.equals("Editar")){
-            try {
-                int index = tblProduto.getSelectedRow();
-                
-                Produto p = listaProduto.getProduto(index);
-                
-                try {
-                    p.setNome(txtNome.getText());  
-                    try{
-                        p.setDescricao(txtDescricao.getText()); 
-                        try {
-                            p.setQuantidade(Double.parseDouble(txtQuantidade.getText()));
-                            try {
-                                p.setPreco(Double.parseDouble(txtPreco.getText())); 
-                               
-                                JOptionPane.showMessageDialog(null, "Produto modificado!");
-                                modo="Navegar";
-                                ManipularInterface();
-                                txtNome.setText("");
-                                txtDescricao.setText("");
-                                txtQuantidade.setText("");
-                                txtPreco.setText("");
-                            } catch (Exception ex) {
-                                JOptionPane.showMessageDialog(null,ex.getMessage());            
-                            }
-                        } catch (Exception ex) {
-                            JOptionPane.showMessageDialog(null,ex.getMessage());            
-                        }
-                    }catch(Exception e){
-                        JOptionPane.showMessageDialog(null,e.getMessage()); 
-                    }
-                } catch(Exception e){
-                    JOptionPane.showMessageDialog(null,e.getMessage()); 
-                }
-            } catch (Exception ex) {
-               JOptionPane.showMessageDialog(null,"Ocorreu um erro, preencha todos os campos.");          
-            }
-        }
-        LoadTableProduto();
-        LoadTableEstoque();
-        
-    }//GEN-LAST:event_btnSalvarProdutoActionPerformed
-
-    private void btnCancelarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProdutoActionPerformed
-        // TODO add your handling code here:
-        txtNome.setText("");
-        txtDescricao.setText("");
-        txtQuantidade.setText("");
-        txtPreco.setText("");
-        modo="Navegar";
-        ManipularInterface();
-    }//GEN-LAST:event_btnCancelarProdutoActionPerformed
-
-    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescricaoActionPerformed
-
     private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
         // TODO add your handling code here:
         int index = tblProduto.getSelectedRow();
@@ -764,6 +617,133 @@ public class InterfaceProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tblProdutoEstoqueMouseClicked
 
+    private void btnCancelarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProdutoActionPerformed
+        // TODO add your handling code here:
+        txtNome.setText("");
+        txtDescricao.setText("");
+        txtQuantidade.setText("");
+        txtPreco.setText("");
+        modo="Navegar";
+        ManipularInterface();
+    }//GEN-LAST:event_btnCancelarProdutoActionPerformed
+
+    private void btnSalvarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProdutoActionPerformed
+        // TODO add your handling code here:
+        if(modo.equals("Novo")){
+            try {
+
+                String nome =txtNome.getText();
+                String descricao = txtDescricao.getText();
+                double quantidade = Double.parseDouble(txtQuantidade.getText());
+                double preco = Double.parseDouble(txtPreco.getText());
+
+                if (btnRadioUn.isSelected()) {
+                    JOptionPane.showMessageDialog(null, "Opção 1 selecionada");
+                } else if (btnRadioQuilo.isSelected()) {
+                    JOptionPane.showMessageDialog(null, "Opção 2 selecionada");
+                }
+
+                try{
+                    Produto p = new Produto(nome,descricao, quantidade, preco);
+
+                    listaProduto.addProduto(p);
+
+                    JOptionPane.showMessageDialog(null, "Produto adicionado!");
+                    modo="Navegar";
+                    ManipularInterface();
+                    txtNome.setText("");
+                    txtDescricao.setText("");
+                    txtQuantidade.setText("");
+                    txtPreco.setText("");
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(null,e.getMessage());
+
+                }
+
+                /*
+                try {
+                    p.setNome(nome);
+                    try {
+                        p.setDescricao(descricao);
+                        try {
+                            p.setQuantidade(quantidade);
+                            try{
+                                p.setPreco(preco);
+
+                                listaProduto.addProduto(p);
+
+                                JOptionPane.showMessageDialog(null, "Produto adicionado!");
+                                modo="Navegar";
+                                ManipularInterface();
+                                txtNome.setText("");
+                                txtDescricao.setText("");
+                                txtQuantidade.setText("");
+                                txtPreco.setText("");
+                            } catch(Exception e){
+                                JOptionPane.showMessageDialog(null,e.getMessage());
+                                txtPreco.setText("");
+                            }
+                        } catch (Exception ex) {
+                            JOptionPane.showMessageDialog(null,ex.getMessage());
+                            txtQuantidade.setText("");
+                        }
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null,e.getMessage());
+                    }
+                } catch (Exception e){
+                    JOptionPane.showMessageDialog(null,e.getMessage());
+                } */
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro, preencha todos os campos.");
+            }
+
+        }else if(modo.equals("Editar")){
+            try {
+                int index = tblProduto.getSelectedRow();
+
+                Produto p = listaProduto.getProduto(index);
+
+                try {
+                    p.setNome(txtNome.getText());
+                    try{
+                        p.setDescricao(txtDescricao.getText());
+                        try {
+                            p.setQuantidade(Double.parseDouble(txtQuantidade.getText()));
+                            try {
+                                p.setPreco(Double.parseDouble(txtPreco.getText()));
+
+                                JOptionPane.showMessageDialog(null, "Produto modificado!");
+                                modo="Navegar";
+                                ManipularInterface();
+                                txtNome.setText("");
+                                txtDescricao.setText("");
+                                txtQuantidade.setText("");
+                                txtPreco.setText("");
+                            } catch (Exception ex) {
+                                JOptionPane.showMessageDialog(null,ex.getMessage());
+                            }
+                        } catch (Exception ex) {
+                            JOptionPane.showMessageDialog(null,ex.getMessage());
+                        }
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null,e.getMessage());
+                    }
+                } catch(Exception e){
+                    JOptionPane.showMessageDialog(null,e.getMessage());
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null,"Ocorreu um erro, preencha todos os campos.");
+            }
+        }
+        LoadTableProduto();
+        LoadTableEstoque();
+
+    }//GEN-LAST:event_btnSalvarProdutoActionPerformed
+
+    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescricaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -808,8 +788,6 @@ public class InterfaceProduto extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluirProduto;
     private javax.swing.JButton btnNovoProduto;
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JRadioButton btnRadioQuilo;
-    private javax.swing.JRadioButton btnRadioUn;
     private javax.swing.JButton btnSalvarProduto;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
