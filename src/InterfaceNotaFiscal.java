@@ -822,9 +822,9 @@ return;
         
     }//GEN-LAST:event_BotaoMostrarNotasActionPerformed
 
-    private void tabelaNotaFiscalRegistradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaNotaFiscalRegistradaMouseClicked
+    private void tabelaNotaFiscalRegistradaMouseClicked(java.awt.event.MouseEvent evt) {                                                        
         // TODO add your handling code here:
-    }//GEN-LAST:event_tabelaNotaFiscalRegistradaMouseClicked
+    }                                                       
 
     private void caixaDeTextoConsultarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caixaDeTextoConsultarNFActionPerformed
         // TODO add your handling code here:
