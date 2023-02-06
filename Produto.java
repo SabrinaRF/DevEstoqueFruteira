@@ -3,15 +3,17 @@ package devestoquefruteira.DevEstoqueFruteira;
  * Classe do Produto com o construtor, atributos e métodos básicos
  * @author Sabrina Rodrigues Fernandes 
  */    
-public class Produto {
+public abstract class Produto {
     private static int codigoGeral = 0;
     private final int codigo;
     private String nome;
     private String descricao;
-    double quantidade; // nao precisa
+   
     double preco;
     private Object produto;
-    private String categoria;
+    //private String categoria;
+   double precoPorkg;
+   int precoUnidade;
     
     
     //aqui tambem
@@ -24,22 +26,20 @@ public class Produto {
      * @param preco Preço do produto
      * @throws java.lang.Exception
      */
-    public Produto(String nome, String descricao, int quantidade, double preco, String categoria) throws Exception{
+    public Produto(String nome, String descricao,  double preco) throws Exception{
         if(nome.equals("")){
             throw new Exception ("Nome obrigatório, preencha o campo!");
         }else if(descricao.equals("")){
             throw new Exception ("Descição obrigatória, preencha o campo!");     
-        }else if(quantidade<=0){
-            throw new Exception("Quantidade inválida, insira um valor maior que 0!");
         }else if(preco<=0.0){
             throw new Exception ("Preço inválido, insira um preço acima de 0.0!");
         }else{
             this.codigo=codigoGeral++;
             this.nome= nome;
             this.descricao=descricao;
-            this.quantidade=quantidade;
+           
             this.preco=preco; 
-            this.categoria=categoria;
+            
         }     
     
     }
@@ -71,15 +71,15 @@ public class Produto {
      * Captura o quantidade do produto.
      * @return quantidade capturado.
      */
-    public double getQuantidade(){
-     // if (this.quantidade <= 0) {
-       // return 0;
-   // }
-    return this.quantidade;  
+    public abstract double getQuantidade();
+    
+    public abstract void setQuantidade(double quantidade)throws Exception ;
+    
+    
     
     //return quantidade;
         
-    }
+    
        // return   quantidade;}
     /**
      * Captura o preço do produto.
@@ -114,15 +114,7 @@ public class Produto {
      * @param quantidade Quantidade do produto a ser alterado.
      * @throws java.lang.Exception Lança exceção quando a quantidade for menor ou igual a zero.
      */
-    public void setQuantidade(double quantidade)throws Exception {
-
-        if(quantidade > 0){
-            this.quantidade=quantidade;
-        }else{
-            throw new Exception("Quantidade inválida, insira um valor maior que 0!");
-        }
-        //this.quantidade=quantidade;
-    }
+    
      /**
      * Altera o preço do produto.
      * @param preco Preço do produto a ser alterado.
@@ -137,9 +129,21 @@ public class Produto {
 
     
     
-    public double calcularPrecoItem() {
-    return preco * quantidade;
-}
+    public abstract double calcularPreco();
+  
+
+    
+    
+   
+    public double getPrecoPorKg(){
+    return precoPorkg;
+    }
+    
+    public int getPrecoPorUnidade(){
+    return precoUnidade;
+    }
+    
+    
     
     /**
      * Captura o código, nome, descrição, quantidade e preço do produto.
@@ -147,7 +151,7 @@ public class Produto {
      */
     @Override
     public String toString (){
-        return " Código: "+codigo+"| Nome: "+nome+"| Descrição: "+ descricao +"| Quantidade:" +quantidade+"| Preço: "+preco+" ";
+        return " Código: "+codigo+"| Nome: "+nome+"| Descrição: "+ descricao +" Preço: "+preco;
     }
 
 }

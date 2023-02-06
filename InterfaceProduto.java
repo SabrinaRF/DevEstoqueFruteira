@@ -326,7 +326,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
                     .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalvarProduto)
                     .addComponent(btnCancelarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -532,7 +532,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
                    
                     String nome =txtNome.getText();
                     String descricao = txtDescricao.getText();
-                    int quantidade = Integer.parseInt(txtQuantidade.getText());
+                    //int quantidade = Integer.parseInt(txtQuantidade.getText());
                     double preco = Double.parseDouble(txtPreco.getText());
                     
                     
@@ -547,10 +547,26 @@ public class InterfaceProduto extends javax.swing.JFrame {
                     
                     try{
    
-                       Produto p = new Produto(nome,descricao, quantidade, preco,categoria);
-         
+                        Produto p = null ;
+                        if (btnRadioKg .isSelected() ){
+                            double quantidade = 0;
+                          quantidade = Double.parseDouble(txtQuantidade.getText());
+                          preco = Double.parseDouble(txtPreco.getText()); 
+                          p   = new ProdutoCategoriaPeso(quantidade, txtNome.getText(),txtDescricao.getText(), preco);
+    
+                        }else if(btnRadioUn.isSelected()){
+                            
+                            int quantidade = Integer.parseInt(txtQuantidade.getText());
+                            preco = Double.parseDouble(txtPreco.getText()); 
+                            p = new ProdutoCategoriaUnidade(quantidade ,txtNome.getText(), txtDescricao.getText(), preco);
+                        }
+                        
+                        
                         listaProduto.addProduto(p);
-
+                        
+                        
+                        
+                        
                         JOptionPane.showMessageDialog(null, "Produto adicionado!");
                         modo="Navegar";
                         ManipularInterface();

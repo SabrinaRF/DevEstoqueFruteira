@@ -12,13 +12,15 @@ public class Item{
     double preco;
     int quantidade;
     Produto produto;
+    String categoria;
     
     
     
-    public Item(Produto produto, int quantidade){
+    public Item(Produto produto, int quantidade,String categotria){
         this.produto = produto;
         this.preco = produto.getPreco();
         this.quantidade = quantidade;
+        this.categoria=categotria;
     }
     
     public Item (){
@@ -49,18 +51,37 @@ public class Item{
         return this.preco * this.quantidade;
     }
     
-   /*public double calcularPrecoDoItem(){
+   public double calcularPrecoDoItem(){
         if (this.produto instanceof ProdutoCategoriaPeso) {
             return this.preco * this.quantidade * this.produto.getQuantidade();
         } else {
             return this.preco * this.quantidade;
         }
-    }*/
+       
+        
+    }
+   
+   public double calcular(){
+    return this.preco * this.quantidade;
+   }
+   
+   
+   
    
    public double calcularPrecoPorKg(){
-        return this.preco * this.quantidade * this.produto.getQuantidade();
-   
+        //return this.preco * this.quantidade * this.produto.getQuantidade();
+     return produto.getPrecoPorKg() * quantidade;
     }
+public String getCategoria (){
+    return categoria;
+    
+    }
+
+
+ public double calcularPrecoPorUnidade() {
+    return produto.getPrecoPorUnidade() * quantidade;
+  }
+
 
     
     @Override
