@@ -41,8 +41,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Component id="jTabbedPane2" min="-2" pref="575" max="-2" attributes="0"/>
-              <EmptySpace pref="17" max="32767" attributes="0"/>
+              <Component id="jTabbedPane2" pref="592" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -115,7 +114,11 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                       <EmptySpace pref="24" max="32767" attributes="0"/>
+=======
+                      <EmptySpace pref="42" max="32767" attributes="0"/>
+>>>>>>> d49da45aeef93fe6b13412f04a182984f555298b
                   </Group>
               </Group>
             </DimensionLayout>
