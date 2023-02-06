@@ -12,8 +12,11 @@ import java.util.List;
 public class MenuPrincipal extends javax.swing.JFrame {
     private EstoqueProduto listaProduto;
     private GerenciarNotasFiscais gerenciarNotasFiscais;
+    
     /**
-     * Creates new form MenuPrincipal
+     * Construtor da Classe MenuPrincipal.
+     * @param listaProduto lista de produto
+     * @param gerenciarNotasFiscais gerenciamento das notas fiscais.
      */
     public MenuPrincipal(EstoqueProduto listaProduto, GerenciarNotasFiscais gerenciarNotasFiscais) {
         initComponents();
@@ -113,12 +116,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Abre a Interface Produto .
+     * Da um new na Classe InterfaceProduto passando a lista de produtos, e setVisible(true).
+     */
     private void addProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProdutoActionPerformed
         // TODO add your handling code here:
         InterfaceProduto interfaceProduto = new InterfaceProduto(listaProduto);
         interfaceProduto.setVisible(true);
     }//GEN-LAST:event_addProdutoActionPerformed
 
+    /**
+     * Abre a Interface Nota Fiscal .
+     * Da um new na Classe InterfaceNotaFiscal passando o gerenciamento das notas fiscais e a lista de produtos, e setVisible(true).
+     */
     private void addNotaFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNotaFiscalActionPerformed
         // TODO add your handling code here:
         InterfaceNotaFiscal interfaceNotaFiscal =  new InterfaceNotaFiscal(gerenciarNotasFiscais, listaProduto);
@@ -154,16 +165,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            /**
+            * Inicia a Classe MenuPrincipal.
+            * Possui dois array list um dos produtos e outro das notas fiscais,
+            * no new Menu principal também se inicia o estoque produto passando a lista de produtos, e
+            * gerenciar notas fiscais passando o array list de notas fiscais e a lista de prpdutos.
+            */
+            @Override
             public void run() {
                 ArrayList<Produto> produto = new ArrayList<>();
                 ArrayList<NotaFiscal> listaNF = new ArrayList<>();
-                
-            
+          
                 new MenuPrincipal(new EstoqueProduto(produto), new GerenciarNotasFiscais(listaNF, produto)).setVisible(true);
-            
-               
-            
-                
+             
             }
         });
     }
