@@ -1298,9 +1298,9 @@ return;
         LoadTableNotafiscal();
         //loadTableNotaFiscalRegistrada();
 }
-       
-        
      
+        
+    
     }//GEN-LAST:event_btnPesquisarNotaFiscalActionPerformed
 
     private void tabelaNotaFiscalRegistradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaNotaFiscalRegistradaMouseClicked
