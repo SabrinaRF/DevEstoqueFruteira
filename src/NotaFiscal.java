@@ -22,6 +22,7 @@ public class NotaFiscal {
    private Date data;
    private final List<Item> listaDeItem; //sugestao da ide ser final
    private Produto produto;
+   private boolean excluido; //add
    
    
     public NotaFiscal(Date data, List<Item> listaDeItem, Produto produto){
@@ -64,6 +65,15 @@ public class NotaFiscal {
        return total;
     }
 
+    public boolean isExcluido() {//add
+        return excluido;
+    }
+
+    public void setExcluido(boolean excluido) {//add
+        this.excluido = excluido;
+    }
+    
+    
     public void adicionarItem(Item item) throws Exception{
         if(item != null){
             this.listaDeItem.add(item);

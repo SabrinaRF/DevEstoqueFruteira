@@ -6,6 +6,7 @@
 
 public class ProdutoCategoriaUnidade extends Produto{
     
+    
     /**
     * Construtor da Classe PrudutoCategoriaUnidade, tem o super pq a classe extende a Classe Produto.
      * @param quantidade Quantidade do Produto.
@@ -13,18 +14,11 @@ public class ProdutoCategoriaUnidade extends Produto{
      * @param descricao Descrição do Produto.
      * @param preco Preço do Produto.
     **/ 
-    public ProdutoCategoriaUnidade(int quantidade, String nome, String descricao,double preco) throws Exception{
-        super(nome, descricao, quantidade, preco);
+    public ProdutoCategoriaUnidade(int quantidade, String nome, String descricao,double preco, String categoria) throws Exception{
+        super(nome, descricao, quantidade, preco, categoria);
     }
 
-     public void setQuantidade(int quantidade)throws Exception {
-         if(quantidade > 0){
-             setQuantidade(quantidade);
-         }else{
-             throw new Exception("Quantidade inválida, insira um valor maior que 0!");
-         }
-     }
-
+   
     
     /**
      *
@@ -47,4 +41,14 @@ public class ProdutoCategoriaUnidade extends Produto{
         }
     }
     
+    @Override
+    public double calcularPrecoItem() {
+     return preco * quantidade;
+ }
+     
+    
+    
 }
+      
+    
+

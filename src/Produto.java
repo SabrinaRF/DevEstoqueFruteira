@@ -8,8 +8,10 @@ public class Produto {
     private final int codigo;
     private String nome;
     private String descricao;
-    private double quantidade; // nao precisa
-    private double preco;
+    double quantidade; // nao precisa
+    double preco;
+    private Object produto;
+    private String categoria;
     
     
     //aqui tambem
@@ -22,7 +24,7 @@ public class Produto {
      * @param preco Preço do produto
      * @throws java.lang.Exception
      */
-    public Produto(String nome, String descricao, int quantidade, double preco) throws Exception{
+    public Produto(String nome, String descricao, int quantidade, double preco, String categoria) throws Exception{
         if(nome.equals("")){
             throw new Exception ("Nome obrigatório, preencha o campo!");
         }else if(descricao.equals("")){
@@ -37,6 +39,7 @@ public class Produto {
             this.descricao=descricao;
             this.quantidade=quantidade;
             this.preco=preco; 
+            this.categoria=categoria;
         }     
     
     }
@@ -68,7 +71,16 @@ public class Produto {
      * Captura o quantidade do produto.
      * @return quantidade capturado.
      */
-    public double getQuantidade(){return quantidade;}
+    public double getQuantidade(){
+     // if (this.quantidade <= 0) {
+       // return 0;
+   // }
+    return this.quantidade;  
+    
+    //return quantidade;
+        
+    }
+       // return   quantidade;}
     /**
      * Captura o preço do produto.
      * @return preco capturado.
@@ -123,6 +135,12 @@ public class Produto {
         }
     }
 
+    
+    
+    public double calcularPrecoItem() {
+    return preco * quantidade;
+}
+    
     /**
      * Captura o código, nome, descrição, quantidade e preço do produto.
      * @return codigo, nome, descricao, quantidade, preco capturado.
