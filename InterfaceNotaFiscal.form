@@ -620,15 +620,29 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              <Component id="jLabelTXTConsultarNF" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="caixaDeTextoConsultarNF" min="-2" pref="125" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="botaodeExcluirNotaFsical" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnPesquisarNotaFiscal" min="-2" pref="74" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Component id="pesquisarPorData" min="-2" pref="125" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabelTXTConsultarNF" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="botaodeExcluirNotaFsical" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnPesquisarNotaFiscal" min="-2" pref="74" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                               <EmptySpace pref="314" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
+                                  <Component id="caixaDeTextoConsultarNF1" min="-2" pref="125" max="-2" attributes="0"/>
+                                  <EmptySpace pref="396" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -638,12 +652,23 @@
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabelTXTConsultarNF" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="caixaDeTextoConsultarNF" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnPesquisarNotaFiscal" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="botaodeExcluirNotaFsical" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="47" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="pesquisarPorData" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="13" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="caixaDeTextoConsultarNF1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="72" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -654,9 +679,9 @@
                         <Property name="text" type="java.lang.String" value="C&#xf3;digo da nota fiscal:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="caixaDeTextoConsultarNF">
+                    <Component class="javax.swing.JTextField" name="pesquisarPorData">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="caixaDeTextoConsultarNFActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pesquisarPorDataActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnPesquisarNotaFiscal">
@@ -692,6 +717,16 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaodeExcluirNotaFsicalActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel6">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Pesquisar por data:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="caixaDeTextoConsultarNF1">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="caixaDeTextoConsultarNF1ActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>

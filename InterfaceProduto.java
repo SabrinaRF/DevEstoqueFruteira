@@ -538,7 +538,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
                     double preco = Double.parseDouble(txtPreco.getText());
                     
                     try{
-                        Produto p = new Produto(nome,descricao, quantidade, preco);
+                        Produto p = new Produto(nome,descricao, preco, quantidade);
                     
                         listaProduto.addProduto(p);
 
@@ -555,41 +555,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
                     }
                     
                     
-                    
-                    /*
-                    try {
-                        p.setNome(nome);
-                        try {
-                            p.setDescricao(descricao); 
-                            try {
-                            p.setQuantidade(quantidade);
-                                try{
-                                    p.setPreco(preco);
-
-                                    listaProduto.addProduto(p);
-
-                                    
-                                    JOptionPane.showMessageDialog(null, "Produto adicionado!");
-                                    modo="Navegar";
-                                    ManipularInterface();
-                                    txtNome.setText("");
-                                    txtDescricao.setText("");
-                                    txtQuantidade.setText("");
-                                    txtPreco.setText("");
-                                } catch(Exception e){
-                                    JOptionPane.showMessageDialog(null,e.getMessage());
-                                    txtPreco.setText("");
-                                }
-                            } catch (Exception ex) {
-                                JOptionPane.showMessageDialog(null,ex.getMessage());
-                                txtQuantidade.setText("");
-                            }
-                        } catch (Exception e){
-                            JOptionPane.showMessageDialog(null,e.getMessage());
-                        }   
-                    } catch (Exception e){
-                        JOptionPane.showMessageDialog(null,e.getMessage());
-                    } */                   
+                               
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Ocorreu um erro, preencha todos os campos.");
                 }
