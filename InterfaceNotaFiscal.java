@@ -3,6 +3,7 @@
 package devestoquefruteira.DevEstoqueFruteira;
 
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,9 +30,9 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
     List<Item>listaDeItem;
     private String modo;
     DefaultTableModel modelo = new DefaultTableModel();
-  DefaultListModel<String> listaNFModel = new DefaultListModel<>();
+    DefaultListModel<String> listaNFModel = new DefaultListModel<>();
     private JList<String> mostrarLista2 = new JList<>(listaNFModel);
-     DefaultListModel modeloLista = new DefaultListModel();
+    DefaultListModel modeloLista = new DefaultListModel();
     
     public InterfaceNotaFiscal(GerenciarNotasFiscais listaDeNotasFiscais, EstoqueProduto estoque) {
         initComponents();
@@ -55,7 +56,7 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
                 listaDeItem.get(i).getProduto().getNome(),
                 listaDeItem.get(i).getProduto().getDescricao(),
                 listaDeItem.get(i).getQuantidade(),
-                //listaDeItem.get(i).calcularPrecoDoItem(),
+                listaDeItem.get(i).calcularPrecoDoItem(),
             };
             novoModelo.addRow(linha);
         }
@@ -68,25 +69,25 @@ public class InterfaceNotaFiscal extends javax.swing.JFrame {
     private void loadTableNotaFiscalRegistrada() {
     DefaultTableModel modelTabelaRegistrada = new DefaultTableModel(new Object [] {"Codigo da nota fiscal","data da nota fiscal","Códido do produto","Nome do produto","Descriçãodo produto","Quantidade item","Preço do item"},0);
    
-for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
-    for(Item item : notaFiscal.getListaItem()) {
-    Object[] linha = { 
-        notaFiscal.getCodNotaFiscal(), 
-        notaFiscal.getData(),
-        item.getProduto().getCodigo(),
-        item.getProduto().getNome(),
-        item.getProduto().getDescricao(),
-        item.getQuantidade(),
-        item.getPreco()
-    
-        
-        
-        };
-        modelTabelaRegistrada.addRow(linha);
+        for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
+            for(Item item : notaFiscal.getListaItem()) {
+            Object[] linha = { 
+                notaFiscal.getCodNotaFiscal(), 
+                notaFiscal.getData(),
+                item.getProduto().getCodigo(),
+                item.getProduto().getNome(),
+                item.getProduto().getDescricao(),
+                item.getQuantidade(),
+                item.getPreco()
+
+
+
+                };
+                modelTabelaRegistrada.addRow(linha);
+            }
+            tabelaNotaFiscalRegistrada.setModel(modelTabelaRegistrada);
+        }
     }
-    tabelaNotaFiscalRegistrada.setModel(modelTabelaRegistrada);
-}
-}
     
     public void ManipularInterface(){
         switch(modo){
@@ -199,6 +200,10 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
         caixaDeTextoConsultarNF = new javax.swing.JTextField();
         btnPesquisarNotaFiscal = new javax.swing.JButton();
         botaodeExcluirNotaFsical = new javax.swing.JButton();
+        txtTotal = new javax.swing.JTextField();
+        jLabelTXTConsultarNF1 = new javax.swing.JLabel();
+        txtData = new javax.swing.JTextField();
+        jLabelTXTConsultarNF2 = new javax.swing.JLabel();
         jPanelNFRegistrada = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tabelaNotaFiscalRegistrada = new javax.swing.JTable();
@@ -371,10 +376,7 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,7 +389,6 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -397,11 +398,11 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
                                         .addComponent(caixaPreencherData, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(96, 96, 96)
                                         .addComponent(SalvarNotaFiscal))
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane2)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 661, Short.MAX_VALUE))
+                        .addGap(0, 3, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -428,7 +429,7 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
                     .addComponent(SalvarNotaFiscal)
                     .addComponent(caixaPreencherData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelData))
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         MenuNotaFisca.addTab("Criar nota fiscal", jPanel1);
@@ -498,20 +499,44 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
             }
         });
 
+        txtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalActionPerformed(evt);
+            }
+        });
+
+        jLabelTXTConsultarNF1.setText("TOTAL DE VENDAS:");
+
+        txtData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDataActionPerformed(evt);
+            }
+        });
+
+        jLabelTXTConsultarNF2.setText("Data:");
+
         javax.swing.GroupLayout labelConsultarNFLayout = new javax.swing.GroupLayout(labelConsultarNF);
         labelConsultarNF.setLayout(labelConsultarNFLayout);
         labelConsultarNFLayout.setHorizontalGroup(
             labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(labelConsultarNFLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabelTXTConsultarNF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(caixaDeTextoConsultarNF, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTXTConsultarNF)
+                    .addComponent(jLabelTXTConsultarNF2))
                 .addGap(18, 18, 18)
+                .addGroup(labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(caixaDeTextoConsultarNF, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addGroup(labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaodeExcluirNotaFsical)
                     .addComponent(btnPesquisarNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGroup(labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTXTConsultarNF1))
+                .addGap(64, 64, 64))
         );
         labelConsultarNFLayout.setVerticalGroup(
             labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -520,10 +545,19 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
                 .addGroup(labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTXTConsultarNF)
                     .addComponent(caixaDeTextoConsultarNF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPesquisarNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTXTConsultarNF1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botaodeExcluirNotaFsical)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addGroup(labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaodeExcluirNotaFsical)
+                    .addComponent(txtTotal))
+                .addGap(0, 34, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, labelConsultarNFLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(labelConsultarNFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTXTConsultarNF2))
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -533,14 +567,14 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelConsultarNF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelConsultarNF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         labelConsultarNF.getAccessibleContext().setAccessibleName("");
@@ -573,7 +607,7 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
             jPanelNFRegistradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelNFRegistradaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelNFRegistradaLayout.setVerticalGroup(
@@ -592,23 +626,19 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(38, 38, 38)
-                    .addComponent(jPanelNFRegistrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(37, Short.MAX_VALUE)))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelNFRegistrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(658, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(186, 186, 186)
-                    .addComponent(jPanelNFRegistrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(187, Short.MAX_VALUE)))
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(jPanelNFRegistrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         MenuNotaFisca.addTab("Pesquisar notas", jPanel4);
@@ -618,21 +648,20 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(textoNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(MenuNotaFisca, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44)
+                .addComponent(MenuNotaFisca, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(83, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(textoNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(346, 346, 346))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(36, 36, 36)
                 .addComponent(textoNotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(MenuNotaFisca, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -865,18 +894,12 @@ ManipularInterface();
    
                                                         
     GerenciarNotasFiscais gerenciarNotasFiscais = new GerenciarNotasFiscais();
-  DefaultListModel<String> listModel = new DefaultListModel<>();
+    DefaultListModel<String> listModel = new DefaultListModel<>();
   
-  if (listaDeNotasFiscais.getListaNota().isEmpty()) {
-JOptionPane.showMessageDialog(null, "Não há notas fiscais cadastradas");
-return;
-}
-
-  //for (NotaFiscal nota : gerenciarNotasFiscais.getListaNota()) {
-    //String notaFiscal = "Código da nota fiscal: " + nota.getCodNotaFiscal() + "\n";
-    
-  //}
-
+    if (listaDeNotasFiscais.getListaNota().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Não há notas fiscais cadastradas");
+        return;
+    }
 
     listaNFModel.removeAllElements();
     for (NotaFiscal nota : listaDeNotasFiscais.getListaNota()) {
@@ -885,22 +908,28 @@ return;
         String notaFiscal = "Código da nota fiscal: " + "\n"+ nota.getCodNotaFiscal() + "\n";       
        
         Date dataAtual = new Date();  //pega a data da máquina
+        System.out.println(dataAtual);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String dataFormatada = dateFormat.format(dataAtual);
-        nota.setData(dataAtual);
+        try {
+            Date dataFormatada1 = dateFormat.parse(dataFormatada);
+            System.out.println(dataFormatada);
+            nota.setData(dataFormatada1);
+        } catch (ParseException ex) {
+            Logger.getLogger(InterfaceNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+        // nota.setData(dateFormat.format(dataFormatada)); 
         
-        //listaDeNotasFiscais.getListaNota().add(nota);
         notaFiscal += "Data da nota fiscal: " + dataFormatada + "\n";
        
-       
-        notaFiscal += "Itens da nota fiscal: \n";
+        notaFiscal += "\n"+ "Itens da nota fiscal: \n";
         for (Item item : nota.getListaItem()) {
             notaFiscal += "Código do produto: " + item.getProduto().getCodigo() + "\n";
             notaFiscal += "Nome do produto: " + item.getProduto().getNome() + "\n";
             notaFiscal += "Descrição do produto: " + item.getProduto().getDescricao() + "\n";
             notaFiscal += "Quantidade: " + item.getQuantidade() + "\n";
-            //notaFiscal += "Preço do item: " + item.calcularPrecoDoItem() + "\n";
+            notaFiscal += "Preço do item: " + item.calcularPrecoDoItem() + "\n";
         }
         listaNFModel.addElement(notaFiscal);
         
@@ -922,42 +951,75 @@ return;
     private void btnPesquisarNotaFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarNotaFiscalActionPerformed
     
         try {
-String texto = caixaDeTextoConsultarNF.getText();
-int codigo;
-try {
-codigo = Integer.parseInt(texto);
-// Verifica se o código digitado é negativo
-if (codigo < 0) {
-JOptionPane.showMessageDialog(null, "Código inválido! Por favor, informe um número positivo.");
-return;
-}
-} catch (NumberFormatException e) {
-JOptionPane.showMessageDialog(null, "Por favor, informe um número.");
-return;
-}
-        DefaultTableModel modeloConsultar = new DefaultTableModel(new Object [] {"Código da nota fiscal","data da nota fiscal","Codigo do produto", "Nome do produto","Descrição", "Quantidade","Preço do item"},0);
-    
-    boolean notaFiscalEncontrada = false;
-    for(NotaFiscal nf: listaDeNotasFiscais.getListaNota()) {
-        if (nf.getCodNotaFiscal() == codigo) {
-            notaFiscalEncontrada = true;
-            for(Item item : nf.getListaItem()) {
-                Object linha []=new Object[]{nf.getCodNotaFiscal(),nf.getData(),item.getProduto().getCodigo(),item.getProduto().getNome(),item.getProduto().getDescricao(), item.getQuantidade(), item.getPreco()};
-                modeloConsultar.addRow(linha);
+           String texto = caixaDeTextoConsultarNF.getText();
+            int codigo;
+            try {
+                codigo = Integer.parseInt(texto);
+                // Verifica se o código digitado é negativo
+                if (codigo < 0) {
+                    JOptionPane.showMessageDialog(null, "Código inválido! Por favor, informe um número positivo.");
+                return;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Por favor, informe um número.");
+                return;
             }
-            break;
-        }
+            DefaultTableModel modeloConsultar = new DefaultTableModel(new Object [] {"Código da nota fiscal","data da nota fiscal","Codigo do produto", "Nome do produto","Descrição", "Quantidade","Preço do item"},0);
+    
+            boolean notaFiscalEncontrada = false;
+            for(NotaFiscal nf: listaDeNotasFiscais.getListaNota()) {
+                if (nf.getCodNotaFiscal() == codigo) {
+                    notaFiscalEncontrada = true;
+                    for(Item item : nf.getListaItem()) {
+                        Object linha []=new Object[]{nf.getCodNotaFiscal(),nf.getData(),item.getProduto().getCodigo(),item.getProduto().getNome(),item.getProduto().getDescricao(), item.getQuantidade(), item.getPreco()};
+                        modeloConsultar.addRow(linha);
+                    }
+                    break;
+                }
+            }
+            if (!notaFiscalEncontrada) {
+                JOptionPane.showMessageDialog(null, "Nota fiscal não encontrada.");
+                return;
+            }
+            tabelaNotaFiscalRegistrada.setModel(modeloConsultar);
+           
+           //teste para toral
+            String caixaData = txtData.getText();
+            System.out.println(caixaData);
+            SimpleDateFormat teste = new SimpleDateFormat("dd/MM/yyyy");
+            Date dataFormatada;
+            try {
+                dataFormatada = teste.parse(caixaData);
+                System.out.println(teste.format(dataFormatada));
+                
+                boolean notaFiscalEncontrada1 = false;
+                double total=0;
+                for(NotaFiscal nf: listaDeNotasFiscais.getListaNota()) {
+                    if (nf.getData() == dataFormatada) {
+                        System.out.println("entro no if");
+                        notaFiscalEncontrada1 = true;
+                        try {
+                            total=total + nf.getTotal();
+                            txtTotal.setText(String.valueOf(total));
+                        } catch (Exception ex) {
+                            JOptionPane.showMessageDialog(null, "Ocorreu um erro: " + ex.getMessage());
+                        }
+                        break;
+                    }
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(InterfaceNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro: " + e.getMessage());
+            //LoadTableNotafiscal();
+            loadTableNotaFiscalRegistrada();
+            
+            
+            
     }
-    if (!notaFiscalEncontrada) {
-        JOptionPane.showMessageDialog(null, "Nota fiscal não encontrada.");
-        return;
-    }
-    tabelaNotaFiscalRegistrada.setModel(modeloConsultar);
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(null, "Ocorreu um erro: " + e.getMessage());
-    LoadTableNotafiscal();
-    //loadTableNotaFiscalRegistrada();
-}
        
         
      
@@ -1036,6 +1098,14 @@ return;
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtQtdDeItemActionPerformed
 
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalActionPerformed
+
+    private void txtDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDataActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -1098,6 +1168,8 @@ return;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelTXTConsultarNF;
+    private javax.swing.JLabel jLabelTXTConsultarNF1;
+    private javax.swing.JLabel jLabelTXTConsultarNF2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -1120,7 +1192,9 @@ return;
     private javax.swing.JTable tabelaNotaFiscalRegistrada;
     private javax.swing.JLabel textoNotaFiscal;
     private javax.swing.JLabel textoRelacaoItemNF;
+    private javax.swing.JTextField txtData;
     private javax.swing.JLabel txtPrecoItem;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 
     private void LoadTableProduto() {

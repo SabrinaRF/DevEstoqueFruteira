@@ -12,9 +12,6 @@ public class Produto {
     double preco;
     private Object produto;
     
-    
-    //aqui tambem
-
     /**
      * Construtor da Classe Produto, código gerado altomaticamente.
      * @param nome Nome do produto
@@ -69,16 +66,8 @@ public class Produto {
      * Captura o quantidade do produto.
      * @return quantidade capturado.
      */
-    public double getQuantidade(){
-     // if (this.quantidade <= 0) {
-       // return 0;
-   // }
-    return this.quantidade;  
-    
-    //return quantidade;
-        
-    }
-       // return   quantidade;}
+    public double getQuantidade(){return this.quantidade;}
+     
     /**
      * Captura o preço do produto.
      * @return preco capturado.

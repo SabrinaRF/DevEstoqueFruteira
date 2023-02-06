@@ -140,8 +140,6 @@ public class InterfaceProduto extends javax.swing.JFrame {
         txtQuantidade = new javax.swing.JTextField();
         btnCancelarProduto = new javax.swing.JButton();
         btnSalvarProduto = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        txtQuantidade1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -211,7 +209,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
 
         jLabel4.setText("Quantidade: ");
 
-        jLabel5.setText("Preço p/Kg:");
+        jLabel5.setText("Preço :");
 
         txtDescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,14 +243,6 @@ public class InterfaceProduto extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Preço p/Unidade:");
-
-        txtQuantidade1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQuantidade1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -275,17 +265,13 @@ public class InterfaceProduto extends javax.swing.JFrame {
                                     .addComponent(txtDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                                     .addComponent(txtQuantidade)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtQuantidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
+                        .addGap(222, 222, 222)
                         .addComponent(btnSalvarProduto)
-                        .addGap(157, 157, 157)
+                        .addGap(76, 76, 76)
                         .addComponent(btnCancelarProduto)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
@@ -306,8 +292,6 @@ public class InterfaceProduto extends javax.swing.JFrame {
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtQuantidade1)
                     .addComponent(jLabel5)
                     .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -714,8 +698,9 @@ public class InterfaceProduto extends javax.swing.JFrame {
                     listaProduto.getProduto(codigo);
                 }
             }catch(Exception e){
-                    JOptionPane.showMessageDialog(null,"Produto não encontrado");
                     LoadTableEstoque();
+                    JOptionPane.showMessageDialog(null,"Produto não encontrado");
+                    
             }
             tblProdutoEstoque.setModel(modeloProduto); 
             
@@ -732,10 +717,6 @@ public class InterfaceProduto extends javax.swing.JFrame {
     private void txtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQuantidadeActionPerformed
-
-    private void txtQuantidade1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidade1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantidade1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -787,7 +768,6 @@ public class InterfaceProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -805,6 +785,5 @@ public class InterfaceProduto extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;
     private javax.swing.JTextField txtQuantidade;
-    private javax.swing.JTextField txtQuantidade1;
     // End of variables declaration//GEN-END:variables
 }

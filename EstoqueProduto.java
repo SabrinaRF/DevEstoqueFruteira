@@ -12,8 +12,6 @@ public class EstoqueProduto implements IProduto{
      * Construtor da Classe EstoqueProduto .
      * @param List Produto p.
      */
-
- 
     public EstoqueProduto (){
       this.listaProdutos = new ArrayList<Produto>();
     }

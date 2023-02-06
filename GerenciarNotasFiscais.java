@@ -5,6 +5,7 @@
 package devestoquefruteira.DevEstoqueFruteira;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,31 +17,30 @@ public class GerenciarNotasFiscais implements INotasFiscais{
     private List <Produto> listaProdutos; //add
     
     
-  
+    /**
+     * Construtor da Classe GerenciarNotasFiscais .
+     * @param listaDeNotasFiscais Lista de Notas Fiscais.
+     * @param listaProdutos Lista de Produtos.
+     */
     public GerenciarNotasFiscais(List<NotaFiscal> listaDeNotasFiscais, List<Produto> listaProdutos){
         this.listaDeNotasFiscais = listaDeNotasFiscais;
         this.listaProdutos = listaProdutos;
     }
 
+    /**
+     * Construtor da Classe GerenciarNotasFiscais .
+     */
     public GerenciarNotasFiscais(){
      this.listaDeNotasFiscais = new ArrayList<NotaFiscal>();
     }
+    
     /**
-     *
-     * @param nf
-     * @throws Exception
+     * Adiciona a nota fiscal a lista.
+     * @param nf NotaFiscal como parametro.
+     * @throws Exception Lança exceção a nota fiscal não possa ser adicionada.
      */
     @Override
-   /* public void addNotaFiscal(NotaFiscal nf) throws Exception{
-        if(nf != null){
-        listaDeNotasFiscais.add(nf);
-        } else {
-             throw new Exception("Nota fiscal não pode ser adicionado!");
-        }
-    }
-    */
-    
-        public void addNotaFiscal(NotaFiscal nf) throws Exception{
+    public void addNotaFiscal(NotaFiscal nf) throws Exception{
         if(listaDeNotasFiscais == null) {
             listaDeNotasFiscais = new ArrayList<NotaFiscal>();
         }
@@ -54,9 +54,9 @@ public class GerenciarNotasFiscais implements INotasFiscais{
     
     
     /**
-     *
-     * @param codigo
-     * @throws Exception
+     * Remove a Nots Fiscal da lista de notas.
+     * @param codigo Código da nota fiscal a ser inserida.
+     * @throws Exception Lança exceção quando não é encontrada.
      */
     @Override
     public void removeNotaFiscal(int codigo) throws Exception{
@@ -69,10 +69,10 @@ public class GerenciarNotasFiscais implements INotasFiscais{
     }
     
     /**
-     *
-     * @param codigo
-     * @return
-     * @throws Exception
+     * Retorna uma Nota Fiscal da lista de notas fiscais.
+     * @param codigo Código da Nota Fiscal.
+     * @return nota Nota fiscal é retornada.
+     * @throws Exception Lança execeção quando a Nota Fiscal não for encontrada.
      */
     @Override
     public NotaFiscal getNotaFiscal(int codigo) throws Exception{
@@ -86,10 +86,10 @@ public class GerenciarNotasFiscais implements INotasFiscais{
     
     
     /**
-     *
-     * @param codigo
-     * @return
-     * @throws Exception
+     * Retorna o total de uma nota fiscal.
+     * @param codigo Código da Nota Fiscal.
+     * @return Total de uma nota fiscal.
+     * @throws Exception Lança execeção quando a Nota Fiscal não for encontrada.
      */
     @Override
     public double getTotal(int codigo) throws Exception{
@@ -102,6 +102,12 @@ public class GerenciarNotasFiscais implements INotasFiscais{
         throw new Exception("Código inválido. Nota fiscal não pôde ser encontrada.");
     }
 
+    /**
+     * Adiciona umm item a nota fiscal.
+     * @param codigo Código da Nota Fiscal.
+     * @param item Item é um objeto Item.
+     * @throws Exception Lança execeção quando o item não for encontrada.
+     */
     @Override
     public void addItem(int codigo, Item item) throws Exception{
         if(item != null){
@@ -114,6 +120,12 @@ public class GerenciarNotasFiscais implements INotasFiscais{
         throw new Exception("Item inválido.");
     }
     
+    /**
+     * Remove umm item a nota fiscal.
+     * @param codigo Código da Nota Fiscal.
+     * @param item Item é um objeto Item.
+     * @throws Exception Lança execeção quando o item não for encontrada.
+     */
     @Override
     public void removeItem(int codigo, Item item) throws Exception{
         if(item != null){
@@ -126,7 +138,13 @@ public class GerenciarNotasFiscais implements INotasFiscais{
         throw new Exception("Item inválido.");
     }
     
-    public double totalVendidoDia(String data) throws Exception{
+    /**
+     * Retorna o total vendido no dia.
+     * @param data data é uma data.
+     * @return Total vendido do dia.
+     * @throws Exception Lança execeção quando o item não for encontrada.
+     */
+    public double totalVendidoDia(Date data) throws Exception{
         double total = 0;
         if(!data.equals("")){
             for(NotaFiscal nota : listaDeNotasFiscais){

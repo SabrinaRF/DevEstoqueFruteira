@@ -49,13 +49,13 @@ public class Item{
         return this.preco * this.quantidade;
     }
     
-   /*public double calcularPrecoDoItem(){
+    public double calcularPrecoDoItem(){
         if (this.produto instanceof ProdutoCategoriaPeso) {
             return this.preco * this.quantidade * this.produto.getQuantidade();
         } else {
             return this.preco * this.quantidade;
         }
-    }*/
+    }
    
    public double calcularPrecoPorKg(){
         return this.preco * this.quantidade * this.produto.getQuantidade();
