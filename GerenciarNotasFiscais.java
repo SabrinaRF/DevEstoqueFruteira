@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package trabalhoag3.TrabalhoAG3;
+package devestoquefruteira.DevEstoqueFruteira;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +13,15 @@ import java.util.List;
  */
 public class GerenciarNotasFiscais implements INotasFiscais{
     private List<NotaFiscal> listaDeNotasFiscais;
+    private List <Produto> listaProdutos; //add
     
-    public GerenciarNotasFiscais(){
-        listaDeNotasFiscais = new ArrayList<>();
-    }
     
-    public GerenciarNotasFiscais(List<NotaFiscal> listaDeNotasFiscais){
+  
+    public GerenciarNotasFiscais(List<NotaFiscal> listaDeNotasFiscais, List<Produto> listaProdutos){
         this.listaDeNotasFiscais = listaDeNotasFiscais;
+        this.listaProdutos = listaProdutos;
     }
-    
+
     /**
      *
      * @param nf
@@ -29,8 +29,14 @@ public class GerenciarNotasFiscais implements INotasFiscais{
      */
     @Override
     public void addNotaFiscal(NotaFiscal nf) throws Exception{
-        this.listaDeNotasFiscais.add(nf);
+        if(nf != null){
+        listaDeNotasFiscais.add(nf);
+        } else {
+             throw new Exception("Nota fiscal não pode ser adicionado!");
+        }
     }
+    
+    
     
     /**
      *
@@ -80,7 +86,7 @@ public class GerenciarNotasFiscais implements INotasFiscais{
         }
         throw new Exception("Código inválido. Nota fiscal não pôde ser encontrada.");
     }
-    
+
     @Override
     public void addItem(int codigo, Item item) throws Exception{
         if(item != null){
@@ -117,5 +123,41 @@ public class GerenciarNotasFiscais implements INotasFiscais{
         }
 
         throw new Exception("Data inválida.");
+    }
+    
+    
+
+    //foi add 
+    public List<NotaFiscal> getListaNota() {
+           
+        return listaDeNotasFiscais;
+    }
+    
+    //foi add 
+    public List<Produto> getListsProduto() {     
+        return  listaProdutos;
+        
+        
+    }
+    
+     public NotaFiscal get(int i){
+    return  listaDeNotasFiscais.get(i);
+    }
+    
+     public int size(){
+        return listaDeNotasFiscais.size();
+    
+    }
+    
+    public int getNProduto(){
+    return listaProdutos.size();
+    } 
+            
+    public int getQuantElementos() { ///////////// Add
+        int quant = 0;
+       for(int i=0;i<listaDeNotasFiscais.size();i++){
+            quant++;
+        }
+        return quant;
     }
 }

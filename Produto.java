@@ -1,4 +1,4 @@
-package trabalhoag3.TrabalhoAG3;
+package devestoquefruteira.DevEstoqueFruteira;
 /**
  * Classe do Produto com o construtor, atributos e métodos básicos
  * @author Sabrina Rodrigues Fernandes 
@@ -28,7 +28,7 @@ public class Produto {
     /**
      * Construtor da Classe Produto, sem parametros.
      */
-    public Produto (){
+    public Produto (String banana, String fruta, String string, String string1){
     this.codigo=codigoGeral++;
     }
     
