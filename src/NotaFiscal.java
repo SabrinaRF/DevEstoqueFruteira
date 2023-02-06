@@ -60,7 +60,7 @@ public class NotaFiscal {
     public double getTotal() throws Exception{
        double total = 0;
        for(Item item : listaDeItem){
-            total += item.getTotal();
+            total += item.getTotalProduto();
         }
        return total;
     }

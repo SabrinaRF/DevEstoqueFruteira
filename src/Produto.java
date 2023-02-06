@@ -24,7 +24,7 @@ public class Produto {
      * @param preco Preço do produto
      * @throws java.lang.Exception
      */
-    public Produto(String nome, String descricao, int quantidade, double preco, String categoria) throws Exception{
+    public Produto(String nome, String descricao, double quantidade, double preco, String categoria) throws Exception{
         if(nome.equals("")){
             throw new Exception ("Nome obrigatório, preencha o campo!");
         }else if(descricao.equals("")){

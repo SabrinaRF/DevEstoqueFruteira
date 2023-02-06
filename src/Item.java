@@ -1,3 +1,7 @@
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -10,12 +14,13 @@
  */
 public class Item{
     double preco;
-    int quantidade;
+    double total;
+    double quantidade;
     Produto produto;
     
     
     
-    public Item(Produto produto, int quantidade){
+    public Item(Produto produto, double quantidade){
         this.produto = produto;
         this.preco = produto.getPreco();
         this.quantidade = quantidade;
@@ -28,11 +33,11 @@ public class Item{
         return this.preco;
     }
     
-    public int getQuantidade(){
+    public double getQuantidade(){
         return this.quantidade;
     }
     
-    public void setQuantidade(int quantidade){
+    public void setQuantidade(double quantidade){
         this.quantidade = quantidade;
     }
     
@@ -45,10 +50,7 @@ public class Item{
         this.preco = produto.getPreco();
     }
     
-    public double getTotal(){
-        return this.preco * this.quantidade;
-    }
-    
+   
    /*public double calcularPrecoDoItem(){
         if (this.produto instanceof ProdutoCategoriaPeso) {
             return this.preco * this.quantidade * this.produto.getQuantidade();
@@ -57,10 +59,19 @@ public class Item{
         }
     }*/
    
-   public double calcularPrecoPorKg(){
-        return this.preco * this.quantidade * this.produto.getQuantidade();
+   public double getTotalProduto() {
+       if(produto.getQuantidade() < quantidade){
+           //throw new Exception("Valor não permitido pois a quantidade em estoque é menor do que a solicitada");
+       }
+        try {
+            //produto.setQuantidade(produto.getQuantidade() - quantidade);
+        } catch (Exception ex) {
+            Logger.getLogger(Item.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this.preco * quantidade;
    
     }
+   
 
     
     @Override
