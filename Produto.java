@@ -3,12 +3,12 @@ package devestoquefruteira.DevEstoqueFruteira;
  * Classe do Produto com o construtor, atributos e métodos básicos
  * @author Sabrina Rodrigues Fernandes 
  */    
-public abstract class Produto {
+public class Produto {
     private static int codigoGeral = 0;
     private final int codigo;
     private String nome;
     private String descricao;
-   
+   private double quantidade;
     double preco;
     private Object produto;
     //private String categoria;
@@ -26,7 +26,7 @@ public abstract class Produto {
      * @param preco Preço do produto
      * @throws java.lang.Exception
      */
-    public Produto(String nome, String descricao,  double preco) throws Exception{
+    public Produto(String nome, String descricao,  double preco,double quantidade) throws Exception{
         if(nome.equals("")){
             throw new Exception ("Nome obrigatório, preencha o campo!");
         }else if(descricao.equals("")){
@@ -37,7 +37,7 @@ public abstract class Produto {
             this.codigo=codigoGeral++;
             this.nome= nome;
             this.descricao=descricao;
-           
+           this.quantidade=quantidade;
             this.preco=preco; 
             
         }     
@@ -71,9 +71,16 @@ public abstract class Produto {
      * Captura o quantidade do produto.
      * @return quantidade capturado.
      */
-    public abstract double getQuantidade();
     
-    public abstract void setQuantidade(double quantidade)throws Exception ;
+    //abstrato
+    public double getQuantidade(){
+        return quantidade;
+    }
+    
+    //abstrato
+    public  void setQuantidade(double quantidade)throws Exception{
+        this.quantidade=quantidade;
+    }
     
     
     
@@ -129,7 +136,9 @@ public abstract class Produto {
 
     
     
-    public abstract double calcularPreco();
+   /* public double calcularPreco(){
+    
+    }*/
   
 
     
@@ -149,9 +158,8 @@ public abstract class Produto {
      * Captura o código, nome, descrição, quantidade e preço do produto.
      * @return codigo, nome, descricao, quantidade, preco capturado.
      */
-    @Override
-    public String toString (){
-        return " Código: "+codigo+"| Nome: "+nome+"| Descrição: "+ descricao +" Preço: "+preco;
+     public String toString (){
+        return " Código: "+codigo+"| Nome: "+nome+"| Descrição: "+ descricao +"| Quantidade:" +quantidade+"| Preço: "+preco+" ";
     }
 
 }

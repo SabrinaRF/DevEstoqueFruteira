@@ -15,7 +15,7 @@ public class ProdutoCategoriaUnidade extends Produto{
      * @param preco Preço do Produto.
     **/ 
     public ProdutoCategoriaUnidade(int quantidade, String nome, String descricao,double preco) throws Exception{
-        super(nome, descricao, preco);
+        super(nome, descricao, preco,quantidade);
         this.quantidade=quantidade;
         
         if(quantidade <0){
@@ -35,7 +35,7 @@ public class ProdutoCategoriaUnidade extends Produto{
      * ou quando a quantidade inserida é double.
     **/
     
-    @Override
+   @Override
     public void setQuantidade(double quantidade)throws Exception {
         if(quantidade > 0){
             try{
@@ -50,18 +50,18 @@ public class ProdutoCategoriaUnidade extends Produto{
         }
     }
     
-    @Override
+   
     public double calcularPreco() {
      return preco * quantidade;
      
  }
     
-    @Override
+
     public String toString (){
         return super.toString() + "quantidade"+ getQuantidade();
     }
 
-    @Override
+
     public double getQuantidade() {
         return this.quantidade;
     }

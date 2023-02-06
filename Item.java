@@ -12,15 +12,15 @@ public class Item{
     double preco;
     int quantidade;
     Produto produto;
-    String categoria;
+   
     
     
     
-    public Item(Produto produto, int quantidade,String categotria){
+    public Item(Produto produto, int quantidade,double preco){
         this.produto = produto;
         this.preco = produto.getPreco();
         this.quantidade = quantidade;
-        this.categoria=categotria;
+        
     }
     
     public Item (){
@@ -29,6 +29,12 @@ public class Item{
     public double getPreco(){
         return this.preco;
     }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+    
+    
     
     public int getQuantidade(){
         return this.quantidade;
@@ -62,7 +68,7 @@ public class Item{
     }
    
    public double calcular(){
-    return this.preco * this.quantidade;
+     return this.preco * this.quantidade ;
    }
    
    
@@ -72,10 +78,7 @@ public class Item{
         //return this.preco * this.quantidade * this.produto.getQuantidade();
      return produto.getPrecoPorKg() * quantidade;
     }
-public String getCategoria (){
-    return categoria;
-    
-    }
+
 
 
  public double calcularPrecoPorUnidade() {

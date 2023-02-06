@@ -15,7 +15,7 @@ public class ProdutoCategoriaPeso extends Produto{
      * @param preco Preço do Produto.
     **/    
     public ProdutoCategoriaPeso(double quantidade, String nome, String descricao,double preco) throws Exception{
-        super( nome, descricao, preco);
+        super( nome, descricao, preco,quantidade);
         this.quantidade= quantidade;
         
         
@@ -33,7 +33,7 @@ public class ProdutoCategoriaPeso extends Produto{
     
 
   
-    @Override
+    //@Override
     public void setQuantidade(double quantidade)throws Exception {
         if(quantidade > 0){
             try{
@@ -49,13 +49,13 @@ public class ProdutoCategoriaPeso extends Produto{
     }
     
     
-    @Override
+    //@Override
     public String toString (){
         return super.toString() + "quantidade"+ getQuantidade();
     }
 
 
-    @Override
+    //@Override
     public double calcularPreco() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

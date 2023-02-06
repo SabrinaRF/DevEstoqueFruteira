@@ -527,38 +527,147 @@ public class InterfaceProduto extends javax.swing.JFrame {
 
     private void btnSalvarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProdutoActionPerformed
         // TODO add your handling code here:
+          // TODO add your handling code here:
         if(modo.equals("Novo")){
+                try {
+                    
+                    
+                    String nome =txtNome.getText();
+                    String descricao = txtDescricao.getText();
+                    int quantidade = Integer.parseInt(txtQuantidade.getText());
+                    double preco = Double.parseDouble(txtPreco.getText());
+                    
+                    try{
+                        Produto p = new Produto(nome,descricao, quantidade, preco);
+                    
+                        listaProduto.addProduto(p);
+
+                        JOptionPane.showMessageDialog(null, "Produto adicionado!");
+                        modo="Navegar";
+                        ManipularInterface();
+                        txtNome.setText("");
+                        txtDescricao.setText("");
+                        txtQuantidade.setText("");
+                        txtPreco.setText("");
+                    }catch (Exception e){
+                        JOptionPane.showMessageDialog(null,e.getMessage());
+                     
+                    }
+                    
+                    
+                    
+                    /*
+                    try {
+                        p.setNome(nome);
+                        try {
+                            p.setDescricao(descricao); 
+                            try {
+                            p.setQuantidade(quantidade);
+                                try{
+                                    p.setPreco(preco);
+
+                                    listaProduto.addProduto(p);
+
+                                    
+                                    JOptionPane.showMessageDialog(null, "Produto adicionado!");
+                                    modo="Navegar";
+                                    ManipularInterface();
+                                    txtNome.setText("");
+                                    txtDescricao.setText("");
+                                    txtQuantidade.setText("");
+                                    txtPreco.setText("");
+                                } catch(Exception e){
+                                    JOptionPane.showMessageDialog(null,e.getMessage());
+                                    txtPreco.setText("");
+                                }
+                            } catch (Exception ex) {
+                                JOptionPane.showMessageDialog(null,ex.getMessage());
+                                txtQuantidade.setText("");
+                            }
+                        } catch (Exception e){
+                            JOptionPane.showMessageDialog(null,e.getMessage());
+                        }   
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null,e.getMessage());
+                    } */                   
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Ocorreu um erro, preencha todos os campos.");
+                }
+                
+        }else if(modo.equals("Editar")){
+            try {
+                int index = tblProduto.getSelectedRow();
+                
+                Produto p = listaProduto.getProduto(index);
+                
+                try {
+                    p.setNome(txtNome.getText());  
+                    try{
+                        p.setDescricao(txtDescricao.getText()); 
+                        try {
+                            p.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+                            try {
+                                p.setPreco(Double.parseDouble(txtPreco.getText())); 
+                               
+                                JOptionPane.showMessageDialog(null, "Produto modificado!");
+                                modo="Navegar";
+                                ManipularInterface();
+                                txtNome.setText("");
+                                txtDescricao.setText("");
+                                txtQuantidade.setText("");
+                                txtPreco.setText("");
+                            } catch (Exception ex) {
+                                JOptionPane.showMessageDialog(null,ex.getMessage());            
+                            }
+                        } catch (Exception ex) {
+                            JOptionPane.showMessageDialog(null,ex.getMessage());            
+                        }
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null,e.getMessage()); 
+                    }
+                } catch(Exception e){
+                    JOptionPane.showMessageDialog(null,e.getMessage()); 
+                }
+            } catch (Exception ex) {
+               JOptionPane.showMessageDialog(null,"Ocorreu um erro, preencha todos os campos.");          
+            }
+        }
+        LoadTableProduto();
+        LoadTableEstoque();
+        
+        
+        /*if(modo.equals("Novo")){
                 try {
                    
                     String nome =txtNome.getText();
                     String descricao = txtDescricao.getText();
                     //int quantidade = Integer.parseInt(txtQuantidade.getText());
-                    double preco = Double.parseDouble(txtPreco.getText());
+                   double preco = Double.parseDouble(txtPreco.getText());
                     
-                    
-                    String categoria ="";
-                    if (btnRadioUn.isSelected()) {
-                        categoria = btnRadioUn.getText();
-                        JOptionPane.showMessageDialog(null, "Opção 1 selecionada");
-                    } else if (btnRadioKg.isSelected()) {
-                        categoria = btnRadioKg.getText();
-                        JOptionPane.showMessageDialog(null, categoria);
-                    }
-                    
+                 
                     try{
    
-                        Produto p = null ;
+                     /*   Produto p = null ;
+                       
                         if (btnRadioKg .isSelected() ){
-                            double quantidade = 0;
+                          double quantidade ;
                           quantidade = Double.parseDouble(txtQuantidade.getText());
-                          preco = Double.parseDouble(txtPreco.getText()); 
+                          preco = Double.parseDouble(txtPreco.getText());
+                          
+                         // preco = preco * quantidade;
+                          
+                          
+                          
                           p   = new ProdutoCategoriaPeso(quantidade, txtNome.getText(),txtDescricao.getText(), preco);
     
                         }else if(btnRadioUn.isSelected()){
                             
                             int quantidade = Integer.parseInt(txtQuantidade.getText());
-                            preco = Double.parseDouble(txtPreco.getText()); 
+                           // preco = Double.parseDouble(txtPreco.getText()); 
                             p = new ProdutoCategoriaUnidade(quantidade ,txtNome.getText(), txtDescricao.getText(), preco);
+                        
+                        
+                        
                         }
                         
                         
@@ -623,7 +732,7 @@ public class InterfaceProduto extends javax.swing.JFrame {
             }
         }
         LoadTableProduto();
-        LoadTableEstoque();
+        LoadTableEstoque();*/
         
     }//GEN-LAST:event_btnSalvarProdutoActionPerformed
 

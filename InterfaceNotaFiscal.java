@@ -679,42 +679,28 @@ for (NotaFiscal notaFiscal : listaDeNotasFiscais.getListaNota()) {
     }//GEN-LAST:event_BotaoEditarNFActionPerformed
 
     private void BotaoExcluiRNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoExcluiRNFActionPerformed
-    
-        
-        
+
         int index = TabelaNF.getSelectedRow();
-if (index >= 0 && index < listaDeNotasFiscais.size()){
-    
-    
-    NotaFiscal notaFiscal = listaDeNotasFiscais.get(index);
-    
-    int indexItem = jComboBoxItem.getSelectedIndex();
-    if (indexItem >= 0) {
-        Item item = notaFiscal.getListaItem().get(indexItem);
-        try {
-            notaFiscal.removerItem(item);
-            JOptionPane.showMessageDialog(null, "Produto removido com sucesso!");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Problema ao remover o produto!");
+        if (index >= 0 && index < listaDeNotasFiscais.size()){
+            NotaFiscal notaFiscal = listaDeNotasFiscais.get(index);
+            int indexItem = jComboBoxItem.getSelectedIndex();
+            if (indexItem >= 0) {
+                Item item = notaFiscal.getListaItem().get(indexItem);
+                try {
+                    notaFiscal.removerItem(item);
+                    JOptionPane.showMessageDialog(null, "Produto removido com sucesso!");
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Problema ao remover o produto!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione um item na lista para excluir");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma nota fiscal na lista para excluir o item");
         }
-    } else {
-        JOptionPane.showMessageDialog(null, "Selecione um item na lista para excluir");
-    }
-} else {
-    JOptionPane.showMessageDialog(null, "Selecione uma nota fiscal na lista para excluir o item");
-}
-LoadTableNotafiscal();
-modo="Navegar";
-ManipularInterface();
-        
-        
-        
-        
-        
-        
-        
-      
-    
+        LoadTableNotafiscal();
+        modo="Navegar";
+        ManipularInterface();
     }//GEN-LAST:event_BotaoExcluiRNFActionPerformed
 
     private void botaoCancelarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarNFActionPerformed
@@ -723,12 +709,52 @@ ManipularInterface();
         ManipularInterface();
     }//GEN-LAST:event_botaoCancelarNFActionPerformed
 
-    
-   
-    
-    
-    
     private void botaoSalvarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarItemActionPerformed
+    if (modo.equals("Novo")) {
+        try {
+                Item item = new Item();
+                Produto selectedProduto = (Produto) jComboBoxItem.getSelectedItem();
+                item.setProduto(selectedProduto);
+                int quantidade = Integer.parseInt(TxtQtdDeItem.getText());           
+            if (quantidade < 0) {
+                JOptionPane.showMessageDialog(null, "Quantidade não pode ser menor que 0. Adicione uma quantidade válida.");
+            } else {
+                item.setQuantidade(quantidade);
+                double precoDoItem = item.calcularPrecoDoItem();
+                listaDeItem.add(item);
+                JOptionPane.showMessageDialog(null, "Item adicionado!");
+                modo = "Navegar";
+                ManipularInterface();
+                TxtQtdDeItem.setText("");
+                jComboBoxItem.setSelectedIndex(-1);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro, preencha todos os campos.");
+        }
+    } else if (modo.equals("Editar")) {
+         try {
+            int index = TabelaNF.getSelectedRow();
+            Item item = listaDeItem.get(index);  
+            Produto selectProduto = (Produto)jComboBoxItem.getSelectedItem();
+            item.setProduto(selectProduto);
+            int quantidade = Integer.parseInt(TxtQtdDeItem.getText());
+        if (quantidade < 0) {
+            JOptionPane.showMessageDialog(null, "Quantidade não pode ser menor que 0. Adicione uma quantidade válida.");
+        } else {
+            item.setQuantidade(quantidade);
+            double precoDoItem = item.calcularPrecoDoItem();
+            JOptionPane.showMessageDialog(null, "Item modificado!");
+            modo = "Navegar";
+            jComboBoxItem.setSelectedIndex(0);
+            TxtQtdDeItem.setText("");
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e.getMessage());
+    }
+}
+    LoadTableNotafiscal();
+    BotaoEditarNF.setEnabled(true);
+    BotaoExcluiRNF.setEnabled(true);
 
         
         
@@ -736,29 +762,135 @@ ManipularInterface();
         
         
         
-            if (modo.equals("Novo")) {
+        /* if (modo.equals("Novo")) {
+          try {
+            Item item = new Item();
+            Produto selectedProduto = (Produto) jComboBoxItem.getSelectedItem();
+            item.setProduto(selectedProduto);
+            int quantidade = Integer.parseInt(TxtQtdDeItem.getText());
+            item.setQuantidade(quantidade);
+            double precoDoItem = item.calcularPrecoDoItem();
+
+            try {
+                if(quantidade <0 ){
+                 JOptionPane.showMessageDialog(null, "Quantidade não pode ser menor que 0.Adicione uma quantidade válida! ");
+                
+                }
+                else {
+ 
+              listaDeItem.add(item);
+              JOptionPane.showMessageDialog(null, "Item adicionado!");
+              modo = "Navegar";
+              ManipularInterface();
+              TxtQtdDeItem.setText("");
+              jComboBoxItem.setSelectedIndex(-1);
+                }
+            } catch (Exception ex) {
+              JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+          } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro, preencha todos os campos.");
+          }
+        } else if (modo.equals("Editar")) {
+         
+            
+            try {
+                int index = TabelaNF.getSelectedRow();
+                Item item = listaDeItem.get(index);  
+                Produto selectProduto = (Produto)jComboBoxItem.getSelectedItem();
+                item.setProduto(selectProduto);
+                int quantidade = Integer.parseInt(TxtQtdDeItem.getText());
+                item.setQuantidade(quantidade);
+               
+
+                    if(quantidade < 0) {
+                    JOptionPane.showMessageDialog(null, "Quantidade não pode ser menor que 0. Adicione uma quantidade válida.");
+                    } else {
+                    item.setQuantidade(quantidade);
+                    double precoDoItem = item.calcularPrecoDoItem();
+                    JOptionPane.showMessageDialog(null, "Item modificado!");
+                    modo = "Navegar";
+                    jComboBoxItem.setSelectedIndex(0);
+                    TxtQtdDeItem.setText("");
+                    }
+                    } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+                /*double precoDoItem = item.calcularPrecoDoItem();
+                
+              
+                if(quantidade <0 ){
+                 JOptionPane.showMessageDialog(null, "Quantidade não pode ser menor que 0.Adicione uma quantidade válida! ");
+                 
+                }
+                else {
+                JOptionPane.showMessageDialog(null, "Item modificado!");
+                        }
+                
+                
+                
+                
+                
+               modo="Navegar";
+               jComboBoxItem.setSelectedIndex(0);
+               TxtQtdDeItem.setText("");*/
+   
+            /*} catch (Exception ex) {
+                //Logger.getLogger(InterfaceNotaFiscal.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"Ocorreu um erro, preencha todos os campos.");   
+            }*/
+       
+        
+        //modo="Navegar";
+        //ManipularInterface();
+/*
+}   
+            LoadTableNotafiscal();
+                BotaoEditarNF.setEnabled(true);
+                 BotaoExcluiRNF.setEnabled(true);*/
+                 
+        
+        /*if (modo.equals("Novo")) {
         try {
             Item item = new Item();
             Produto selectedProduto = (Produto) jComboBoxItem.getSelectedItem();
             item.setProduto(selectedProduto);
-            
             String quantidadeString = TxtQtdDeItem.getText();
+            
             if (selectedProduto == null || quantidadeString == null || quantidadeString.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha ou selecione todos os campos.");
-                 return;
+                return;
             }   
-            
-            
-           // String quantidadeString = TxtQtdDeItem.getText();
-            
-         
-            try{
-                int quantidade = Integer.parseInt(quantidadeString);
-                if (quantidade < 0) {
-                    JOptionPane.showMessageDialog(null, "Quantidade não pode ser menor que 0. Adicione uma quantidade válida.");
-                } else {
-                    item.setQuantidade(quantidade);
-                    double precoDoItem = item.calcularPrecoDoItem();
+
+            double quantidade = Double.parseDouble(quantidadeString);
+            int quantidadeInt = Double.valueOf(quantidade).intValue();
+
+                try{
+                    if(quantidade <0){
+                       JOptionPane.showMessageDialog(null, "Quantidade não pode ser menor que 0. Adicione uma quantidade válida.");
+                     /*if( quantidade >0){
+                        
+                         item.setQuantidade(quantidadeInt);
+
+                        double precoDoProduto = selectedProduto.getPreco();
+                       
+                        
+                        double precoDoItem = quantidade * precoDoProduto;
+                       // item.setPreco(precoDoItem);
+                        
+                        
+   
+                        } else {
+                            item.setQuantidade(quantidadeInt);
+
+                            double precoDoItem = item.calcularPrecoDoItem();
+
+                            
+                    
+                    
+                    
+                    
+                    
                     listaDeItem.add(item);
                     JOptionPane.showMessageDialog(null, "Item adicionado!");
                     modo = "Navegar";
@@ -825,6 +957,7 @@ ManipularInterface();
         
       
         
+        */
         
         
         
@@ -832,8 +965,7 @@ ManipularInterface();
         
         
         
-        
-      /* if (modo.equals("Novo")) {
+      /*if (modo.equals("Novo")) {
        try {
  
             Produto selectedProduto = (Produto) jComboBoxItem.getSelectedItem();
@@ -965,7 +1097,42 @@ ManipularInterface();
     }//GEN-LAST:event_jComboBoxItemActionPerformed
 
     private void SalvarNotaFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarNotaFiscalActionPerformed
-    DefaultTableModel modelo = (DefaultTableModel) TabelaNF.getModel();
+    
+        Produto produto = new Produto();
+    try {
+        
+            NotaFiscal notaFiscal = new NotaFiscal();
+           
+                if (listaDeItem == null || listaDeItem.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Nenhum item adicionado na nota fiscal!");
+                    return;
+                }
+            notaFiscal.setListaDeItens(listaDeItem);
+                for(Item item: notaFiscal.getListaItem()){
+                    produto = item.getProduto();
+                    double quantidadeAtual = produto.getQuantidade();
+                    int quantidadeVendida = item.getQuantidade();
+                    int novaQuantidade = (int) (quantidadeAtual - quantidadeVendida);
+                    produto.setQuantidade(novaQuantidade);
+                    
+                }  
+            System.out.println("Tamanho da lista de notas fiscais antes de adicionar nova nota: " + listaDeNotasFiscais.size()); //tirar
+            listaDeNotasFiscais.addNotaFiscal(notaFiscal);
+            System.out.println("Tamanho da lista de notas fiscais depois de adicionar nova nota: " + listaDeNotasFiscais.size());
+            System.out.println("estoque"+ produto.getQuantidade());
+            LoadTableNotafiscal();
+           // interfaceProduto.LoadTableEstoque();
+            
+            modelo.setRowCount(0);
+            listaDeItem.clear();
+            
+            
+            JOptionPane.showMessageDialog(null, "Nota fiscal salva com sucesso! E estoque modificado");
+        }catch (Exception e) {
+           
+            Logger.getLogger(InterfaceNotaFiscal.class.getName()).log(Level.SEVERE,null, e);
+        } 
+        /*DefaultTableModel modelo = (DefaultTableModel) TabelaNF.getModel();
      
     try {
        
@@ -986,14 +1153,7 @@ ManipularInterface();
                     int novaQuantidade = (int) (quantidadeAtual - quantidadeVendida);
                     produto.setQuantidade(novaQuantidade);
                     
-                    
-                   /* if (item.produto.instanceof ){
-                    
-                    
-                    }else*/
-                    
-                    
-                    
+                   
                 }  
             System.out.println("Tamanho da lista de notas fiscais antes de adicionar nova nota: " + listaDeNotasFiscais.size()); //tirar
             listaDeNotasFiscais.addNotaFiscal(notaFiscal);
@@ -1010,7 +1170,7 @@ ManipularInterface();
         }catch (Exception e) {
            
             Logger.getLogger(InterfaceNotaFiscal.class.getName()).log(Level.SEVERE,null, e);
-        } 
+        } */
     }//GEN-LAST:event_SalvarNotaFiscalActionPerformed
 
     private void BotaoMostrarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoMostrarNotasActionPerformed
